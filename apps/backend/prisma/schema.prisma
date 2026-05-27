@@ -1,0 +1,278 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────
+// Enums
+// ─────────────────────────────────────────────
+
+enum UserRole {
+  admin
+  doctor
+  receptionist
+}
+
+enum AppointmentStatus {
+  pending
+  confirmed
+  in_progress
+  completed
+  cancelled
+  no_show
+}
+
+enum InvoiceType {
+  boleta
+  factura
+  nota_credito
+}
+
+// ─────────────────────────────────────────────
+// Models
+// ─────────────────────────────────────────────
+
+model Tenant {
+  id           String   @id @default(uuid())
+  name         String
+  ruc          String   @unique
+  subdomain    String   @unique
+  plan         String   @default("starter")
+  theme_config Json     @default("{}")
+  active       Boolean  @default(true)
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  users         User[]
+  doctors       Doctor[]
+  patients      Patient[]
+  appointments  Appointment[]
+  consultations Consultation[]
+  invoices      Invoice[]
+  reminders     Reminder[]
+  prescriptions Prescription[]
+
+  @@map("tenants")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  tenant_id     String
+  email         String
+  password_hash String
+  first_name    String
+  last_name     String
+  role          UserRole  @default(receptionist)
+  active        Boolean   @default(true)
+  last_login_at DateTime?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  tenant Tenant  @relation(fields: [tenant_id], references: [id])
+  doctor Doctor?
+
+  @@unique([tenant_id, email])
+  @@index([tenant_id])
+  @@map("users")
+}
+
+model Doctor {
+  id                    String   @id @default(uuid())
+  tenant_id             String
+  user_id               String   @unique
+  specialty             String
+  cmp                   String?
+  photo_url             String?
+  bio                   String?
+  consultation_duration Int      @default(30)
+  active                Boolean  @default(true)
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
+
+  tenant       Tenant        @relation(fields: [tenant_id], references: [id])
+  user         User          @relation(fields: [user_id], references: [id])
+  appointments Appointment[]
+
+  @@index([tenant_id])
+  @@map("doctors")
+}
+
+model Patient {
+  id                      String    @id @default(uuid())
+  tenant_id               String
+  dni                     String
+  first_name              String
+  last_name               String
+  date_of_birth           DateTime?
+  sex                     String?
+  phone                   String?
+  email                   String?
+  address                 String?
+  district                String?
+  allergies               String?
+  medical_history         String?
+  blood_type              String?
+  emergency_contact_name  String?
+  emergency_contact_phone String?
+  deleted_at              DateTime?
+  created_at              DateTime  @default(now())
+  updated_at              DateTime  @updatedAt
+
+  tenant       Tenant        @relation(fields: [tenant_id], references: [id])
+  appointments Appointment[]
+  invoices     Invoice[]
+
+  @@unique([tenant_id, dni])
+  @@index([tenant_id])
+  @@index([tenant_id, deleted_at])
+  @@map("patients")
+}
+
+model Appointment {
+  id               String            @id @default(uuid())
+  tenant_id        String
+  patient_id       String
+  doctor_id        String
+  scheduled_at     DateTime
+  duration_min     Int               @default(30)
+  status           AppointmentStatus @default(pending)
+  reason           String?
+  notes            String?
+  reminder_sent    Boolean           @default(false)
+  cancelled_reason String?
+  deleted_at       DateTime?
+  created_at       DateTime          @default(now())
+  updated_at       DateTime          @updatedAt
+
+  tenant       Tenant        @relation(fields: [tenant_id], references: [id])
+  patient      Patient       @relation(fields: [patient_id], references: [id])
+  doctor       Doctor        @relation(fields: [doctor_id], references: [id])
+  consultation Consultation?
+  reminders    Reminder[]
+
+  @@index([tenant_id])
+  @@index([tenant_id, scheduled_at])
+  @@index([doctor_id, scheduled_at])
+  @@index([tenant_id, status])
+  @@map("appointments")
+}
+
+model Consultation {
+  id                String    @id @default(uuid())
+  tenant_id         String
+  appointment_id    String    @unique
+  chief_complaint   String
+  physical_exam     String?
+  diagnosis         String?
+  icd10_code        String?
+  icd10_description String?
+  treatment         String?
+  notes             String?
+  follow_up_date    DateTime?
+  attachments       Json      @default("[]")
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  tenant        Tenant         @relation(fields: [tenant_id], references: [id])
+  appointment   Appointment    @relation(fields: [appointment_id], references: [id])
+  prescriptions Prescription[]
+  invoices      Invoice[]
+
+  @@index([tenant_id])
+  @@map("consultations")
+}
+
+model Prescription {
+  id              String   @id @default(uuid())
+  tenant_id       String
+  consultation_id String
+  instructions    String?
+  issued_at       DateTime @default(now())
+
+  tenant       Tenant             @relation(fields: [tenant_id], references: [id])
+  consultation Consultation       @relation(fields: [consultation_id], references: [id])
+  items        PrescriptionItem[]
+
+  @@index([tenant_id])
+  @@map("prescriptions")
+}
+
+model PrescriptionItem {
+  id              String  @id @default(uuid())
+  prescription_id String
+  medication      String
+  dosage          String
+  frequency       String
+  duration_days   Int
+  notes           String?
+
+  prescription Prescription @relation(fields: [prescription_id], references: [id])
+
+  @@map("prescription_items")
+}
+
+model Invoice {
+  id              String      @id @default(uuid())
+  tenant_id       String
+  patient_id      String
+  consultation_id String?
+  type            InvoiceType @default(boleta)
+  series          String
+  number          Int
+  subtotal        Decimal     @db.Decimal(10, 2)
+  tax             Decimal     @db.Decimal(10, 2)
+  total           Decimal     @db.Decimal(10, 2)
+  currency        String      @default("PEN")
+  sunat_status    String      @default("pending")
+  sunat_response  Json?
+  pdf_url         String?
+  issued_at       DateTime    @default(now())
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+
+  tenant       Tenant        @relation(fields: [tenant_id], references: [id])
+  patient      Patient       @relation(fields: [patient_id], references: [id])
+  consultation Consultation? @relation(fields: [consultation_id], references: [id])
+  items        InvoiceItem[]
+
+  @@unique([tenant_id, series, number])
+  @@index([tenant_id])
+  @@index([tenant_id, issued_at])
+  @@map("invoices")
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  invoice_id  String
+  description String
+  quantity    Int     @default(1)
+  unit_price  Decimal @db.Decimal(10, 2)
+  total       Decimal @db.Decimal(10, 2)
+
+  invoice Invoice @relation(fields: [invoice_id], references: [id])
+
+  @@map("invoice_items")
+}
+
+model Reminder {
+  id             String    @id @default(uuid())
+  tenant_id      String
+  appointment_id String
+  channel        String    @default("whatsapp")
+  status         String    @default("pending")
+  message        String
+  sent_at        DateTime?
+  error_message  String?
+  created_at     DateTime  @default(now())
+
+  tenant      Tenant      @relation(fields: [tenant_id], references: [id])
+  appointment Appointment @relation(fields: [appointment_id], references: [id])
+
+  @@index([tenant_id])
+  @@index([appointment_id])
+  @@map("reminders")
+}
