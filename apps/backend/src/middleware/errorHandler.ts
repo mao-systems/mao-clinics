@@ -1,40 +1,43 @@
 import { Request, Response, NextFunction } from 'express'
 import { ZodError } from 'zod'
+import { AppError } from '@/lib/errors'
 import { logger } from '@/lib/logger'
 
-interface AppError extends Error {
-  status?: number
-  code?: string
-}
-
 export function errorHandler(
-  err: AppError,
+  err: unknown,
   _req: Request,
   res: Response,
+  // Must declare 4 params so Express recognises this as an error handler
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _next: NextFunction
+  _next: NextFunction,
 ): void {
+  if (err instanceof AppError) {
+    res.status(err.statusCode).json({
+      success: false,
+      error: { code: err.code, message: err.message },
+    })
+    return
+  }
+
   if (err instanceof ZodError) {
     res.status(400).json({
       success: false,
       error: {
         code: 'VALIDATION_ERROR',
-        message: err.errors.map((e) => `${e.path.join('.')}: ${e.message}`).join(', '),
+        message: 'Invalid input',
+        details: err.errors,
       },
     })
     return
   }
 
-  const status = err.status ?? 500
-  const code = err.code ?? 'INTERNAL_SERVER_ERROR'
-  const message = status === 500 ? 'An unexpected error occurred' : err.message
+  // Unexpected error — log full details server-side, never expose internals to clients
+  const message = err instanceof Error ? err.message : String(err)
+  const stack = err instanceof Error ? err.stack : undefined
+  logger.error('Unhandled error', { message, stack })
 
-  if (status === 500) {
-    logger.error('Unhandled error', { error: err.message, stack: err.stack })
-  }
-
-  res.status(status).json({
+  res.status(500).json({
     success: false,
-    error: { code, message },
+    error: { code: 'INTERNAL_ERROR', message: 'An unexpected error occurred' },
   })
 }

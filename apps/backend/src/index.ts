@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import { env } from '@/config/env'
 import { logger } from '@/lib/logger'
 import { errorHandler } from '@/middleware/errorHandler'
+import { authRouter } from '@/modules/auth/auth.routes'
 
 const app = express()
 
@@ -16,9 +17,10 @@ app.use(
     credentials: true,
   })
 )
-app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+// Signed cookie secret prevents clients from tampering with cookie values
+app.use(cookieParser(env.COOKIE_SECRET))
 
 // Health check — no auth required
 app.get('/health', (_req, res) => {
@@ -28,8 +30,7 @@ app.get('/health', (_req, res) => {
 // API v1 router — modules mounted here as they are implemented
 const apiRouter = express.Router()
 
-// Placeholder: routes will be registered here in subsequent steps
-// e.g. apiRouter.use('/auth', authRouter)
+apiRouter.use('/auth', authRouter)
 // e.g. apiRouter.use('/patients', authenticateJWT, setTenantMiddleware, patientsRouter)
 
 app.use('/api/v1', apiRouter)

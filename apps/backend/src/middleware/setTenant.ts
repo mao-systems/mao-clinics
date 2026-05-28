@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 
-// Stub — reads req.user.tenantId and sets req.tenantId (implemented in Step 03)
-export function setTenantMiddleware(_req: Request, _res: Response, next: NextFunction): void {
+/**
+ * Sets req.tenantId from the JWT payload already parsed by authenticateJWT.
+ * The tenant ID is NEVER read from the request body, params, or query string —
+ * only from the signed JWT, so a user cannot impersonate another tenant.
+ */
+export function setTenantMiddleware(req: Request, _res: Response, next: NextFunction): void {
+  req.tenantId = req.user.tenantId
   next()
 }

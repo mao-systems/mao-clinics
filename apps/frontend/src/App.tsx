@@ -1,16 +1,38 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { ProtectedRoute } from '@/components/layout/ProtectedRoute'
+import { AppLayout } from '@/components/layout/AppLayout'
 import LoginPage from '@/pages/LoginPage'
 import DashboardPage from '@/pages/DashboardPage'
 
+// Placeholder pages — each module implemented in subsequent steps
+function PlaceholderPage({ label }: { label: string }) {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <p className="text-gray-400 text-sm">{label}</p>
+    </div>
+  )
+}
+
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        {/* Redirect root to dashboard — auth guard added in Step 03 */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      {/* Public */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected — all routes inside here require authentication */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<AppLayout />}>
+          <Route path="/dashboard"    element={<DashboardPage />} />
+          <Route path="/patients"     element={<PlaceholderPage label="Módulo Pacientes — Paso 07" />} />
+          <Route path="/appointments" element={<PlaceholderPage label="Módulo Citas — Paso 08" />} />
+          <Route path="/records"      element={<PlaceholderPage label="Módulo HCE — Paso 09" />} />
+          <Route path="/billing"      element={<PlaceholderPage label="Módulo Facturación — Paso 10" />} />
+          <Route path="/admin"        element={<PlaceholderPage label="Admin — Paso 07" />} />
+        </Route>
+      </Route>
+
+      {/* Root redirects to dashboard (ProtectedRoute handles unauth redirect) */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
   )
 }

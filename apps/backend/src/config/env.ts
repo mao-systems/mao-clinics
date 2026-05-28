@@ -14,6 +14,7 @@ const envSchema = z.object({
   JWT_REFRESH_SECRET: z.string().min(32),
   JWT_EXPIRES_IN: z.string().default('15m'),
   JWT_REFRESH_EXPIRES_IN: z.string().default('7d'),
+  COOKIE_SECRET: z.string().min(32),
   FRONTEND_URL: z.string().url().default('http://localhost:5173'),
   STORAGE_PROVIDER: z.enum(['local', 's3']).default('local'),
   BILLING_PROVIDER: z.enum(['mock', 'nubefact']).default('mock'),
