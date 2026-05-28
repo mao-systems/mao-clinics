@@ -1,16 +1,21 @@
 export interface Patient {
   id: string
   tenant_id: string
+  dni: string
   first_name: string
   last_name: string
-  dni: string
-  email: string | null
+  date_of_birth: string | null
+  sex: 'M' | 'F' | 'Other' | null
   phone: string | null
-  birth_date: Date | null
-  gender: 'male' | 'female' | 'other' | null
+  email: string | null
   address: string | null
-  notes: string | null
-  created_at: Date
-  updated_at: Date
-  deleted_at: Date | null
+  district: string | null
+  allergies: string | null
+  medical_history: string | null
+  blood_type: 'A+' | 'A-' | 'B+' | 'B-' | 'O+' | 'O-' | 'AB+' | 'AB-' | null
+  emergency_contact_name: string | null
+  emergency_contact_phone: string | null
+  deleted_at: string | null
+  created_at: string
+  updated_at: string
 }

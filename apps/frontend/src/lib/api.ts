@@ -1,4 +1,5 @@
 import axios from 'axios'
+import type { PaginationMeta } from '@mao-systems/shared'
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? '/api/v1',
@@ -34,10 +35,21 @@ axiosInstance.interceptors.response.use(
 // Server always responds with { success: true, data: T }
 // These helpers unwrap the envelope and return T directly.
 export const api = {
-  get<T = unknown>(url: string): Promise<T> {
+  // Accepts optional params for query strings (e.g. search filters)
+  get<T = unknown>(url: string, config?: { params?: Record<string, unknown> }): Promise<T> {
     return axiosInstance
-      .get<{ success: true; data: T }>(url)
+      .get<{ success: true; data: T }>(url, config)
       .then((r) => r.data.data)
+  },
+
+  // For paginated list endpoints: returns { data: T[], meta: PaginationMeta }
+  getList<T = unknown>(
+    url: string,
+    params?: Record<string, unknown>,
+  ): Promise<{ data: T[]; meta: PaginationMeta }> {
+    return axiosInstance
+      .get<{ success: true; data: T[]; meta: PaginationMeta }>(url, { params })
+      .then((r) => ({ data: r.data.data, meta: r.data.meta }))
   },
 
   post<T = unknown>(url: string, data?: unknown): Promise<T> {

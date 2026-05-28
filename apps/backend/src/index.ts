@@ -8,6 +8,7 @@ import { logger } from '@/lib/logger'
 import { errorHandler } from '@/middleware/errorHandler'
 import { authRouter } from '@/modules/auth/auth.routes'
 import { adminRouter } from '@/modules/admin/admin.routes'
+import { patientsRouter } from '@/modules/patients/patients.routes'
 
 const app = express()
 
@@ -37,7 +38,7 @@ const apiRouter = express.Router()
 
 apiRouter.use('/auth', authRouter)
 apiRouter.use('/admin', adminRouter)
-// e.g. apiRouter.use('/patients', authenticateJWT, setTenantMiddleware, patientsRouter)
+apiRouter.use('/patients', patientsRouter)
 
 app.use('/api/v1', apiRouter)
 

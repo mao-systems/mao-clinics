@@ -4,6 +4,8 @@ import { AppLayout } from '@/components/layout/AppLayout'
 import LoginPage from '@/pages/LoginPage'
 import DashboardPage from '@/pages/DashboardPage'
 import AdminPage from '@/features/admin/pages/AdminPage'
+import PatientsPage from '@/features/patients/pages/PatientsPage'
+import PatientDetailPage from '@/features/patients/pages/PatientDetailPage'
 
 // Placeholder pages — each module implemented in subsequent steps
 function PlaceholderPage({ label }: { label: string }) {
@@ -24,7 +26,8 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/dashboard"    element={<DashboardPage />} />
-          <Route path="/patients"     element={<PlaceholderPage label="Módulo Pacientes — Paso 07" />} />
+          <Route path="/patients"     element={<PatientsPage />} />
+          <Route path="/patients/:id" element={<PatientDetailPage />} />
           <Route path="/appointments" element={<PlaceholderPage label="Módulo Citas — Paso 08" />} />
           <Route path="/records"      element={<PlaceholderPage label="Módulo HCE — Paso 09" />} />
           <Route path="/billing"      element={<PlaceholderPage label="Módulo Facturación — Paso 10" />} />
