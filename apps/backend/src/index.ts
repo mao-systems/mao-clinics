@@ -9,6 +9,7 @@ import { errorHandler } from '@/middleware/errorHandler'
 import { authRouter } from '@/modules/auth/auth.routes'
 import { adminRouter } from '@/modules/admin/admin.routes'
 import { patientsRouter } from '@/modules/patients/patients.routes'
+import { appointmentsRouter } from '@/modules/appointments/appointments.routes'
 
 const app = express()
 
@@ -39,6 +40,7 @@ const apiRouter = express.Router()
 apiRouter.use('/auth', authRouter)
 apiRouter.use('/admin', adminRouter)
 apiRouter.use('/patients', patientsRouter)
+apiRouter.use('/appointments', appointmentsRouter)
 
 app.use('/api/v1', apiRouter)
 

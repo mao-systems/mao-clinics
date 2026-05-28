@@ -64,6 +64,12 @@ export const api = {
       .then((r) => r.data.data)
   },
 
+  patch<T = unknown>(url: string, data?: unknown): Promise<T> {
+    return axiosInstance
+      .patch<{ success: true; data: T }>(url, data)
+      .then((r) => r.data.data)
+  },
+
   delete<T = unknown>(url: string): Promise<T> {
     return axiosInstance
       .delete<{ success: true; data: T }>(url)

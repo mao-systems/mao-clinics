@@ -4,13 +4,35 @@ import { authenticateJWT } from '@/middleware/authenticate'
 import { setTenantMiddleware } from '@/middleware/setTenant'
 import { roleGuard } from '@/middleware/roleGuard'
 import { AppError } from '@/lib/errors'
+import { prisma } from '@/lib/prisma'
 import { UpdateThemeSchema } from './admin.schema'
 import { adminService } from './admin.service'
 
 const router = Router()
 
-// All admin routes require a valid JWT, a resolved tenant, and the admin role
-router.use(authenticateJWT, setTenantMiddleware, roleGuard(['admin']))
+// Auth + tenant resolution for every admin route
+router.use(authenticateJWT, setTenantMiddleware)
+
+// ── GET /api/v1/admin/doctors ─────────────────────────────────────────────────
+// Accessible to ALL authenticated roles — used by AppointmentForm to populate
+// the doctor selector regardless of the requesting user's role.
+router.get('/doctors', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const doctors = await prisma.doctor.findMany({
+      where: { tenant_id: req.tenantId, active: true },
+      include: {
+        user: { select: { first_name: true, last_name: true } },
+      },
+      orderBy: { specialty: 'asc' },
+    })
+    res.status(200).json({ success: true, data: { doctors } })
+  } catch (err) {
+    next(err)
+  }
+})
+
+// All routes below this point require the admin role
+router.use(roleGuard(['admin']))
 
 const upload = multer({
   storage: multer.memoryStorage(),
