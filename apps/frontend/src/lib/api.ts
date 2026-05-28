@@ -57,4 +57,13 @@ export const api = {
       .delete<{ success: true; data: T }>(url)
       .then((r) => r.data.data)
   },
+
+  // Used for multipart/form-data uploads (logos, attachments)
+  postForm<T = unknown>(url: string, formData: FormData): Promise<T> {
+    return axiosInstance
+      .post<{ success: true; data: T }>(url, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then((r) => r.data.data)
+  },
 }

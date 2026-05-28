@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -6,6 +7,7 @@ import { env } from '@/config/env'
 import { logger } from '@/lib/logger'
 import { errorHandler } from '@/middleware/errorHandler'
 import { authRouter } from '@/modules/auth/auth.routes'
+import { adminRouter } from '@/modules/admin/admin.routes'
 
 const app = express()
 
@@ -22,6 +24,9 @@ app.use(express.urlencoded({ extended: true }))
 // Signed cookie secret prevents clients from tampering with cookie values
 app.use(cookieParser(env.COOKIE_SECRET))
 
+// Serve uploaded files (logos, attachments) stored locally in dev
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
+
 // Health check — no auth required
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() })
@@ -31,6 +36,7 @@ app.get('/health', (_req, res) => {
 const apiRouter = express.Router()
 
 apiRouter.use('/auth', authRouter)
+apiRouter.use('/admin', adminRouter)
 // e.g. apiRouter.use('/patients', authenticateJWT, setTenantMiddleware, patientsRouter)
 
 app.use('/api/v1', apiRouter)

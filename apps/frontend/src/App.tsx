@@ -3,6 +3,7 @@ import { ProtectedRoute } from '@/components/layout/ProtectedRoute'
 import { AppLayout } from '@/components/layout/AppLayout'
 import LoginPage from '@/pages/LoginPage'
 import DashboardPage from '@/pages/DashboardPage'
+import AdminPage from '@/features/admin/pages/AdminPage'
 
 // Placeholder pages — each module implemented in subsequent steps
 function PlaceholderPage({ label }: { label: string }) {
@@ -27,7 +28,7 @@ export default function App() {
           <Route path="/appointments" element={<PlaceholderPage label="Módulo Citas — Paso 08" />} />
           <Route path="/records"      element={<PlaceholderPage label="Módulo HCE — Paso 09" />} />
           <Route path="/billing"      element={<PlaceholderPage label="Módulo Facturación — Paso 10" />} />
-          <Route path="/admin"        element={<PlaceholderPage label="Admin — Paso 07" />} />
+          <Route path="/admin"        element={<AdminPage />} />
         </Route>
       </Route>
 
