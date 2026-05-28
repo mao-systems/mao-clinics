@@ -10,6 +10,7 @@ import { authRouter } from '@/modules/auth/auth.routes'
 import { adminRouter } from '@/modules/admin/admin.routes'
 import { patientsRouter } from '@/modules/patients/patients.routes'
 import { appointmentsRouter } from '@/modules/appointments/appointments.routes'
+import { recordsRouter } from '@/modules/records/records.routes'
 
 const app = express()
 
@@ -41,6 +42,7 @@ apiRouter.use('/auth', authRouter)
 apiRouter.use('/admin', adminRouter)
 apiRouter.use('/patients', patientsRouter)
 apiRouter.use('/appointments', appointmentsRouter)
+apiRouter.use('/records', recordsRouter)
 
 app.use('/api/v1', apiRouter)
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { X, ExternalLink, Pencil, Clock, User, Stethoscope, FileText } from 'lucide-react'
+import { X, ExternalLink, Pencil, Clock, User, Stethoscope, FileText, ClipboardList } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Spinner } from '@/components/ui/Spinner'
 import { useUpdateAppointmentStatus } from '../hooks/useAppointments'
@@ -178,10 +178,24 @@ export function AppointmentDetailModal({
             <ExternalLink size={13} />
             Ver en historial
           </button>
-          <Button size="sm" variant="ghost" onClick={onEdit}>
-            <Pencil size={13} className="mr-1.5" />
-            Editar cita
-          </Button>
+          <div className="flex items-center gap-2">
+            {(appointment.status === 'confirmed' || appointment.status === 'in_progress') && (
+              <Button
+                size="sm"
+                onClick={() => {
+                  onClose()
+                  navigate(`/appointments/${appointment.id}/consultation`)
+                }}
+              >
+                <ClipboardList size={13} className="mr-1.5" />
+                Atender paciente
+              </Button>
+            )}
+            <Button size="sm" variant="ghost" onClick={onEdit}>
+              <Pencil size={13} className="mr-1.5" />
+              Editar cita
+            </Button>
+          </div>
         </div>
       </div>
     </div>

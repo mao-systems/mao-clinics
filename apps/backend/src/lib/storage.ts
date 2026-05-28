@@ -15,7 +15,8 @@ class LocalStorageProvider implements IStorageProvider {
     fs.mkdirSync(dir, { recursive: true })
     fs.writeFileSync(dest, file.buffer)
 
-    return `${env.FRONTEND_URL}/uploads/${key}`
+    // Files are served by the Express backend at /uploads — NOT the frontend
+    return `${env.BACKEND_URL}/uploads/${key}`
   }
 
   async delete(key: string): Promise<void> {

@@ -32,6 +32,9 @@ axiosInstance.interceptors.response.use(
   },
 )
 
+// Export the raw axios instance for non-JSON responses (e.g. PDF blobs)
+export { axiosInstance as apiInstance }
+
 // Server always responds with { success: true, data: T }
 // These helpers unwrap the envelope and return T directly.
 export const api = {

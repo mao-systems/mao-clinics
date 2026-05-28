@@ -7,6 +7,8 @@ import AdminPage from '@/features/admin/pages/AdminPage'
 import PatientsPage from '@/features/patients/pages/PatientsPage'
 import PatientDetailPage from '@/features/patients/pages/PatientDetailPage'
 import AppointmentsPage from '@/features/appointments/pages/AppointmentsPage'
+import ConsultationPage from '@/features/records/pages/ConsultationPage'
+import RecordsPage from '@/features/records/pages/RecordsPage'
 
 // Placeholder pages — each module implemented in subsequent steps
 function PlaceholderPage({ label }: { label: string }) {
@@ -30,7 +32,8 @@ export default function App() {
           <Route path="/patients"     element={<PatientsPage />} />
           <Route path="/patients/:id" element={<PatientDetailPage />} />
           <Route path="/appointments" element={<AppointmentsPage />} />
-          <Route path="/records"      element={<PlaceholderPage label="Módulo HCE — Paso 09" />} />
+          <Route path="/appointments/:appointmentId/consultation" element={<ConsultationPage />} />
+          <Route path="/records"      element={<RecordsPage />} />
           <Route path="/billing"      element={<PlaceholderPage label="Módulo Facturación — Paso 10" />} />
           <Route path="/admin"        element={<AdminPage />} />
         </Route>
