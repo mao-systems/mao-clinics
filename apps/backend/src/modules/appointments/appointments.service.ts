@@ -14,9 +14,16 @@ import type {
 
 const LIMA_TZ = 'America/Lima'
 
-// Working hours in Lima local time
-const WORK_START_HOUR = 8   // 08:00
-const WORK_END_HOUR   = 20  // 20:00
+// Day-of-week names in Spanish (lowercase, for "no atiende los {name}")
+const DAY_NAMES_ES: Record<number, string> = {
+  0: 'domingos',
+  1: 'lunes',
+  2: 'martes',
+  3: 'miércoles',
+  4: 'jueves',
+  5: 'viernes',
+  6: 'sábados',
+}
 
 // Valid status transitions — enforced strictly
 const VALID_TRANSITIONS: Record<AppointmentStatus, AppointmentStatus[]> = {
@@ -109,11 +116,15 @@ export class AppointmentsService {
   // ── getAvailability ────────────────────────────────────────────────────────
 
   async getAvailability(
-    tenantId: string,
-    doctorId: string,
-    dateStr: string,
+    tenantId:   string,
+    doctorId:   string,
+    dateStr:    string,   // Lima local date "YYYY-MM-DD"
     durationMin: number,
-  ) {
+  ): Promise<{
+    available: boolean
+    message?:  string
+    slots:     Array<{ time: string; scheduled_at: string; available: boolean }>
+  }> {
     // Verify doctor exists and belongs to tenant
     const doctor = await this.db.doctor.findFirst({
       where: { id: doctorId, tenant_id: tenantId, active: true },
@@ -123,35 +134,57 @@ export class AppointmentsService {
       throw new AppError('DOCTOR_NOT_FOUND', 404, 'Médico no encontrado')
     }
 
-    // Build UTC day boundaries from Lima local date string "YYYY-MM-DD"
-    // fromZonedTime treats the given date/time string as being in the specified timezone
-    const workStartUtc = fromZonedTime(`${dateStr}T${String(WORK_START_HOUR).padStart(2, '0')}:00:00`, LIMA_TZ)
-    const workEndUtc   = fromZonedTime(`${dateStr}T${String(WORK_END_HOUR).padStart(2, '0')}:00:00`, LIMA_TZ)
-    // Full day boundaries for the appointment query
+    // Derive day-of-week for the Lima calendar date.
+    // Using Date.UTC avoids any server-local-timezone skew when parsing "YYYY-MM-DD".
+    const [yr, mo, da] = dateStr.split('-').map(Number)
+    const limaDay = new Date(Date.UTC(yr, mo - 1, da)).getUTCDay()   // 0=Sun … 6=Sat
+
+    // Look up the doctor's schedule for this day
+    const schedule = await this.db.doctorSchedule.findFirst({
+      where: {
+        doctor_id:   doctorId,
+        tenant_id:   tenantId,
+        day_of_week: limaDay,
+        active:      true,
+      },
+    })
+
+    if (!schedule) {
+      return {
+        available: false,
+        message:   `El médico no atiende los ${DAY_NAMES_ES[limaDay]}`,
+        slots:     [],
+      }
+    }
+
+    // Convert schedule's Lima local "HH:MM" times to UTC Date objects
+    const workStartUtc = fromZonedTime(`${dateStr}T${schedule.start_time}:00`, LIMA_TZ)
+    const workEndUtc   = fromZonedTime(`${dateStr}T${schedule.end_time}:00`,   LIMA_TZ)
+    // Full day boundaries for fetching existing appointments
     const dayStartUtc  = fromZonedTime(`${dateStr}T00:00:00`, LIMA_TZ)
     const dayEndUtc    = fromZonedTime(`${dateStr}T23:59:59`, LIMA_TZ)
 
-    // Fetch all non-cancelled appointments for this doctor on this day
+    // Fetch all active appointments for this doctor on this day
     const existing = await this.db.appointment.findMany({
       where: {
-        doctor_id:  doctorId,
-        tenant_id:  tenantId,
-        deleted_at: null,
-        status:     { notIn: ['cancelled', 'no_show'] },
+        doctor_id:    doctorId,
+        tenant_id:    tenantId,
+        deleted_at:   null,
+        status:       { notIn: ['cancelled', 'no_show'] },
         scheduled_at: { gte: dayStartUtc, lte: dayEndUtc },
       },
       select: { scheduled_at: true, duration_min: true },
     })
 
-    // Generate every possible slot and mark occupied/available in JavaScript
-    // (existing appointments already fetched — no extra DB calls per slot)
+    // Generate slots every durationMin minutes within the schedule window.
+    // All overlap checks run in-memory — no extra DB calls per slot.
     const slots: Array<{ time: string; scheduled_at: string; available: boolean }> = []
     let current = workStartUtc
 
     while (current < workEndUtc) {
       const slotEnd = addMinutes(current, durationMin)
 
-      // Slot must finish within working hours
+      // Slot must finish at or before the schedule's end time
       if (slotEnd > workEndUtc) break
 
       const isOccupied = existing.some((appt) => {
@@ -170,7 +203,7 @@ export class AppointmentsService {
       current = addMinutes(current, durationMin)
     }
 
-    return slots
+    return { available: true, slots }
   }
 
   // ── checkOverlap ───────────────────────────────────────────────────────────

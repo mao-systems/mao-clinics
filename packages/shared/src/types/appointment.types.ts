@@ -1,3 +1,15 @@
+export interface AvailabilitySlot {
+  time:         string   // Lima local "HH:mm"
+  scheduled_at: string   // UTC ISO string
+  available:    boolean
+}
+
+export interface AvailabilityResponse {
+  available: boolean
+  message?:  string          // Set when available=false (e.g. "El médico no atiende los domingos")
+  slots:     AvailabilitySlot[]
+}
+
 export enum AppointmentStatus {
   pending = 'pending',
   confirmed = 'confirmed',

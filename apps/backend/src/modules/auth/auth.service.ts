@@ -46,6 +46,8 @@ interface MeResult {
   firstName: string
   lastName: string
   role: string
+  mustChangePassword: boolean
+  lastLoginAt: Date | null
   tenant: {
     id: string
     name: string
@@ -188,6 +190,8 @@ export class AuthService {
       firstName: user.first_name,
       lastName: user.last_name,
       role: user.role,
+      mustChangePassword: user.must_change_password,
+      lastLoginAt: user.last_login_at,
       tenant: {
         id: user.tenant.id,
         name: user.tenant.name,

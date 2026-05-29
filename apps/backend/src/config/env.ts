@@ -31,6 +31,13 @@ const envSchema = z.object({
   // Optional Meta WhatsApp config
   META_WHATSAPP_TOKEN: z.string().optional(),
   META_PHONE_NUMBER_ID: z.string().optional(),
+  // Optional SMTP config — used for welcome emails and password resets
+  SMTP_HOST:   z.string().optional(),
+  SMTP_PORT:   z.string().default('587'),
+  SMTP_SECURE: z.string().optional(),  // 'true' to use TLS on SMTP_PORT
+  SMTP_USER:   z.string().optional(),
+  SMTP_PASS:   z.string().optional(),
+  SMTP_FROM:   z.string().optional(),  // e.g. "MAO Clinics <no-reply@maosystems.io>"
 })
 
 const parsed = envSchema.safeParse(process.env)

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Lock, X, Search, ChevronDown } from 'lucide-react'
+import { Lock, X, Search, Info, CalendarX } from 'lucide-react'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -331,34 +331,45 @@ export function AppointmentForm({
                   Horario disponible
                 </p>
 
+                {/* Loading skeleton */}
                 {slotsLoading && (
                   <div className="grid grid-cols-5 sm:grid-cols-8 gap-2">
                     {Array.from({ length: 16 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-9 bg-gray-100 rounded-base animate-pulse"
-                      />
+                      <div key={i} className="h-9 bg-gray-100 rounded-base animate-pulse" />
                     ))}
                   </div>
                 )}
 
-                {!slotsLoading && (!slots || slots.length === 0) && (
-                  <div className="py-6 text-center border border-dashed border-gray-200 rounded-base">
-                    <p className="text-sm text-gray-400">
-                      Sin disponibilidad para este día
-                    </p>
+                {/* Doctor does not work on this day */}
+                {!slotsLoading && slots && !slots.available && (
+                  <div className="flex items-start gap-3 px-4 py-3 bg-blue-50 border border-blue-200 rounded-base">
+                    <Info size={15} className="text-blue-500 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-blue-800">{slots.message}</p>
+                      <p className="text-xs text-blue-600 mt-0.5">
+                        Selecciona otra fecha para ver disponibilidad.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Doctor works this day but all slots are occupied */}
+                {!slotsLoading && slots?.available && slots.slots.length === 0 && (
+                  <div className="flex flex-col items-center justify-center py-6 border border-dashed border-gray-200 rounded-base text-center">
+                    <CalendarX size={22} className="text-gray-300 mb-2" />
+                    <p className="text-sm text-gray-500 font-medium">Sin disponibilidad para este día</p>
                     <p className="text-xs text-gray-400 mt-1">
-                      Selecciona otra fecha o médico
+                      Todas las horas están ocupadas. Prueba con otra fecha.
                     </p>
                   </div>
                 )}
 
-                {!slotsLoading && slots && slots.length > 0 && (
+                {/* Slot grid */}
+                {!slotsLoading && slots?.available && slots.slots.length > 0 && (
                   <div className="grid grid-cols-5 sm:grid-cols-8 gap-1.5">
-                    {slots.map((slot) => {
-                      const isSelected = selectedSlotUtc === slot.scheduled_at
-                      const isCurrentEdit =
-                        isEdit && appointment?.scheduled_at === slot.scheduled_at
+                    {slots.slots.map((slot) => {
+                      const isSelected    = selectedSlotUtc === slot.scheduled_at
+                      const isCurrentEdit = isEdit && appointment?.scheduled_at === slot.scheduled_at
 
                       if (!slot.available && !isCurrentEdit) {
                         return (

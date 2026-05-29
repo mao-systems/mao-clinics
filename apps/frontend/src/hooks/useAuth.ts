@@ -16,20 +16,22 @@ export interface ThemeConfig {
 }
 
 export interface AuthUser {
-  id: string
-  email: string
-  firstName: string
-  lastName: string
-  role: 'admin' | 'doctor' | 'receptionist'
+  id:                 string
+  email:              string
+  firstName:          string
+  lastName:           string
+  role:               'admin' | 'doctor' | 'receptionist'
+  mustChangePassword: boolean
+  lastLoginAt:        string | null
   tenant: {
-    id: string
-    name: string
-    subdomain: string
-    plan: string
+    id:           string
+    name:         string
+    subdomain:    string
+    plan:         string
     theme_config: ThemeConfig
   }
   doctor?: {
-    id: string
+    id:       string
     specialty: string
   } | null
 }

@@ -184,6 +184,8 @@ async function main() {
   await prisma.prescription.deleteMany()
   await prisma.consultation.deleteMany()
   await prisma.appointment.deleteMany()
+  await prisma.doctorSchedule.deleteMany()
+  await prisma.serviceCatalog.deleteMany()
   await prisma.doctor.deleteMany()
   await prisma.patient.deleteMany()
   await prisma.user.deleteMany()
@@ -293,6 +295,57 @@ async function main() {
         cmp: '52108',
         consultation_duration: 25,
       },
+    ],
+  })
+
+  // ── Doctor schedules ──────────────────────────────────────────────────────
+  // Unique constraint: [doctor_id, day_of_week]. Two-shift days (Dr. Quispe Mon)
+  // use the wider range (08:00–18:00) as a single row per the constraint.
+  await prisma.doctorSchedule.createMany({
+    data: [
+      // Dr. García — Medicina General (Mon–Sat, mornings; Thu afternoon)
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 1, start_time: '08:00', end_time: '13:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 2, start_time: '08:00', end_time: '13:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 3, start_time: '08:00', end_time: '13:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 4, start_time: '14:00', end_time: '19:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 5, start_time: '08:00', end_time: '13:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR1_ID, day_of_week: 6, start_time: '08:00', end_time: '12:00' },
+
+      // Dra. Mendoza — Ginecología (4-day specialist schedule)
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR2_ID, day_of_week: 1, start_time: '09:00', end_time: '14:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR2_ID, day_of_week: 3, start_time: '09:00', end_time: '14:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR2_ID, day_of_week: 4, start_time: '09:00', end_time: '14:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR2_ID, day_of_week: 5, start_time: '15:00', end_time: '19:00' },
+
+      // Dr. Quispe — Pediatría (Mon wide range covers split shift; Tue–Sat mornings)
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 1, start_time: '08:00', end_time: '18:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 2, start_time: '08:00', end_time: '12:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 3, start_time: '08:00', end_time: '12:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 4, start_time: '08:00', end_time: '12:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 5, start_time: '08:00', end_time: '12:00' },
+      { tenant_id: DEMO_TENANT_ID, doctor_id: DEMO_DOCTOR3_ID, day_of_week: 6, start_time: '09:00', end_time: '12:00' },
+    ],
+  })
+
+  // ── Service catalog ───────────────────────────────────────────────────────
+  await prisma.serviceCatalog.createMany({
+    data: [
+      // Consultas
+      { tenant_id: DEMO_TENANT_ID, name: 'Consulta médica general',  price: 80.00,  category: 'Consultas',     sort_order: 1  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Consulta de especialidad', price: 120.00, category: 'Consultas',     sort_order: 2  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Consulta de urgencia',     price: 100.00, category: 'Consultas',     sort_order: 3  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Control y seguimiento',    price: 60.00,  category: 'Consultas',     sort_order: 4  },
+      // Procedimientos
+      { tenant_id: DEMO_TENANT_ID, name: 'Inyectable / vacuna',      price: 25.00,  category: 'Procedimientos', sort_order: 10 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Curación de herida',       price: 40.00,  category: 'Procedimientos', sort_order: 11 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Extracción de puntos',     price: 30.00,  category: 'Procedimientos', sort_order: 12 },
+      // Laboratorio
+      { tenant_id: DEMO_TENANT_ID, name: 'Hemograma completo',       price: 35.00,  category: 'Laboratorio',   sort_order: 20 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Glucosa en ayunas',        price: 20.00,  category: 'Laboratorio',   sort_order: 21 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Perfil lipídico',          price: 45.00,  category: 'Laboratorio',   sort_order: 22 },
+      // Imágenes
+      { tenant_id: DEMO_TENANT_ID, name: 'Ecografía abdominal',      price: 80.00,  category: 'Imágenes',      sort_order: 30 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Radiografía (1 placa)',    price: 50.00,  category: 'Imágenes',      sort_order: 31 },
     ],
   })
 
@@ -554,13 +607,15 @@ async function main() {
 
   // ── Summary ───────────────────────────────────────────────────────────────
   console.log('\n✅ Seed completed!')
-  console.log(`   Tenant:        Clínica San Rafael  (subdomain: sanrafael)`)
-  console.log(`   Users:         5  (1 admin · 3 doctors · 1 receptionist)`)
-  console.log(`   Patients:      50`)
-  console.log(`   Appointments:  60  (20 past · 10 today/tomorrow · 30 future)`)
-  console.log(`   Consultations: ${consultationData.length}  (all completed appointments)`)
-  console.log(`   Prescriptions: ${prescriptionData.length}  (~50 % of consultations)`)
-  console.log(`   Invoices:      ${invoiceRows.length}  (~40 % of consultations)`)
+  console.log(`   Tenant:           Clínica San Rafael  (subdomain: sanrafael)`)
+  console.log(`   Users:            5  (1 admin · 3 doctors · 1 receptionist)`)
+  console.log(`   Doctor schedules: 16`)
+  console.log(`   Services catalog: 12`)
+  console.log(`   Patients:         50`)
+  console.log(`   Appointments:     60  (20 past · 10 today/tomorrow · 30 future)`)
+  console.log(`   Consultations:    ${consultationData.length}  (all completed appointments)`)
+  console.log(`   Prescriptions:    ${prescriptionData.length}  (~50 % of consultations)`)
+  console.log(`   Invoices:         ${invoiceRows.length}  (~40 % of consultations)`)
   console.log()
   console.log('Demo credentials — password for all: Demo2026!')
   console.log('   admin@sanrafael.maosystems.io')

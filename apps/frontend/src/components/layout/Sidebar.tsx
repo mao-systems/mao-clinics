@@ -24,7 +24,8 @@ const navItems: NavItem[] = [
   { label: 'Citas',          to: '/appointments', icon: <Calendar size={18} /> },
   { label: 'Historial',      to: '/records',      icon: <FileText size={18} /> },
   { label: 'Facturación',    to: '/billing',      icon: <Receipt size={18} /> },
-  { label: 'Configuración',  to: '/admin',        icon: <Settings size={18} />, adminOnly: true },
+  // Visible to all roles — admins see all tabs; others see only "Mi cuenta"
+  { label: 'Configuración',  to: '/admin',        icon: <Settings size={18} /> },
 ]
 
 export function Sidebar() {

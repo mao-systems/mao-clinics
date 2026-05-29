@@ -41,13 +41,13 @@ router.get('/', async (req: Request, res: Response, next: NextFunction): Promise
 router.get('/availability', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { doctor_id, date, duration_min } = AvailabilityQuerySchema.parse(req.query)
-    const slots = await appointmentsService.getAvailability(
+    const result = await appointmentsService.getAvailability(
       req.tenantId,
       doctor_id,
       date,
       duration_min,
     )
-    res.status(200).json({ success: true, data: slots })
+    res.status(200).json({ success: true, data: result })
   } catch (err) {
     next(err)
   }

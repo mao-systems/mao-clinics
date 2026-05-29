@@ -46,9 +46,15 @@ export interface DoctorSummary {
 }
 
 export interface AvailabilitySlot {
-  time: string          // Lima local time "08:00"
-  scheduled_at: string  // UTC ISO string
+  time:         string   // Lima local time "08:00"
+  scheduled_at: string   // UTC ISO string
+  available:    boolean
+}
+
+export interface AvailabilityResponse {
   available: boolean
+  message?:  string          // Present when available=false
+  slots:     AvailabilitySlot[]
 }
 
 export interface CreateAppointmentInput {
@@ -86,14 +92,14 @@ export function useCalendarAppointments(
 // ── Availability slots ────────────────────────────────────────────────────────
 
 export function useAvailability(
-  doctorId: string,
-  date: string,
+  doctorId:    string,
+  date:        string,
   durationMin: number,
 ) {
   return useQuery({
     queryKey: ['appointments', 'availability', doctorId, date, durationMin],
     queryFn: () =>
-      api.get<AvailabilitySlot[]>('/appointments/availability', {
+      api.get<AvailabilityResponse>('/appointments/availability', {
         params: {
           doctor_id:    doctorId,
           date,
@@ -112,7 +118,9 @@ export function useDoctors() {
     queryKey: ['doctors'],
     queryFn: async () => {
       const data = await api.get<{ doctors: DoctorSummary[] }>('/admin/doctors')
-      return data.doctors
+      // GET /admin/doctors returns ALL doctors (active + inactive).
+      // Appointment forms should only show active doctors.
+      return data.doctors.filter(d => d.active)
     },
     staleTime: 1000 * 60 * 10,  // 10 min — doctors list rarely changes
   })
