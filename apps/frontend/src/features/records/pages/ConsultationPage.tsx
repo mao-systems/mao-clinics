@@ -18,6 +18,7 @@ import {
   FilePlus,
   Paperclip,
   AlertTriangle,
+  Receipt,
 } from 'lucide-react'
 import { format, parseISO } from 'date-fns'
 import { es } from 'date-fns/locale'
@@ -39,6 +40,7 @@ import { PrescriptionCard } from '../components/PrescriptionCard'
 import { AttachmentsPanel } from '../components/AttachmentsPanel'
 import type { Consultation } from '../hooks/useRecords'
 import type { ICD10Value } from '../components/ICD10Search'
+import { InvoiceForm } from '@/features/billing/components/InvoiceForm'
 
 // ── Tiptap toolbar ─────────────────────────────────────────────────────────────
 
@@ -179,8 +181,9 @@ export default function ConsultationPage() {
   const [followUpDate,    setFollowUpDate]    = useState('')
   const [isDirty,         setIsDirty]         = useState(false)
   const [lastAutoSave,    setLastAutoSave]    = useState<Date | null>(null)
-  const [showPrescForm,   setShowPrescForm]   = useState(false)
-  const [completing,      setCompleting]      = useState(false)
+  const [showPrescForm,    setShowPrescForm]   = useState(false)
+  const [completing,       setCompleting]      = useState(false)
+  const [showBillingForm,  setShowBillingForm] = useState(false)
 
   const isCompleted =
     record?.appointment?.status === 'completed' ||
@@ -375,10 +378,21 @@ export default function ConsultationPage() {
       {isCompleted && (
         <div className="flex items-center gap-2 px-4 py-3 bg-emerald-50 border border-emerald-200 rounded-base">
           <CheckCircle size={15} className="text-emerald-600 flex-shrink-0" />
-          <span className="text-sm text-emerald-700 font-medium">
+          <span className="text-sm text-emerald-700 font-medium flex-1">
             Consulta {record?.appointment?.status === 'completed' ? 'completada' : 'cancelada'}
             {record?.updated_at ? ` el ${formatShortDate(record.updated_at)}` : ''}
           </span>
+          {/* Billing button — only when completed (not cancelled) and user can create invoices */}
+          {record?.appointment?.status === 'completed' && patient && (user?.role === 'admin' || user?.role === 'receptionist') && (
+            <Button
+              size="sm"
+              onClick={() => setShowBillingForm(true)}
+              className="flex-shrink-0"
+            >
+              <Receipt size={13} className="mr-1.5" />
+              Facturar consulta
+            </Button>
+          )}
         </div>
       )}
 
@@ -677,6 +691,17 @@ export default function ConsultationPage() {
           </div>
         </aside>
       </div>
+
+      {/* Invoice form — opened from the "Facturar consulta" button */}
+      {showBillingForm && patient && record && (
+        <InvoiceForm
+          patientId={patient.id}
+          patientName={`${patient.first_name} ${patient.last_name}`}
+          patientDni={patient.dni}
+          consultationId={record.id}
+          onClose={() => setShowBillingForm(false)}
+        />
+      )}
     </div>
   )
 }

@@ -11,6 +11,7 @@ import { adminRouter } from '@/modules/admin/admin.routes'
 import { patientsRouter } from '@/modules/patients/patients.routes'
 import { appointmentsRouter } from '@/modules/appointments/appointments.routes'
 import { recordsRouter } from '@/modules/records/records.routes'
+import { billingRouter } from '@/modules/billing/billing.routes'
 
 const app = express()
 
@@ -43,6 +44,7 @@ apiRouter.use('/admin', adminRouter)
 apiRouter.use('/patients', patientsRouter)
 apiRouter.use('/appointments', appointmentsRouter)
 apiRouter.use('/records', recordsRouter)
+apiRouter.use('/billing', billingRouter)
 
 app.use('/api/v1', apiRouter)
 

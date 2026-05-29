@@ -9,15 +9,7 @@ import PatientDetailPage from '@/features/patients/pages/PatientDetailPage'
 import AppointmentsPage from '@/features/appointments/pages/AppointmentsPage'
 import ConsultationPage from '@/features/records/pages/ConsultationPage'
 import RecordsPage from '@/features/records/pages/RecordsPage'
-
-// Placeholder pages — each module implemented in subsequent steps
-function PlaceholderPage({ label }: { label: string }) {
-  return (
-    <div className="flex items-center justify-center h-64">
-      <p className="text-gray-400 text-sm">{label}</p>
-    </div>
-  )
-}
+import BillingPage from '@/features/billing/pages/BillingPage'
 
 export default function App() {
   return (
@@ -34,7 +26,7 @@ export default function App() {
           <Route path="/appointments" element={<AppointmentsPage />} />
           <Route path="/appointments/:appointmentId/consultation" element={<ConsultationPage />} />
           <Route path="/records"      element={<RecordsPage />} />
-          <Route path="/billing"      element={<PlaceholderPage label="Módulo Facturación — Paso 10" />} />
+          <Route path="/billing"      element={<BillingPage />} />
           <Route path="/admin"        element={<AdminPage />} />
         </Route>
       </Route>
