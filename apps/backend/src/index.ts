@@ -12,6 +12,8 @@ import { patientsRouter } from '@/modules/patients/patients.routes'
 import { appointmentsRouter } from '@/modules/appointments/appointments.routes'
 import { recordsRouter } from '@/modules/records/records.routes'
 import { billingRouter } from '@/modules/billing/billing.routes'
+import { dashboardRouter } from '@/modules/dashboard/dashboard.routes'
+import { startRemindersJob } from '@/jobs/reminders.job'
 
 const app = express()
 
@@ -45,6 +47,7 @@ apiRouter.use('/patients', patientsRouter)
 apiRouter.use('/appointments', appointmentsRouter)
 apiRouter.use('/records', recordsRouter)
 apiRouter.use('/billing', billingRouter)
+apiRouter.use('/dashboard', dashboardRouter)
 
 app.use('/api/v1', apiRouter)
 
@@ -56,6 +59,8 @@ const PORT = parseInt(env.PORT, 10)
 app.listen(PORT, () => {
   logger.info(`Backend running on http://localhost:${PORT}`)
   logger.info(`Environment: ${env.NODE_ENV}`)
+  startRemindersJob()
+  console.log('Reminders cron job started')
 })
 
 export default app

@@ -4,7 +4,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list'
-import type { EventClickArg, DatesSetArg, EventDropArg } from '@fullcalendar/core'
+import type { EventClickArg, DatesSetArg, EventDropArg, EventContentArg } from '@fullcalendar/core'
 import type { DateClickArg } from '@fullcalendar/interaction'
 import esLocale from '@fullcalendar/core/locales/es'
 import { useAuth } from '@/hooks/useAuth'
@@ -98,6 +98,41 @@ export default function AppointmentsPage() {
     )
   }
 
+  function renderEventContent(arg: EventContentArg) {
+    const appt = arg.event.extendedProps?.appointment as AppointmentWithRelations | undefined
+    const reminderSent = appt?.reminder_sent === true
+
+    return (
+      <div style={{ padding: '2px 3px', overflow: 'hidden', height: '100%', display: 'flex', flexDirection: 'column', gap: '1px' }}>
+        {arg.timeText && (
+          <span style={{ fontSize: '10px', fontWeight: 700, opacity: 0.85, lineHeight: 1.2 }}>
+            {arg.timeText}
+          </span>
+        )}
+        <span style={{ fontSize: '11px', fontWeight: 500, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', lineHeight: 1.3 }}>
+          {arg.event.title}
+        </span>
+        {reminderSent && (
+          <span style={{
+            display:         'inline-flex',
+            alignItems:      'center',
+            gap:             '2px',
+            fontSize:        '9px',
+            fontWeight:      700,
+            backgroundColor: 'rgba(255,255,255,0.30)',
+            borderRadius:    '3px',
+            padding:         '1px 4px',
+            marginTop:       '1px',
+            width:           'fit-content',
+            letterSpacing:   '0.03em',
+          }}>
+            WA ✓
+          </span>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div>
       <CalendarHeader
@@ -142,6 +177,7 @@ export default function AppointmentsPage() {
           dateClick={handleDateClick}
           datesSet={handleDatesSet}
           eventDrop={handleEventDrop}
+          eventContent={renderEventContent}
           eventTimeFormat={{
             hour:   '2-digit',
             minute: '2-digit',
