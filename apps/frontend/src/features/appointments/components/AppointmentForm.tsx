@@ -94,7 +94,13 @@ export function AppointmentForm({
   // ── Form ────────────────────────────────────────────────────────────────────
   const defaultDateStr = useMemo(() => {
     if (appointment?.scheduled_at) return toLimaDate(appointment.scheduled_at)
-    if (defaultDate) return dayjs(defaultDate).tz(LIMA_TZ).format('YYYY-MM-DD')
+    if (defaultDate) {
+      // defaultDate comes from FullCalendar's dateClick callback which, in
+      // timeZone="America/Lima" mode, returns an ambiguous Date whose UTC
+      // fields encode Lima wall-clock time.  Read those UTC fields directly
+      // instead of re-converting through the browser's local offset.
+      return dayjs.utc(defaultDate).format('YYYY-MM-DD')
+    }
     return todayLima()
   }, [appointment, defaultDate])
 

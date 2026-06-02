@@ -7,6 +7,17 @@ import { Eye, EyeOff } from 'lucide-react'
 import { useAuth, useLogin } from '@/hooks/useAuth'
 import { Spinner } from '@/components/ui/Spinner'
 
+function getLoginErrorMessage(err: Error): string {
+  const msg = err.message ?? ''
+  if (msg.includes('INVALID_CREDENTIALS') || msg.includes('Correo'))
+    return 'Correo o contraseña incorrectos'
+  if (msg.includes('TOO_MANY_REQUESTS') || msg.includes('intentos'))
+    return 'Demasiados intentos. Espera 15 minutos.'
+  if (msg.includes('inactive') || msg.includes('desactivad'))
+    return 'Tu cuenta está desactivada. Contacta al administrador.'
+  return 'Error al iniciar sesión. Inténtalo de nuevo.'
+}
+
 const loginSchema = z.object({
   email: z.string().email('Ingrese un correo válido'),
   password: z.string().min(6, 'Mínimo 6 caracteres'),
@@ -108,7 +119,7 @@ export default function LoginPage() {
           {loginMutation.isError && (
             <div className="rounded-base bg-red-50 border border-red-200 px-4 py-3">
               <p className="text-sm text-red-700">
-                {(loginMutation.error as Error).message ?? 'Error al iniciar sesión. Inténtelo de nuevo.'}
+                {getLoginErrorMessage(loginMutation.error as Error)}
               </p>
             </div>
           )}

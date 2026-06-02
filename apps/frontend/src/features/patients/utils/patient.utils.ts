@@ -16,10 +16,9 @@ export function formatAge(dateOfBirth: string | null | undefined): string {
   }
 }
 
-export function formatDNI(dni: string): string {
-  // Peruvian DNI is 8 digits — format with dots: 47.823.651
-  if (dni.length !== 8) return dni
-  return `${dni.slice(0, 2)}.${dni.slice(2, 5)}.${dni.slice(5)}`
+export function formatDNI(dni: string | null | undefined): string {
+  // Peruvian DNI is always displayed as plain 8 digits — no dots, no separators
+  return dni ?? '—'
 }
 
 export function getSexLabel(sex: string | null | undefined): string {

@@ -1,5 +1,13 @@
 import { useRef, useState } from 'react'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
 import FullCalendar from '@fullcalendar/react'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+const LIMA_TZ = 'America/Lima'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
@@ -89,10 +97,16 @@ export default function AppointmentsPage() {
 
   function handleEventDrop(info: EventDropArg) {
     if (!info.event.start) { info.revert(); return }
+    // FullCalendar with timeZone="America/Lima" and floating event strings
+    // returns "ambiguous" Dates in callbacks: their UTC fields encode Lima
+    // wall-clock time (e.g. 08:40 Lima is stored as "08:40Z", not "13:40Z").
+    // Read those UTC fields as a Lima local string, then convert to real UTC.
+    const limaLocal = dayjs.utc(info.event.start).format('YYYY-MM-DDTHH:mm:ss')
+    const scheduledAt = dayjs.tz(limaLocal, LIMA_TZ).utc().toISOString()
     updateAppointment.mutate(
       {
         id:   info.event.id,
-        data: { scheduled_at: info.event.start.toISOString() },
+        data: { scheduled_at: scheduledAt },
       },
       { onError: () => info.revert() },
     )

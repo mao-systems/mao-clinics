@@ -191,35 +191,40 @@ class PdfService {
       }
 
       // ── Footer with signature line ────────────────────────────────────────────
+      // A4 page height ≈ 842pt, bottom margin = 50pt → usable boundary = 792pt.
+      // The deepest element lands at footerY + 82 ≈ 769pt — well within 792pt.
+      // Original code used PAGE_HEIGHT - 110 (= 732) as footerY with offsets up to
+      // +76 and PAGE_HEIGHT - 30 (= 812), which all exceeded 792 and created 3 blank pages.
       const PAGE_HEIGHT = doc.page.height
-      const footerY     = PAGE_HEIGHT - 110
+      const footerY     = PAGE_HEIGHT - 155   // ≈ 687 — start high enough for all content
 
       doc.moveTo(LEFT, footerY).lineTo(LEFT + PAGE_WIDTH, footerY).strokeColor('#CCCCCC').stroke()
 
-      // Signature line
+      // Signature block (right-aligned)
       const sigX = LEFT + PAGE_WIDTH - 180
-      doc.moveTo(sigX, footerY + 48).lineTo(sigX + 160, footerY + 48).strokeColor('#333333').stroke()
+      doc.moveTo(sigX, footerY + 40).lineTo(sigX + 160, footerY + 40).strokeColor('#333333').stroke()
 
       doc
         .fontSize(8)
         .font('Helvetica')
         .fillColor('#555555')
-        .text('Firma y sello del médico', sigX, footerY + 52, { width: 160, align: 'center' })
+        .text('Firma y sello del médico', sigX, footerY + 44, { width: 160, align: 'center' })
 
       doc
         .fontSize(8)
         .font('Helvetica-Bold')
         .fillColor('#333333')
-        .text(data.doctorName, sigX, footerY + 64, { width: 160, align: 'center' })
+        .text(data.doctorName, sigX, footerY + 57, { width: 160, align: 'center' })
 
       if (data.doctorCmp) {
         doc
           .fontSize(7)
           .font('Helvetica')
           .fillColor('#555555')
-          .text(`CMP: ${data.doctorCmp}`, sigX, footerY + 76, { width: 160, align: 'center' })
+          .text(`CMP: ${data.doctorCmp}`, sigX, footerY + 68, { width: 160, align: 'center' })
       }
 
+      // "Generado por" watermark — full-width centered, 769pt from top (< 792 boundary)
       doc
         .fontSize(7)
         .font('Helvetica')
@@ -227,7 +232,7 @@ class PdfService {
         .text(
           `Generado por MAO Clinics — maosystems.io`,
           LEFT,
-          PAGE_HEIGHT - 30,
+          footerY + 82,
           { width: PAGE_WIDTH, align: 'center' },
         )
 

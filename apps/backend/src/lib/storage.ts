@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path'
+import { S3Client, DeleteObjectCommand } from '@aws-sdk/client-s3'
+import { Upload } from '@aws-sdk/lib-storage'
 import { env } from '@/config/env'
+import { AppError } from '@/lib/errors'
 
 interface IStorageProvider {
   upload(file: Express.Multer.File, key: string): Promise<string>
@@ -28,13 +31,49 @@ class LocalStorageProvider implements IStorageProvider {
 }
 
 class S3StorageProvider implements IStorageProvider {
-  // TODO: implement when AWS_ACCESS_KEY_ID is available
-  async upload(_file: Express.Multer.File, _key: string): Promise<string> {
-    throw new Error('S3 not configured yet')
+  private client: S3Client
+
+  constructor() {
+    // Guard: fail fast at construction time rather than on first upload
+    if (!env.AWS_ACCESS_KEY_ID) throw new AppError('S3_NOT_CONFIGURED', 500, 'AWS credentials missing')
+    if (!env.AWS_SECRET_ACCESS_KEY) throw new AppError('S3_NOT_CONFIGURED', 500, 'AWS credentials missing')
+    if (!env.AWS_REGION) throw new AppError('S3_NOT_CONFIGURED', 500, 'AWS_REGION missing')
+    if (!env.AWS_S3_BUCKET) throw new AppError('S3_NOT_CONFIGURED', 500, 'AWS_S3_BUCKET missing')
+
+    this.client = new S3Client({
+      region: env.AWS_REGION,
+      credentials: {
+        accessKeyId: env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+      },
+    })
   }
 
-  async delete(_key: string): Promise<void> {
-    throw new Error('S3 not configured yet')
+  async upload(file: Express.Multer.File, key: string): Promise<string> {
+    // Use multipart upload so large files (attachments, PDFs) are handled safely
+    const upload = new Upload({
+      client: this.client,
+      params: {
+        Bucket: env.AWS_S3_BUCKET!,
+        Key: key,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+        ACL: 'public-read',
+      },
+    })
+
+    await upload.done()
+
+    return `https://${env.AWS_S3_BUCKET}.s3.${env.AWS_REGION}.amazonaws.com/${key}`
+  }
+
+  async delete(key: string): Promise<void> {
+    await this.client.send(
+      new DeleteObjectCommand({
+        Bucket: env.AWS_S3_BUCKET!,
+        Key: key,
+      }),
+    )
   }
 }
 

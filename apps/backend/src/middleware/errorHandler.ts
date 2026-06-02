@@ -20,11 +20,13 @@ export function errorHandler(
   }
 
   if (err instanceof ZodError) {
+    // Use the first human-readable Zod message; field messages are already in Spanish
+    const firstMessage = err.errors[0]?.message ?? 'Datos de entrada inválidos'
     res.status(400).json({
       success: false,
       error: {
         code: 'VALIDATION_ERROR',
-        message: 'Invalid input',
+        message: firstMessage,
         details: err.errors,
       },
     })
@@ -38,6 +40,9 @@ export function errorHandler(
 
   res.status(500).json({
     success: false,
-    error: { code: 'INTERNAL_ERROR', message: 'An unexpected error occurred' },
+    error: {
+      code: 'INTERNAL_ERROR',
+      message: 'Ocurrió un error inesperado. Por favor inténtalo de nuevo.',
+    },
   })
 }

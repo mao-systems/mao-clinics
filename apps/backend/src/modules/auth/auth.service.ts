@@ -77,12 +77,12 @@ export class AuthService {
     if (!user || !user.active) {
       // Still run bcrypt to prevent timing-based enumeration
       await bcrypt.compare(password, '$2b$10$invalidhashpaddingtopreventimerattacks')
-      throw new AppError('INVALID_CREDENTIALS', 401, 'Invalid email or password')
+      throw new AppError('INVALID_CREDENTIALS', 401, 'Correo o contraseña incorrectos')
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password_hash)
     if (!passwordMatch) {
-      throw new AppError('INVALID_CREDENTIALS', 401, 'Invalid email or password')
+      throw new AppError('INVALID_CREDENTIALS', 401, 'Correo o contraseña incorrectos')
     }
 
     // Update last login timestamp (fire-and-forget — don't block the response)

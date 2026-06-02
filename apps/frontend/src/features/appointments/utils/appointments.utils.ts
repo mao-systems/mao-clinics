@@ -15,17 +15,26 @@ const LIMA_TZ = 'America/Lima'
 export function appointmentToCalendarEvent(
   appointment: AppointmentWithRelations,
 ): EventInput {
-  const endUtc = dayjs(appointment.scheduled_at)
+  // Pre-convert UTC → Lima local as "floating" strings (no Z / offset).
+  // FullCalendar v6 without a timezone adapter plugin does not apply the
+  // timeZone prop to event rendering, so UTC strings like "13:40Z" display
+  // as 13:40 instead of the correct 08:40 Lima.  Passing pre-converted Lima
+  // local strings makes the calendar browser-timezone-independent.
+  const startLima = dayjs(appointment.scheduled_at)
+    .tz(LIMA_TZ)
+    .format('YYYY-MM-DDTHH:mm:ss')
+  const endLima = dayjs(appointment.scheduled_at)
     .add(appointment.duration_min, 'minute')
-    .toISOString()
+    .tz(LIMA_TZ)
+    .format('YYYY-MM-DDTHH:mm:ss')
 
   const colors = STATUS_COLORS[appointment.status as AppointmentStatus] ?? STATUS_COLORS.pending
 
   return {
     id: appointment.id,
     title: `${appointment.patient.last_name}, ${appointment.patient.first_name}`,
-    start: appointment.scheduled_at,
-    end: endUtc,
+    start: startLima,
+    end: endLima,
     backgroundColor: colors.bg,
     borderColor: colors.bg,
     textColor: colors.text,
