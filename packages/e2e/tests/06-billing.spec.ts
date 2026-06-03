@@ -85,8 +85,8 @@ test.describe('Facturación', () => {
     await page.waitForLoadState('networkidle')
 
     // After submit the modal should be gone — verify modal panel is no longer visible
-    const modalPanel = page.locator('.fixed.inset-0.z-50 .shadow-xl').first()
-    const modalGone = await modalPanel.isVisible().then(v => !v).catch(() => true)
+    const submitModalPanel = page.locator('.fixed.inset-0.z-50 .shadow-xl').first()
+    const modalGone = await submitModalPanel.isVisible().then(v => !v).catch(() => true)
     expect(modalGone).toBe(true)
 
     await page.screenshot({ path: 'test-results/billing-new-invoice.png', fullPage: true })
