@@ -71,7 +71,7 @@
         {
           "title": "Autenticación",
           "file": "01-auth.spec.ts",
-          "line": 4,
+          "line": 8,
           "column": 6,
           "specs": [
             {
@@ -91,7 +91,7 @@
               ],
               "id": "791b3c4e0869e77b2651-523709efcdd3ccc33bde",
               "file": "01-auth.spec.ts",
-              "line": 5,
+              "line": 9,
               "column": 7
             },
             {
@@ -111,7 +111,7 @@
               ],
               "id": "791b3c4e0869e77b2651-a4a1d63c699d149d6c41",
               "file": "01-auth.spec.ts",
-              "line": 20,
+              "line": 23,
               "column": 7
             },
             {
@@ -188,7 +188,7 @@
               ],
               "id": "4d2f27bfb2b30c5eaf6b-b53bce84723064e46e29",
               "file": "02-dashboard.spec.ts",
-              "line": 31,
+              "line": 32,
               "column": 7
             },
             {
@@ -208,7 +208,7 @@
               ],
               "id": "4d2f27bfb2b30c5eaf6b-04be323b92781ab21bd3",
               "file": "02-dashboard.spec.ts",
-              "line": 48,
+              "line": 47,
               "column": 7
             }
           ]
@@ -265,7 +265,7 @@
               ],
               "id": "e6a96ad20898066c0eed-35ca44fc10da16a6abbe",
               "file": "03-patients.spec.ts",
-              "line": 20,
+              "line": 19,
               "column": 7
             },
             {
@@ -285,7 +285,7 @@
               ],
               "id": "e6a96ad20898066c0eed-1e78ce1a03d4c803c713",
               "file": "03-patients.spec.ts",
-              "line": 43,
+              "line": 42,
               "column": 7
             },
             {
@@ -305,7 +305,7 @@
               ],
               "id": "e6a96ad20898066c0eed-937bc5e2417da590800d",
               "file": "03-patients.spec.ts",
-              "line": 82,
+              "line": 78,
               "column": 7
             }
           ]
@@ -362,7 +362,7 @@
               ],
               "id": "d6f73b9d9c53b6b33ece-09764956c5ead355bedc",
               "file": "04-appointments.spec.ts",
-              "line": 24,
+              "line": 22,
               "column": 7
             },
             {
@@ -382,7 +382,7 @@
               ],
               "id": "d6f73b9d9c53b6b33ece-8b61ff85b94e05c1c9fb",
               "file": "04-appointments.spec.ts",
-              "line": 62,
+              "line": 54,
               "column": 7
             }
           ]
@@ -399,7 +399,7 @@
         {
           "title": "Historia Clínica Electrónica",
           "file": "05-hce.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
@@ -419,7 +419,7 @@
               ],
               "id": "d825b6082f1a8d9a8816-d9285c1f3a593f1a1b33",
               "file": "05-hce.spec.ts",
-              "line": 6,
+              "line": 4,
               "column": 7
             },
             {
@@ -439,11 +439,11 @@
               ],
               "id": "d825b6082f1a8d9a8816-fe8dd83a2ae56c9b196b",
               "file": "05-hce.spec.ts",
-              "line": 20,
+              "line": 17,
               "column": 7
             },
             {
-              "title": "PDF de receta se descarga con extensión .pdf y tamaño válido",
+              "title": "Botón de descarga de PDF de receta es visible y clickeable",
               "ok": true,
               "tags": [],
               "tests": [
@@ -457,9 +457,9 @@
                   "status": "skipped"
                 }
               ],
-              "id": "d825b6082f1a8d9a8816-959c2350dac299c1132f",
+              "id": "d825b6082f1a8d9a8816-e301aed5d156909fc24d",
               "file": "05-hce.spec.ts",
-              "line": 42,
+              "line": 35,
               "column": 7
             }
           ]
@@ -476,7 +476,7 @@
         {
           "title": "Facturación",
           "file": "06-billing.spec.ts",
-          "line": 3,
+          "line": 16,
           "column": 6,
           "specs": [
             {
@@ -496,7 +496,7 @@
               ],
               "id": "cd5649f7d96df87135b2-5ee79098955aef3c0da8",
               "file": "06-billing.spec.ts",
-              "line": 9,
+              "line": 24,
               "column": 7
             },
             {
@@ -516,7 +516,7 @@
               ],
               "id": "cd5649f7d96df87135b2-39f9bcd1b04fd4dd265b",
               "file": "06-billing.spec.ts",
-              "line": 24,
+              "line": 39,
               "column": 7
             },
             {
@@ -536,7 +536,7 @@
               ],
               "id": "cd5649f7d96df87135b2-9534187c9b220654b51e",
               "file": "06-billing.spec.ts",
-              "line": 93,
+              "line": 90,
               "column": 7
             }
           ]
@@ -593,11 +593,11 @@
               ],
               "id": "dcb011b56586ef2efc0b-ce8d23464d6afce46ee9",
               "file": "07-theming.spec.ts",
-              "line": 23,
+              "line": 22,
               "column": 7
             },
             {
-              "title": "Logo de la clínica se puede cargar desde el panel de admin",
+              "title": "Sección de logo está presente en panel de admin",
               "ok": true,
               "tags": [],
               "tests": [
@@ -611,9 +611,9 @@
                   "status": "skipped"
                 }
               ],
-              "id": "dcb011b56586ef2efc0b-c972c4df7ed32ed65ebb",
+              "id": "dcb011b56586ef2efc0b-f9d6502cf69709203ea7",
               "file": "07-theming.spec.ts",
-              "line": 84,
+              "line": 79,
               "column": 7
             }
           ]
@@ -623,8 +623,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-06-03T22:54:56.229Z",
-    "duration": 263.19900000000007,
+    "startTime": "2026-06-03T23:16:49.798Z",
+    "duration": 318.626,
     "expected": 0,
     "skipped": 22,
     "unexpected": 0,
