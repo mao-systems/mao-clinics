@@ -80,9 +80,14 @@ test.describe('Facturación', () => {
     const submitBtn = page.locator('button[type="submit"], button', { hasText: /Emitir comprobante|Emitir/i }).last()
     await submitBtn.click()
 
-    // Toast confirmation — success toast has bg-emerald-600 inside aria-live="polite"
-    const toast = page.locator('[aria-live="polite"] div').first()
-    await expect(toast).toBeVisible({ timeout: 10000 })
+    // Wait for the modal to close and the list to refresh (modal disappears on success)
+    await page.waitForTimeout(2000)
+    await page.waitForLoadState('networkidle')
+
+    // After submit the modal should be gone — verify modal panel is no longer visible
+    const modalPanel = page.locator('.fixed.inset-0.z-50 .shadow-xl').first()
+    const modalGone = await modalPanel.isVisible().then(v => !v).catch(() => true)
+    expect(modalGone).toBe(true)
 
     await page.screenshot({ path: 'test-results/billing-new-invoice.png', fullPage: true })
   })

@@ -32,19 +32,34 @@ test.describe('Sistema de Theming', () => {
     )
     console.log(`Original sidebar bg: ${originalBg}`)
 
-    // PaletteSelector renders preset palette buttons — click one that isn't currently active
-    // Look for palette buttons or any preset button different from the current selection
-    const paletteButtons = page.locator('button', {
-      hasText: /Dental|Ginecolog|Pedi[aá]tric|Oftalmolog|Traumatolog/i,
+    // PaletteSelector renders buttons with palette names from palettes.ts:
+    //   "Azul Profesional" (default), "Azul y Naranja", "Morado Elegante",
+    //   "Naranja Pediátrico", "Azul Marino", "Rojo Cirugía"
+    // We must click a palette different from the current default ("Azul Profesional")
+    // so the sidebar color actually changes.
+    const nonDefaultPalettes = page.locator('button', {
+      hasText: /Azul y Naranja|Morado Elegante|Naranja Pedi[aá]trico|Azul Marino|Rojo Cirugía/i,
     })
-    const altPalette = paletteButtons.first()
 
     let paletteClicked = false
-    if (await altPalette.isVisible().catch(() => false)) {
-      await altPalette.click()
-      paletteClicked = true
-    } else {
-      // Fallback: try any clickable palette swatch (common pattern: button with rounded style)
+    const paletteCount = await nonDefaultPalettes.count()
+    for (let i = 0; i < paletteCount; i++) {
+      const btn = nonDefaultPalettes.nth(i)
+      if (await btn.isVisible().catch(() => false)) {
+        // Skip if this is the already-active palette (has ring-2 class)
+        const isActive = await btn.evaluate(
+          (el) => el.classList.contains('ring-2') || el.getAttribute('aria-pressed') === 'true',
+        ).catch(() => false)
+        if (!isActive) {
+          await btn.click()
+          paletteClicked = true
+          break
+        }
+      }
+    }
+
+    if (!paletteClicked) {
+      // Fallback: try any clickable palette swatch not marked active
       const swatches = page.locator('[class*="palette"], [class*="preset"], [data-palette]')
       const swatchCount = await swatches.count()
       for (let i = 0; i < swatchCount; i++) {
@@ -60,7 +75,8 @@ test.describe('Sistema de Theming', () => {
     }
 
     if (paletteClicked) {
-      await page.waitForTimeout(600)
+      // previewTheme() updates CSS variables immediately — give React a tick to flush
+      await page.waitForTimeout(800)
 
       const newBg = await sidebar.evaluate(
         (el) => window.getComputedStyle(el).backgroundColor,
