@@ -29,6 +29,7 @@ export interface AuthUser {
     subdomain:    string
     plan:         string
     theme_config: ThemeConfig
+    features:     Record<string, boolean>
   }
   doctor?: {
     id:       string

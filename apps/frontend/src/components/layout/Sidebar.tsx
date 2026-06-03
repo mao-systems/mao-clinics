@@ -7,9 +7,13 @@ import {
   Receipt,
   Settings,
   LogOut,
+  Video,
+  TestTube2,
+  Building2,
 } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useTenant } from '@/hooks/useTenant'
+import { useFeatureFlag } from '@/hooks/useFeatureFlag'
 
 interface NavItem {
   label: string
@@ -31,6 +35,11 @@ const navItems: NavItem[] = [
 export function Sidebar() {
   const { user, logout } = useAuth()
   const { logoUrl, tenantName } = useTenant()
+
+  const hasTelemedicine = useFeatureFlag('telemedicine')
+  const hasLab = useFeatureFlag('lab_integration')
+  const hasMultiLocation = useFeatureFlag('multi_location')
+  const hasPremiumFeatures = hasTelemedicine || hasLab || hasMultiLocation
 
   const visibleItems = navItems.filter(
     (item) => !item.adminOnly || user?.role === 'admin',
@@ -76,6 +85,63 @@ export function Sidebar() {
           </NavLink>
         ))}
       </nav>
+
+      {/* Premium modules — only rendered when tenant has at least one enabled */}
+      {hasPremiumFeatures && (
+        <div className="mt-4 pt-4 border-t border-white/10">
+          <p className="px-3 mb-1 text-xs font-semibold uppercase tracking-wider opacity-40">
+            Módulos adicionales
+          </p>
+          {hasTelemedicine && (
+            <NavLink
+              to="/telemedicine"
+              className={({ isActive }) =>
+                [
+                  'flex items-center gap-3 px-3 py-2 rounded-base text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-white/20 text-white'
+                    : 'text-white/70 hover:bg-white/10 hover:text-white',
+                ].join(' ')
+              }
+            >
+              <Video size={18} />
+              Telemedicina
+            </NavLink>
+          )}
+          {hasLab && (
+            <NavLink
+              to="/lab"
+              className={({ isActive }) =>
+                [
+                  'flex items-center gap-3 px-3 py-2 rounded-base text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-white/20 text-white'
+                    : 'text-white/70 hover:bg-white/10 hover:text-white',
+                ].join(' ')
+              }
+            >
+              <TestTube2 size={18} />
+              Laboratorio
+            </NavLink>
+          )}
+          {hasMultiLocation && (
+            <NavLink
+              to="/locations"
+              className={({ isActive }) =>
+                [
+                  'flex items-center gap-3 px-3 py-2 rounded-base text-sm font-medium transition-colors',
+                  isActive
+                    ? 'bg-white/20 text-white'
+                    : 'text-white/70 hover:bg-white/10 hover:text-white',
+                ].join(' ')
+              }
+            >
+              <Building2 size={18} />
+              Sedes
+            </NavLink>
+          )}
+        </div>
+      )}
 
       {/* Logout */}
       <div className="px-3 pb-5 flex-shrink-0 border-t border-white/10 pt-3">

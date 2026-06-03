@@ -172,3 +172,48 @@ Tax            : IGV 18%
 Invoice series : B001 boleta, F001 factura
 SUNAT API      : via Nubefact (sandbox: api.nubefact.com/api/v1)
 ICD-10         : use npm package cie10-data for diagnosis autocomplete
+
+## Business model and scaling strategy
+
+### Model C — Shared SaaS with optional modules per tenant
+One codebase. One deployment. All clients share the same backend and frontend.
+Isolation is guaranteed by tenant_id on every DB table (already implemented).
+Additional features are activated per tenant via feature flags — NOT separate repos.
+
+NEVER create a separate repo per client.
+NEVER deploy a separate server per client unless they have an enterprise contract.
+
+### Feature flags system
+Each Tenant has a `features` JSON field in the DB.
+Example: { "lab_integration": true, "telemedicine": false, "multi_location": true }
+
+Backend check: use hasFeature(tenant, 'flag_name') before executing premium module logic.
+Frontend check: use useFeatureFlag('flag_name') before rendering premium UI elements.
+
+If a feature flag is missing or false → throw AppError("FEATURE_NOT_ENABLED", 403)
+Never expose premium module routes without feature flag check.
+
+### Adding a new module (future workflow)
+1. Create apps/backend/src/modules/{module_name}/ with routes + service + schema
+2. Add feature flag check at the top of every route in that module
+3. Create apps/frontend/src/features/{module_name}/ with hooks + components + pages
+4. Guard all UI with useFeatureFlag('{module_name}')
+5. Add the flag to AVAILABLE_FEATURES constant in feature-flags.ts
+6. Activate per tenant via super-admin panel or SQL: UPDATE tenants SET features = features || '{"module_name":true}'
+
+### Current feature flags (as of this implementation)
+All existing modules (auth, patients, appointments, records, billing, dashboard, admin)
+are BASE modules — available to ALL tenants regardless of features JSON.
+The features JSON only controls PREMIUM/OPTIONAL future modules.
+
+### Infrastructure scaling path
+Phase 1 (1-10 clients):  shared EC2 t3.small + Docker PostgreSQL + Docker Redis
+Phase 2 (5+ clients):    migrate DB to AWS RDS t3.micro, Redis to ElastiCache
+Phase 3 (10+ clients):   EC2 Auto Scaling Group or ECS, RDS Multi-AZ
+Enterprise client:       dedicated EC2 + dedicated RDS + dedicated S3 bucket
+
+### Pricing
+Starter:      S/599/month  — 1 doctor, base modules only
+Professional: S/999/month  — up to 3 doctors, base modules only
+Clinic:       S/1,799/month — unlimited doctors, base modules only
++Module fee:  S/100–400/month per optional module activated

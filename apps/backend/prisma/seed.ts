@@ -211,6 +211,9 @@ async function main() {
         border_radius: '8px',
         logo_url: null,
       },
+      // empty = only base modules (auth, patients, appointments, records, billing, dashboard, admin)
+      // To enable premium modules: features: { "telemedicine": true, "lab_integration": true }
+      features: {},
     },
   })
 

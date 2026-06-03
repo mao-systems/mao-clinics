@@ -44,6 +44,7 @@ model Tenant {
   plan         String   @default("starter")
   theme_config Json     @default("{}")
   active       Boolean  @default(true)
+  features     Json     @default("{}")
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
 

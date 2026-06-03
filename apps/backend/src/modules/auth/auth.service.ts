@@ -54,6 +54,7 @@ interface MeResult {
     subdomain: string
     plan: string
     theme_config: unknown
+    features: unknown
   }
   doctor?: {
     id: string
@@ -198,6 +199,7 @@ export class AuthService {
         subdomain: user.tenant.subdomain,
         plan: user.tenant.plan,
         theme_config: user.tenant.theme_config,
+        features: user.tenant.features,
       },
       doctor: user.doctor
         ? {
