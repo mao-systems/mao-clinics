@@ -17,6 +17,11 @@ import { startRemindersJob } from '@/jobs/reminders.job'
 
 const app = express()
 
+// Trust the first proxy hop (Nginx on EC2 sets X-Forwarded-For).
+// Without this, express-rate-limit throws ERR_ERL_UNEXPECTED_X_FORWARDED_FOR
+// because it sees the header but Express hasn't confirmed the proxy is trusted.
+app.set('trust proxy', 1)
+
 // Security middleware
 app.use(helmet())
 app.use(

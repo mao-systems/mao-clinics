@@ -41,3 +41,8 @@ apps/backend/uploads/
 
 # Coverage
 coverage/
+
+# E2E test artifacts — regenerated on every run, binary blobs bloat git history
+packages/e2e/playwright-report/
+packages/e2e/test-results/
+packages/e2e/.playwright/
