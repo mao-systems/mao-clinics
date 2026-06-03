@@ -12,7 +12,11 @@
     "db:seed": "pnpm --filter backend db:seed",
     "db:studio": "pnpm --filter backend db:studio",
     "db:reset": "pnpm --filter backend db:reset",
-    "lint": "pnpm --filter frontend lint && pnpm --filter backend lint"
+    "lint": "pnpm --filter frontend lint && pnpm --filter backend lint",
+    "demo:reset": "pnpm --filter backend demo:reset",
+    "test:e2e": "pnpm --filter @mao-systems/e2e test",
+    "test:e2e:headed": "pnpm --filter @mao-systems/e2e test:headed",
+    "test:e2e:report": "pnpm --filter @mao-systems/e2e test:report"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

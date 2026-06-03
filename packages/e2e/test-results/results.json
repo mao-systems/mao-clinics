@@ -1,0 +1,633 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\playwright.config.ts",
+    "rootDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/test-results",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {},
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "01-auth.spec.ts",
+      "file": "01-auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Autenticación",
+          "file": "01-auth.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Login con credenciales correctas redirige al dashboard",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "791b3c4e0869e77b2651-523709efcdd3ccc33bde",
+              "file": "01-auth.spec.ts",
+              "line": 5,
+              "column": 7
+            },
+            {
+              "title": "Login con credenciales incorrectas muestra error en español",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "791b3c4e0869e77b2651-a4a1d63c699d149d6c41",
+              "file": "01-auth.spec.ts",
+              "line": 20,
+              "column": 7
+            },
+            {
+              "title": "Logout limpia la sesión y redirige al login",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "791b3c4e0869e77b2651-ad8baaa153cca85e7f3c",
+              "file": "01-auth.spec.ts",
+              "line": 36,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "02-dashboard.spec.ts",
+      "file": "02-dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Dashboard",
+          "file": "02-dashboard.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Dashboard carga los 6 KPI cards con datos",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4d2f27bfb2b30c5eaf6b-ca758d8c623cca859705",
+              "file": "02-dashboard.spec.ts",
+              "line": 9,
+              "column": 7
+            },
+            {
+              "title": "Gráficos de Recharts renderizan correctamente",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4d2f27bfb2b30c5eaf6b-b53bce84723064e46e29",
+              "file": "02-dashboard.spec.ts",
+              "line": 31,
+              "column": 7
+            },
+            {
+              "title": "Dashboard carga en menos de 4 segundos",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "4d2f27bfb2b30c5eaf6b-04be323b92781ab21bd3",
+              "file": "02-dashboard.spec.ts",
+              "line": 48,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "03-patients.spec.ts",
+      "file": "03-patients.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Módulo Pacientes",
+          "file": "03-patients.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Tabla muestra pacientes cargados desde el seed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e6a96ad20898066c0eed-9145cb1ab59ad69ed82d",
+              "file": "03-patients.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "DNI se muestra sin puntos (formato 8 dígitos)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e6a96ad20898066c0eed-35ca44fc10da16a6abbe",
+              "file": "03-patients.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "Búsqueda por nombre filtra correctamente",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e6a96ad20898066c0eed-1e78ce1a03d4c803c713",
+              "file": "03-patients.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "Crear paciente nuevo funciona y aparece en tabla",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "e6a96ad20898066c0eed-937bc5e2417da590800d",
+              "file": "03-patients.spec.ts",
+              "line": 84,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "04-appointments.spec.ts",
+      "file": "04-appointments.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Módulo Citas",
+          "file": "04-appointments.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "FullCalendar carga y muestra eventos del seed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d6f73b9d9c53b6b33ece-d158c321bc6a3c966342",
+              "file": "04-appointments.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Horas del calendario están en horario Lima (no UTC)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d6f73b9d9c53b6b33ece-09764956c5ead355bedc",
+              "file": "04-appointments.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "Clic en evento abre modal con detalles de la cita",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d6f73b9d9c53b6b33ece-8b61ff85b94e05c1c9fb",
+              "file": "04-appointments.spec.ts",
+              "line": 64,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "05-hce.spec.ts",
+      "file": "05-hce.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Historia Clínica Electrónica",
+          "file": "05-hce.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Navegar a /records carga la lista de consultas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d825b6082f1a8d9a8816-d9285c1f3a593f1a1b33",
+              "file": "05-hce.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "Detalle de consulta muestra diagnóstico e ICD-10",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d825b6082f1a8d9a8816-fe8dd83a2ae56c9b196b",
+              "file": "05-hce.spec.ts",
+              "line": 24,
+              "column": 7
+            },
+            {
+              "title": "PDF de receta se descarga con extensión .pdf y tamaño válido",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "d825b6082f1a8d9a8816-959c2350dac299c1132f",
+              "file": "05-hce.spec.ts",
+              "line": 46,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "06-billing.spec.ts",
+      "file": "06-billing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Facturación",
+          "file": "06-billing.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Lista de comprobantes carga datos del seed",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cd5649f7d96df87135b2-5ee79098955aef3c0da8",
+              "file": "06-billing.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Crear boleta nueva funciona y aparece en la lista",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cd5649f7d96df87135b2-39f9bcd1b04fd4dd265b",
+              "file": "06-billing.spec.ts",
+              "line": 26,
+              "column": 7
+            },
+            {
+              "title": "Cálculo de IGV no genera errores de punto flotante",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "cd5649f7d96df87135b2-9534187c9b220654b51e",
+              "file": "06-billing.spec.ts",
+              "line": 95,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "07-theming.spec.ts",
+      "file": "07-theming.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Sistema de Theming",
+          "file": "07-theming.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Panel de admin carga con las tabs esperadas",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dcb011b56586ef2efc0b-8d62c646da41c199b495",
+              "file": "07-theming.spec.ts",
+              "line": 11,
+              "column": 7
+            },
+            {
+              "title": "Cambiar paleta de colores actualiza el sidebar en tiempo real",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dcb011b56586ef2efc0b-ce8d23464d6afce46ee9",
+              "file": "07-theming.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "Logo de la clínica se puede cargar desde el panel de admin",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [],
+                  "status": "skipped"
+                }
+              ],
+              "id": "dcb011b56586ef2efc0b-c972c4df7ed32ed65ebb",
+              "file": "07-theming.spec.ts",
+              "line": 86,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-06-03T22:01:11.654Z",
+    "duration": 358.49700000000007,
+    "expected": 0,
+    "skipped": 22,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

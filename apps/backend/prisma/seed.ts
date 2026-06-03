@@ -628,6 +628,14 @@ async function main() {
   console.log('   recepcion@sanrafael.maosystems.io')
 }
 
-main()
-  .catch(console.error)
-  .finally(() => prisma.$disconnect())
+// Export so reset-demo.ts can call it without re-importing prisma or calling $disconnect
+export async function seedMain(): Promise<void> {
+  await main()
+}
+
+// Run directly when invoked via ts-node (pnpm db:seed)
+if (require.main === module) {
+  seedMain()
+    .catch(console.error)
+    .finally(() => prisma.$disconnect())
+}
