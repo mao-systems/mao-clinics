@@ -1,11 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { loginAsAdmin } from './helpers/auth'
 import path from 'path'
 
 test.describe('Historia Clínica Electrónica', () => {
-  test.beforeEach(async ({ page }) => {
-    await loginAsAdmin(page)
-  })
 
   test('Navegar a /records carga la lista de consultas', async ({ page }) => {
     await page.goto('/records')

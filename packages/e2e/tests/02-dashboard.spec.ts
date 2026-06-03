@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test'
-import { loginAsAdmin } from './helpers/auth'
 
 test.describe('Dashboard', () => {
   test.beforeEach(async ({ page }) => {
-    await loginAsAdmin(page)
+    await page.goto('/dashboard')
+    await page.waitForLoadState('networkidle')
   })
 
   test('Dashboard carga los 6 KPI cards con datos', async ({ page }) => {

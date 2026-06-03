@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { loginAsAdmin } from './helpers/auth'
 
 test.describe('Módulo Pacientes', () => {
   test.beforeEach(async ({ page }) => {
-    await loginAsAdmin(page)
     await page.goto('/patients')
     await page.waitForLoadState('networkidle')
   })

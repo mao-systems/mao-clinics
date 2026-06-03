@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { loginAsAdmin } from './helpers/auth'
 
 test.describe('Sistema de Theming', () => {
   test.beforeEach(async ({ page }) => {
-    await loginAsAdmin(page)
     await page.goto('/admin')
     await page.waitForLoadState('networkidle')
   })

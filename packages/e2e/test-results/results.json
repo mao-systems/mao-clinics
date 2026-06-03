@@ -4,24 +4,20 @@
     "rootDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/tests",
     "forbidOnly": false,
     "fullyParallel": false,
-    "globalSetup": null,
+    "globalSetup": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\global-setup.ts",
     "globalTeardown": null,
     "globalTimeout": 0,
     "grep": {},
     "grepInvert": null,
     "maxFailures": 0,
-    "metadata": {
-      "actualWorkers": 6
-    },
+    "metadata": {},
     "preserveOutput": "always",
     "projects": [
       {
         "outputDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/test-results",
         "repeatEach": 1,
         "retries": 1,
-        "metadata": {
-          "actualWorkers": 6
-        },
+        "metadata": {},
         "id": "chromium",
         "name": "chromium",
         "testDir": "C:/Users/asusm/Documents/MAO/mao-clinics/packages/e2e/tests",
@@ -89,56 +85,7 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
-                      "status": "interrupted",
-                      "duration": 27532,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\01-auth.spec.ts:11:16",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\01-auth.spec.ts",
-                          "column": 16,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[0m \u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n \u001b[90m 10 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m\n \u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/dashboard/\u001b[39m)\n \u001b[90m 14 |\u001b[39m     \u001b[90m// Tenant name appears in sidebar\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\01-auth.spec.ts",
-                            "column": 16,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[0m \u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n \u001b[90m 10 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m\n \u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/dashboard/\u001b[39m)\n \u001b[90m 14 |\u001b[39m     \u001b[90m// Tenant name appears in sidebar\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\01-auth.spec.ts:11:16\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.284Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\01-auth-Autenticación-Logi-36658-ectas-redirige-al-dashboard-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\01-auth-Autenticación-Logi-36658-ectas-redirige-al-dashboard-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\01-auth.spec.ts",
-                        "column": 16,
-                        "line": 11
-                      }
-                    }
-                  ],
+                  "results": [],
                   "status": "skipped"
                 }
               ],
@@ -201,12 +148,12 @@
         {
           "title": "Dashboard",
           "file": "02-dashboard.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
               "title": "Dashboard carga los 6 KPI cards con datos",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -215,115 +162,8 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 15835,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts:13:36",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts",
-                          "column": 36,
-                          "line": 13
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m     \u001b[90m// The dashboard renders 6 metric cards; find them by a common wrapper class or role\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m kpiCards \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(kpiCards\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m     \u001b[90m// Wait for React Query to finish loading\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts",
-                            "column": 36,
-                            "line": 13
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 11 |\u001b[39m     \u001b[90m// The dashboard renders 6 metric cards; find them by a common wrapper class or role\u001b[39m\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m kpiCards \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'[class*=\"card\"], [class*=\"Card\"], [class*=\"kpi\"], [class*=\"metric\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(kpiCards\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m     \u001b[90m// Wait for React Query to finish loading\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts:13:36\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.254Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts",
-                        "column": 36,
-                        "line": 13
-                      }
-                    },
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
-                      "status": "interrupted",
-                      "duration": 10756,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts:6:5",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                          "column": 14,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                            "column": 14,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m\n\u001b[2m    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\u001b[22m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\02-dashboard.spec.ts:6:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-03T22:33:59.519Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\02-dashboard-Dashboard-Das-38178-a-los-6-KPI-cards-con-datos-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                        "column": 14,
-                        "line": 11
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
               "id": "4d2f27bfb2b30c5eaf6b-ca758d8c623cca859705",
@@ -385,7 +225,7 @@
         {
           "title": "Módulo Pacientes",
           "file": "03-patients.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
@@ -399,33 +239,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 7317,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.292Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-b2266-ntes-cargados-desde-el-seed-chromium\\test-finished-1.png"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
               "id": "e6a96ad20898066c0eed-9145cb1ab59ad69ed82d",
               "file": "03-patients.spec.ts",
-              "line": 11,
+              "line": 9,
               "column": 7
             },
             {
@@ -439,62 +259,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "interrupted",
-                      "duration": 20102,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:6:5",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                          "column": 14,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                            "column": 14,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m\n\u001b[2m    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\u001b[22m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:6:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:50.106Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-9a2d3-n-puntos-formato-8-dígitos--chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-9a2d3-n-puntos-formato-8-dígitos--chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                        "column": 14,
-                        "line": 11
-                      }
-                    }
-                  ],
+                  "results": [],
                   "status": "skipped"
                 }
               ],
               "id": "e6a96ad20898066c0eed-35ca44fc10da16a6abbe",
               "file": "03-patients.spec.ts",
-              "line": 22,
+              "line": 20,
               "column": 7
             },
             {
@@ -514,7 +285,7 @@
               ],
               "id": "e6a96ad20898066c0eed-1e78ce1a03d4c803c713",
               "file": "03-patients.spec.ts",
-              "line": 45,
+              "line": 43,
               "column": 7
             },
             {
@@ -534,7 +305,7 @@
               ],
               "id": "e6a96ad20898066c0eed-937bc5e2417da590800d",
               "file": "03-patients.spec.ts",
-              "line": 84,
+              "line": 82,
               "column": 7
             }
           ]
@@ -551,7 +322,7 @@
         {
           "title": "Módulo Citas",
           "file": "04-appointments.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
@@ -565,33 +336,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 7312,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.313Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\04-appointments-Módulo-Cit-c006e--y-muestra-eventos-del-seed-chromium\\test-finished-1.png"
-                        }
-                      ]
-                    }
-                  ],
-                  "status": "expected"
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
               "id": "d6f73b9d9c53b6b33ece-d158c321bc6a3c966342",
               "file": "04-appointments.spec.ts",
-              "line": 11,
+              "line": 9,
               "column": 7
             },
             {
@@ -605,62 +356,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "interrupted",
-                      "duration": 20100,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\04-appointments.spec.ts:6:5",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                          "column": 14,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                            "column": 14,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m\n\u001b[2m    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\u001b[22m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\04-appointments.spec.ts:6:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:50.106Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\04-appointments-Módulo-Cit-eb21e-tán-en-horario-Lima-no-UTC--chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\04-appointments-Módulo-Cit-eb21e-tán-en-horario-Lima-no-UTC--chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                        "column": 14,
-                        "line": 11
-                      }
-                    }
-                  ],
+                  "results": [],
                   "status": "skipped"
                 }
               ],
               "id": "d6f73b9d9c53b6b33ece-09764956c5ead355bedc",
               "file": "04-appointments.spec.ts",
-              "line": 26,
+              "line": 24,
               "column": 7
             },
             {
@@ -680,7 +382,7 @@
               ],
               "id": "d6f73b9d9c53b6b33ece-8b61ff85b94e05c1c9fb",
               "file": "04-appointments.spec.ts",
-              "line": 64,
+              "line": 62,
               "column": 7
             }
           ]
@@ -697,7 +399,7 @@
         {
           "title": "Historia Clínica Electrónica",
           "file": "05-hce.spec.ts",
-          "line": 5,
+          "line": 4,
           "column": 6,
           "specs": [
             {
@@ -711,62 +413,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 4,
-                      "status": "interrupted",
-                      "duration": 27497,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\05-hce.spec.ts:7:5",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                          "column": 14,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                            "column": 14,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m\n\u001b[2m    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\u001b[22m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\05-hce.spec.ts:7:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.345Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\05-hce-Historia-Clínica-El-1138e-carga-la-lista-de-consultas-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\05-hce-Historia-Clínica-El-1138e-carga-la-lista-de-consultas-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                        "column": 14,
-                        "line": 11
-                      }
-                    }
-                  ],
+                  "results": [],
                   "status": "skipped"
                 }
               ],
               "id": "d825b6082f1a8d9a8816-d9285c1f3a593f1a1b33",
               "file": "05-hce.spec.ts",
-              "line": 10,
+              "line": 6,
               "column": 7
             },
             {
@@ -786,7 +439,7 @@
               ],
               "id": "d825b6082f1a8d9a8816-fe8dd83a2ae56c9b196b",
               "file": "05-hce.spec.ts",
-              "line": 24,
+              "line": 20,
               "column": 7
             },
             {
@@ -806,7 +459,7 @@
               ],
               "id": "d825b6082f1a8d9a8816-959c2350dac299c1132f",
               "file": "05-hce.spec.ts",
-              "line": 46,
+              "line": 42,
               "column": 7
             }
           ]
@@ -823,12 +476,12 @@
         {
           "title": "Facturación",
           "file": "06-billing.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
               "title": "Lista de comprobantes carga datos del seed",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -837,120 +490,13 @@
                   "expectedStatus": "passed",
                   "projectId": "chromium",
                   "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 16964,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:13:32",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts",
-                          "column": 32,
-                          "line": 13
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m   test(\u001b[32m'Lista de comprobantes carga datos del seed'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 16 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts",
-                            "column": 32,
-                            "line": 13
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 11 |\u001b[39m   test(\u001b[32m'Lista de comprobantes carga datos del seed'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 12 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m\n \u001b[90m 15 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 16 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:13:32\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2026-06-03T22:33:40.335Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts",
-                        "column": 32,
-                        "line": 13
-                      }
-                    },
-                    {
-                      "workerIndex": 7,
-                      "parallelIndex": 5,
-                      "status": "interrupted",
-                      "duration": 9471,
-                      "error": {
-                        "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================",
-                        "stack": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:6:5",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                          "column": 14,
-                          "line": 11
-                        },
-                        "snippet": "\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                            "column": 14,
-                            "line": 11
-                          },
-                          "message": "Error: page.waitForURL: Test ended.\n=========================== logs ===========================\nwaiting for navigation to \"**/dashboard\" until \"load\"\n============================================================\n\n\u001b[90m   at \u001b[39mhelpers\\auth.ts:11\n\n\u001b[0m \u001b[90m  9 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mfill(\u001b[32m'input[type=\"password\"]'\u001b[39m\u001b[33m,\u001b[39m \u001b[33mDEMO_PASSWORD\u001b[39m)\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'button[type=\"submit\"]'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 11 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForURL(\u001b[32m'**/dashboard'\u001b[39m)\n \u001b[90m    |\u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 12 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 13 |\u001b[39m }\n \u001b[90m 14 |\u001b[39m\u001b[0m\n\u001b[2m    at loginAsAdmin (C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts:11:14)\u001b[22m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:6:5\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-03T22:34:00.974Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\06-billing-Facturación-Lis-bafee-bantes-carga-datos-del-seed-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\helpers\\auth.ts",
-                        "column": 14,
-                        "line": 11
-                      }
-                    }
-                  ],
-                  "status": "unexpected"
+                  "results": [],
+                  "status": "skipped"
                 }
               ],
               "id": "cd5649f7d96df87135b2-5ee79098955aef3c0da8",
               "file": "06-billing.spec.ts",
-              "line": 11,
+              "line": 9,
               "column": 7
             },
             {
@@ -970,7 +516,7 @@
               ],
               "id": "cd5649f7d96df87135b2-39f9bcd1b04fd4dd265b",
               "file": "06-billing.spec.ts",
-              "line": 26,
+              "line": 24,
               "column": 7
             },
             {
@@ -990,7 +536,7 @@
               ],
               "id": "cd5649f7d96df87135b2-9534187c9b220654b51e",
               "file": "06-billing.spec.ts",
-              "line": 95,
+              "line": 93,
               "column": 7
             }
           ]
@@ -1007,7 +553,7 @@
         {
           "title": "Sistema de Theming",
           "file": "07-theming.spec.ts",
-          "line": 4,
+          "line": 3,
           "column": 6,
           "specs": [
             {
@@ -1027,7 +573,7 @@
               ],
               "id": "dcb011b56586ef2efc0b-8d62c646da41c199b495",
               "file": "07-theming.spec.ts",
-              "line": 11,
+              "line": 9,
               "column": 7
             },
             {
@@ -1047,7 +593,7 @@
               ],
               "id": "dcb011b56586ef2efc0b-ce8d23464d6afce46ee9",
               "file": "07-theming.spec.ts",
-              "line": 25,
+              "line": 23,
               "column": 7
             },
             {
@@ -1067,7 +613,7 @@
               ],
               "id": "dcb011b56586ef2efc0b-c972c4df7ed32ed65ebb",
               "file": "07-theming.spec.ts",
-              "line": 86,
+              "line": 84,
               "column": 7
             }
           ]
@@ -1077,11 +623,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-06-03T22:33:39.446Z",
-    "duration": 32071.033,
-    "expected": 2,
-    "skipped": 18,
-    "unexpected": 2,
+    "startTime": "2026-06-03T22:54:56.229Z",
+    "duration": 263.19900000000007,
+    "expected": 0,
+    "skipped": 22,
+    "unexpected": 0,
     "flaky": 0
   }
 }
