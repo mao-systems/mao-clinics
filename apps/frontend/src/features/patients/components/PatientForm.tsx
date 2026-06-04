@@ -59,7 +59,7 @@ function cleanPayload(values: FormValues) {
     ...values,
     date_of_birth: values.date_of_birth ? `${values.date_of_birth}T00:00:00.000Z` : null,
     sex: values.sex ?? null,
-    blood_type: values.blood_type ?? null,
+    blood_type: toNull(values.blood_type),
     phone: toNull(values.phone),
     email: toNull(values.email),
     address: toNull(values.address),

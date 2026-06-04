@@ -16,10 +16,10 @@ export const CreatePatientSchema = z.object({
   district: z.string().max(100).optional().nullable(),
   allergies: z.string().max(500).optional().nullable(),
   medical_history: z.string().max(2000).optional().nullable(),
-  blood_type: z
-    .enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])
-    .optional()
-    .nullable(),
+  blood_type: z.preprocess(
+    (v) => (v === '' ? null : v),
+    z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']).optional().nullable(),
+  ),
   emergency_contact_name: z.string().max(100).optional().nullable(),
   emergency_contact_phone: z
     .string()

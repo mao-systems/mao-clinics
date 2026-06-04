@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"pnpm --filter frontend dev\" \"pnpm --filter backend dev\"",
+    "dev": "concurrently --names backend,frontend \"pnpm --filter backend dev\" \"wait-on http://localhost:3001/health -t 30000 && pnpm --filter frontend dev\"",
     "build": "pnpm --filter frontend build && pnpm --filter backend build",
     "typecheck": "pnpm --filter frontend typecheck && pnpm --filter backend typecheck",
     "db:up": "docker compose up -d",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "wait-on": "^8.0.1"
   }
 }

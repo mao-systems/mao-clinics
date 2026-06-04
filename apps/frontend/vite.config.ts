@@ -10,6 +10,17 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+        configure: (proxy) => {
+          proxy.on('error', (_err, _req, res) => {
+            // Backend not ready yet — return clean JSON 503 instead of crashing the proxy log
+            if ('writeHead' in res) {
+              (res as import('http').ServerResponse).writeHead(503, { 'Content-Type': 'application/json' })
+              ;(res as import('http').ServerResponse).end(
+                JSON.stringify({ success: false, error: { code: 'BACKEND_UNAVAILABLE', message: 'Backend no disponible' } })
+              )
+            }
+          })
+        },
       },
     },
   },
