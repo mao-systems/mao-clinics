@@ -97,10 +97,20 @@ test.describe('Módulo Pacientes', () => {
 
     // Wait for the modal to close (success) or for any toast message (success or conflict)
     // The form modal disappears on successful create
-    await page.waitForTimeout(1500)
+    await page.waitForTimeout(2000)
     await page.waitForLoadState('networkidle')
 
-    // After success the new patient appears in the table
+    // Search for the new patient by last name so we find them regardless of pagination order
+    const searchInput = page.locator(
+      'input[placeholder*="Buscar"], input[placeholder*="buscar"], input[placeholder*="DNI"], input[type="search"]'
+    ).first()
+    if (await searchInput.isVisible().catch(() => false)) {
+      await searchInput.fill('E2E Playwright')
+      await page.waitForTimeout(800)
+      await page.waitForLoadState('networkidle')
+    }
+
+    // After success the new patient appears in the (filtered) table
     await expect(page.getByText('E2E Playwright')).toBeVisible({ timeout: 10000 })
 
     await page.screenshot({ path: 'test-results/patient-created.png', fullPage: true })

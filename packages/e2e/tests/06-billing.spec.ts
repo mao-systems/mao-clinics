@@ -76,6 +76,20 @@ test.describe('Facturación', () => {
 
     await page.screenshot({ path: 'test-results/billing-new-invoice-filled.png', fullPage: true })
 
+    // Select a patient — required by the form before submission
+    const patientSearchInput = page.locator('input[placeholder*="Buscar por nombre o DNI"]').first()
+    if (await patientSearchInput.isVisible().catch(() => false)) {
+      await patientSearchInput.fill('García')
+      await page.waitForTimeout(800)
+
+      // Click the first result from the patient dropdown (absolute z-20 list)
+      const firstDropdownResult = page.locator('.absolute.z-20 button[type="button"]').first()
+      if (await firstDropdownResult.isVisible({ timeout: 3000 }).catch(() => false)) {
+        await firstDropdownResult.click()
+        await page.waitForTimeout(300)
+      }
+    }
+
     // Submit the form
     const submitBtn = page.locator('button[type="submit"], button', { hasText: /Emitir comprobante|Emitir/i }).last()
     await submitBtn.click()
