@@ -232,12 +232,21 @@ export function InvoiceForm({
     },
   })
 
-  const { fields, append, remove } = useFieldArray({ control, name: 'items' })
+  const { fields, append, remove, update } = useFieldArray({ control, name: 'items' })
   const watchedType  = watch('type')
   const watchedItems = useWatch({ control, name: 'items' })
 
   function addQuickService(label: string, price: string) {
-    append({ description: label, quantity: 1, unit_price: price })
+    // If the only row is the empty placeholder, replace it instead of appending
+    const isOnlyPlaceholder =
+      fields.length === 1 &&
+      !watchedItems?.[0]?.description &&
+      !watchedItems?.[0]?.unit_price
+    if (isOnlyPlaceholder) {
+      update(0, { description: label, quantity: 1, unit_price: price })
+    } else {
+      append({ description: label, quantity: 1, unit_price: price })
+    }
   }
 
   async function onSubmit(values: FormValues) {

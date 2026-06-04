@@ -94,12 +94,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4956,
+                      "duration": 5151,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.561Z",
+                      "startTime": "2026-06-04T03:14:59.936Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -134,12 +134,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1899,
+                      "duration": 1887,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:26.450Z",
+                      "startTime": "2026-06-04T03:15:06.870Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -174,12 +174,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3713,
+                      "duration": 3835,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:28.397Z",
+                      "startTime": "2026-06-04T03:15:08.851Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -231,12 +231,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 5381,
+                      "duration": 5483,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.577Z",
+                      "startTime": "2026-06-04T03:14:59.915Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -271,12 +271,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3577,
+                      "duration": 3072,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:26.912Z",
+                      "startTime": "2026-06-04T03:15:07.199Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -311,16 +311,16 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3955,
+                      "duration": 3934,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "Dashboard load time: 1080ms\n"
+                          "text": "Dashboard load time: 1197ms\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:30.539Z",
+                      "startTime": "2026-06-04T03:15:10.312Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -372,12 +372,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 4680,
+                      "duration": 4436,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.568Z",
+                      "startTime": "2026-06-04T03:14:59.912Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -412,12 +412,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 2661,
+                      "duration": 3336,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:26.168Z",
+                      "startTime": "2026-06-04T03:15:06.158Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -452,12 +452,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 3944,
+                      "duration": 4047,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:28.905Z",
+                      "startTime": "2026-06-04T03:15:09.594Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -477,8 +477,8 @@
               "column": 7
             },
             {
-              "title": "Crear paciente nuevo funciona y aparece en tabla",
-              "ok": false,
+              "title": "Formulario muestra error si fecha de nacimiento o sexo están vacíos",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -491,116 +491,69 @@
                     {
                       "workerIndex": 2,
                       "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 15507,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:114:52",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                          "column": 52,
-                          "line": 114
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 112 |\u001b[39m\n \u001b[90m 113 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m\n \u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 117 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                            "column": 52,
-                            "line": 114
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n\n\u001b[0m \u001b[90m 112 |\u001b[39m\n \u001b[90m 113 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m\n \u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 117 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:114:52\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 3412,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:32.892Z",
+                      "startTime": "2026-06-04T03:15:13.754Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-30655-imiento-o-sexo-están-vacíos-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                        "column": 52,
-                        "line": 114
-                      }
-                    },
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 15785,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:114:52",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                          "column": 52,
-                          "line": 114
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 112 |\u001b[39m\n \u001b[90m 113 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m\n \u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 117 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                            "column": 52,
-                            "line": 114
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n\n\u001b[0m \u001b[90m 112 |\u001b[39m\n \u001b[90m 113 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m\n \u001b[90m 116 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 117 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:114:52\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T02:19:49.196Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                        "column": 52,
-                        "line": 114
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
+                }
+              ],
+              "id": "e6a96ad20898066c0eed-647723499f0aa46a13b4",
+              "file": "03-patients.spec.ts",
+              "line": 78,
+              "column": 7
+            },
+            {
+              "title": "Crear paciente nuevo funciona y aparece en tabla",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 5659,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-06-04T03:15:17.336Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\test-finished-1.png"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
                 }
               ],
               "id": "e6a96ad20898066c0eed-937bc5e2417da590800d",
               "file": "03-patients.spec.ts",
-              "line": 78,
+              "line": 109,
               "column": 7
             }
           ]
@@ -636,12 +589,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5369,
+                      "duration": 5310,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.562Z",
+                      "startTime": "2026-06-04T03:14:59.921Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -676,7 +629,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4458,
+                      "duration": 4095,
                       "errors": [],
                       "stdout": [
                         {
@@ -685,7 +638,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:26.880Z",
+                      "startTime": "2026-06-04T03:15:07.028Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -720,12 +673,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2918,
+                      "duration": 2977,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:31.493Z",
+                      "startTime": "2026-06-04T03:15:11.300Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -777,12 +730,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 4819,
+                      "duration": 4812,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.619Z",
+                      "startTime": "2026-06-04T03:14:59.920Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -817,12 +770,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 3637,
+                      "duration": 3702,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:26.331Z",
+                      "startTime": "2026-06-04T03:15:06.544Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -857,7 +810,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 9311,
+                      "duration": 8892,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -866,7 +819,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:30.022Z",
+                      "startTime": "2026-06-04T03:15:10.490Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -918,12 +871,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 5649,
+                      "duration": 6447,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:19.619Z",
+                      "startTime": "2026-06-04T03:14:59.985Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -958,7 +911,7 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "failed",
-                      "duration": 7561,
+                      "duration": 7762,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:104:23",
@@ -982,7 +935,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:27.171Z",
+                      "startTime": "2026-06-04T03:15:08.193Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1006,7 +959,7 @@
                       "workerIndex": 6,
                       "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 7139,
+                      "duration": 7257,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\06-billing.spec.ts:104:23",
@@ -1030,7 +983,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-06-04T02:19:36.231Z",
+                      "startTime": "2026-06-04T03:15:17.036Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1085,12 +1038,12 @@
                       "workerIndex": 7,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3414,
+                      "duration": 3202,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:44.677Z",
+                      "startTime": "2026-06-04T03:15:25.603Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1142,12 +1095,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2112,
+                      "duration": 2425,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:32.174Z",
+                      "startTime": "2026-06-04T03:15:12.805Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1182,7 +1135,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3645,
+                      "duration": 3680,
                       "errors": [],
                       "stdout": [
                         {
@@ -1194,7 +1147,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:34.327Z",
+                      "startTime": "2026-06-04T03:15:15.299Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1229,12 +1182,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2444,
+                      "duration": 2602,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T02:19:38.015Z",
+                      "startTime": "2026-06-04T03:15:19.022Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1260,11 +1213,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-06-04T02:19:12.172Z",
-    "duration": 53515.825999999994,
-    "expected": 20,
+    "startTime": "2026-06-04T03:14:53.093Z",
+    "duration": 36207.839,
+    "expected": 22,
     "skipped": 0,
-    "unexpected": 2,
+    "unexpected": 1,
     "flaky": 0
   }
 }
