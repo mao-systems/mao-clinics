@@ -75,6 +75,37 @@ test.describe('Módulo Pacientes', () => {
     await page.screenshot({ path: 'test-results/patients-search-cleared.png', fullPage: true })
   })
 
+  test('Formulario muestra error si fecha de nacimiento o sexo están vacíos', async ({ page }) => {
+    const newBtn = page.locator('button', { hasText: /Nuevo paciente|Agregar|Registrar/i }).first()
+    await expect(newBtn).toBeVisible()
+    await newBtn.click()
+
+    await page.waitForTimeout(400)
+
+    // Fill only the non-required-by-new-rule fields — skip date_of_birth and sex
+    await page.fill('input[name="dni"]', '12345678')
+    await page.fill('input[name="first_name"]', 'Test')
+    await page.fill('input[name="last_name"]', 'Validacion')
+
+    const submitBtn = page.locator('button[type="submit"]').last()
+    await submitBtn.click()
+
+    await page.waitForTimeout(300)
+
+    // Modal must still be open — form did not submit
+    const modal = page.locator('.fixed.inset-0.z-50 .shadow-xl').first()
+    await expect(modal).toBeVisible()
+
+    // Required-field error messages must appear for date_of_birth and sex
+    await expect(page.getByText('Requerido').first()).toBeVisible({ timeout: 5000 })
+
+    await page.screenshot({ path: 'test-results/patient-form-validation.png', fullPage: true })
+
+    // Close the modal before the next test
+    await page.keyboard.press('Escape')
+    await page.waitForTimeout(300)
+  })
+
   test('Crear paciente nuevo funciona y aparece en tabla', async ({ page }) => {
     const newBtn = page.locator('button', { hasText: /Nuevo paciente|Agregar|Registrar/i }).first()
     await expect(newBtn).toBeVisible()
@@ -87,9 +118,12 @@ test.describe('Módulo Pacientes', () => {
     const uniqueDni = `1${Date.now().toString().slice(-7)}`
 
     // PatientForm uses react-hook-form register(), so inputs have name= attributes
+    // date_of_birth and sex are required fields
     await page.fill('input[name="dni"]', uniqueDni)
     await page.fill('input[name="first_name"]', 'Test')
     await page.fill('input[name="last_name"]', 'E2E Playwright')
+    await page.fill('input[name="date_of_birth"]', '1990-05-15')
+    await page.check('input[type="radio"][value="M"]')
     await page.fill('input[name="phone"]', '912345678')
 
     const submitBtn = page.locator('button[type="submit"]').last()

@@ -23,8 +23,8 @@ const formSchema = z.object({
   dni: z.string().regex(/^\d{8}$/, 'El DNI debe tener exactamente 8 dígitos'),
   first_name: z.string().min(1, 'Requerido').max(100),
   last_name: z.string().min(1, 'Requerido').max(100),
-  date_of_birth: z.string().optional(),
-  sex: z.enum(['M', 'F', 'Other']).optional(),
+  date_of_birth: z.string().min(1, 'Requerido'),
+  sex: z.enum(['M', 'F', 'Other'], { required_error: 'Requerido' }),
   blood_type: z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']).optional(),
   phone: z
     .string()
@@ -161,12 +161,15 @@ export function PatientForm({ patient, onClose }: PatientFormProps) {
 
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium text-gray-700">
-                  Fecha de nacimiento
+                  Fecha de nacimiento *
                 </label>
                 <div className="flex items-center gap-2">
                   <input
                     type="date"
-                    className="flex-1 px-3 py-2 border border-gray-300 text-sm rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    className={[
+                      'flex-1 px-3 py-2 border text-sm rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent',
+                      errors.date_of_birth ? 'border-red-400' : 'border-gray-300',
+                    ].join(' ')}
                     {...register('date_of_birth')}
                   />
                   {computedAge !== null && (
@@ -175,6 +178,9 @@ export function PatientForm({ patient, onClose }: PatientFormProps) {
                     </span>
                   )}
                 </div>
+                {errors.date_of_birth && (
+                  <p className="text-xs text-red-500">{errors.date_of_birth.message}</p>
+                )}
               </div>
 
               <Input
@@ -190,7 +196,7 @@ export function PatientForm({ patient, onClose }: PatientFormProps) {
 
               {/* Sexo */}
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-medium text-gray-700">Sexo</span>
+                <span className="text-sm font-medium text-gray-700">Sexo *</span>
                 <div className="flex gap-3">
                   {([['M', 'Masculino'], ['F', 'Femenino'], ['Other', 'Otro']] as const).map(
                     ([val, label]) => (
@@ -201,6 +207,9 @@ export function PatientForm({ patient, onClose }: PatientFormProps) {
                     ),
                   )}
                 </div>
+                {errors.sex && (
+                  <p className="text-xs text-red-500">{errors.sex.message}</p>
+                )}
               </div>
 
               {/* Tipo de sangre */}
