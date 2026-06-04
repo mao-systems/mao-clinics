@@ -145,7 +145,8 @@ test.describe('Módulo Pacientes', () => {
     }
 
     // After success the new patient appears in the (filtered) table
-    await expect(page.getByText('E2E Playwright')).toBeVisible({ timeout: 10000 })
+    // Use .first() to avoid strict-mode violation when multiple rows match after repeated runs
+    await expect(page.getByText('E2E Playwright').first()).toBeVisible({ timeout: 10000 })
 
     await page.screenshot({ path: 'test-results/patient-created.png', fullPage: true })
   })
