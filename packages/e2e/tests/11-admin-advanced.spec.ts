@@ -7,10 +7,14 @@ test.describe('Panel de Administración — avanzado', () => {
   })
 
   test('Tab de Médicos muestra lista con al menos un doctor del seed', async ({ page }) => {
-    // Admin tabs are hash-based: navigate directly to /admin#medicos
-    await page.goto('/admin#medicos')
-    await page.waitForLoadState('networkidle')
-    await page.waitForTimeout(500)
+    // beforeEach already loaded /admin with the default tab (apariencia).
+    // goto('/admin#medicos') would be a hash-only change in the SPA — React does NOT remount
+    // and getInitialTab() never re-runs, so the tab stays on apariencia.
+    // The correct approach is to click the tab button, which calls setActiveTab('medicos').
+    const tabMedicos = page.locator('nav button', { hasText: 'Médicos' }).first()
+    await expect(tabMedicos).toBeVisible({ timeout: 8000 })
+    await tabMedicos.click()
+    await page.waitForTimeout(600)
 
     // DoctorsTab renders DoctorCard components in a grid.
     // Each card has: <p class="text-sm font-semibold text-gray-800 truncate">Dr. {name}</p>
@@ -23,10 +27,10 @@ test.describe('Panel de Administración — avanzado', () => {
   })
 
   test('Lista de médicos muestra campos de nombre y especialidad', async ({ page }) => {
-    // Navigate directly via hash to avoid relying on tab click selector
-    await page.goto('/admin#medicos')
-    await page.waitForLoadState('networkidle')
-    await page.waitForTimeout(500)
+    const tabMedicos = page.locator('nav button', { hasText: 'Médicos' }).first()
+    await expect(tabMedicos).toBeVisible({ timeout: 8000 })
+    await tabMedicos.click()
+    await page.waitForTimeout(600)
 
     // Doctor name: <p class="text-sm font-semibold ...">Dr. FullName</p>
     const doctorNameEls = page.locator('p.font-semibold').filter({ hasText: /^Dr\./ })
