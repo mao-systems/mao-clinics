@@ -19,6 +19,17 @@ export function errorHandler(
     return
   }
 
+  // express-rate-limit validation errors (e.g. ERR_ERL_UNEXPECTED_X_FORWARDED_FOR)
+  // should never reach here after the validate config fix, but guard just in case
+  if (err instanceof Error && (err as NodeJS.ErrnoException).code?.startsWith('ERR_ERL_')) {
+    logger.warn('Rate-limit misconfiguration detected', { message: err.message })
+    res.status(500).json({
+      success: false,
+      error: { code: 'INTERNAL_ERROR', message: 'Ocurrió un error inesperado. Por favor inténtalo de nuevo.' },
+    })
+    return
+  }
+
   if (err instanceof ZodError) {
     // Use the first human-readable Zod message; field messages are already in Spanish
     const firstMessage = err.errors[0]?.message ?? 'Datos de entrada inválidos'

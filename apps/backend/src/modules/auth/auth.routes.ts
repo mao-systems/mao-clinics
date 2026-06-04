@@ -21,6 +21,11 @@ const loginRateLimiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  // trust proxy is already configured at the Express app level (app.set('trust proxy', 1)).
+  // Disabling express-rate-limit's own X-Forwarded-For validation avoids the
+  // ERR_ERL_UNEXPECTED_X_FORWARDED_FOR error thrown in production behind Nginx
+  // where the numeric trust-proxy value doesn't satisfy the library's strict boolean check.
+  validate: { xForwardedForHeader: false },
 })
 
 const isProduction = env.NODE_ENV === 'production'
