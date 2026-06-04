@@ -58,7 +58,8 @@ class S3StorageProvider implements IStorageProvider {
         Key: key,
         Body: file.buffer,
         ContentType: file.mimetype,
-        ACL: 'public-read',
+        // ACL is intentionally omitted — the bucket uses BucketOwnerEnforced
+        // (ACLs disabled). Public read is granted via bucket policy, not object ACL.
       },
     })
 
