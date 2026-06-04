@@ -25,7 +25,7 @@ const formSchema = z.object({
   last_name: z.string().min(1, 'Requerido').max(100),
   date_of_birth: z.string().min(1, 'Requerido'),
   sex: z.enum(['M', 'F', 'Other'], { required_error: 'Requerido' }),
-  blood_type: z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']).optional(),
+  blood_type: z.enum(['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']).optional().or(z.literal('')),
   phone: z
     .string()
     .refine((v) => !v || /^9\d{8}$/.test(v), 'Debe tener 9 dígitos y comenzar con 9')
