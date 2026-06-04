@@ -94,12 +94,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5996,
+                      "duration": 8080,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.559Z",
+                      "startTime": "2026-06-04T20:42:24.205Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -134,12 +134,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1863,
+                      "duration": 1999,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:49.404Z",
+                      "startTime": "2026-06-04T20:42:34.691Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -174,12 +174,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4016,
+                      "duration": 4357,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:51.534Z",
+                      "startTime": "2026-06-04T20:42:36.735Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -231,12 +231,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 7025,
+                      "duration": 7299,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.576Z",
+                      "startTime": "2026-06-04T20:42:24.186Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -271,12 +271,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2667,
+                      "duration": 3930,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:50.463Z",
+                      "startTime": "2026-06-04T20:42:33.945Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -311,16 +311,16 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3785,
+                      "duration": 4279,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "Dashboard load time: 1045ms\n"
+                          "text": "Dashboard load time: 1168ms\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:53.193Z",
+                      "startTime": "2026-06-04T20:42:38.083Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -372,12 +372,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 5606,
+                      "duration": 6779,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.627Z",
+                      "startTime": "2026-06-04T20:42:24.189Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -412,12 +412,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 2897,
+                      "duration": 3245,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:49.325Z",
+                      "startTime": "2026-06-04T20:42:33.372Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -452,12 +452,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 4103,
+                      "duration": 4278,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:52.342Z",
+                      "startTime": "2026-06-04T20:42:36.669Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -492,12 +492,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 3540,
+                      "duration": 4088,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:56.503Z",
+                      "startTime": "2026-06-04T20:42:40.998Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -518,7 +518,7 @@
             },
             {
               "title": "Crear paciente nuevo funciona y aparece en tabla",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -531,111 +531,24 @@
                     {
                       "workerIndex": 2,
                       "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 6139,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 2 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 2 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:148:52",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                          "column": 52,
-                          "line": 148
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 146 |\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 149 |\u001b[39m\n \u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 151 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                            "column": 52,
-                            "line": 148
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 2 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n\n\u001b[0m \u001b[90m 146 |\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 149 |\u001b[39m\n \u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 151 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:148:52\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 6185,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:00.083Z",
+                      "startTime": "2026-06-04T20:42:45.156Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                        "column": 52,
-                        "line": 148
-                      }
-                    },
-                    {
-                      "workerIndex": 6,
-                      "parallelIndex": 2,
-                      "status": "failed",
-                      "duration": 9984,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 3 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n    3) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 3 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n    3) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:148:52",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                          "column": 52,
-                          "line": 148
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 146 |\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 149 |\u001b[39m\n \u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 151 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                            "column": 52,
-                            "line": 148
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('E2E Playwright')\nExpected: visible\nError: strict mode violation: getByText('E2E Playwright') resolved to 3 elements:\n    1) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').first()\n    2) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(1)\n    3) <p class=\"font-medium text-gray-900 text-sm\">Test E2E Playwright</p> aka getByText('Test E2E Playwright').nth(2)\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText('E2E Playwright')\u001b[22m\n\n\n\u001b[0m \u001b[90m 146 |\u001b[39m\n \u001b[90m 147 |\u001b[39m     \u001b[90m// After success the new patient appears in the (filtered) table\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 148 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'E2E Playwright'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m     |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 149 |\u001b[39m\n \u001b[90m 150 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/patient-created.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 151 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts:148:52\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:07.965Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\03-patients-Módulo-Pacient-2a835-funciona-y-aparece-en-tabla-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\03-patients.spec.ts",
-                        "column": 52,
-                        "line": 148
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "e6a96ad20898066c0eed-937bc5e2417da590800d",
@@ -676,12 +589,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 6555,
+                      "duration": 6932,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.572Z",
+                      "startTime": "2026-06-04T20:42:24.313Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -716,7 +629,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4584,
+                      "duration": 4569,
                       "errors": [],
                       "stdout": [
                         {
@@ -725,7 +638,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:49.762Z",
+                      "startTime": "2026-06-04T20:42:33.571Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -760,12 +673,12 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2938,
+                      "duration": 3281,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:54.431Z",
+                      "startTime": "2026-06-04T20:42:38.226Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -817,12 +730,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 5781,
+                      "duration": 6765,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.554Z",
+                      "startTime": "2026-06-04T20:42:24.391Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -857,12 +770,12 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 3685,
+                      "duration": 3836,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:49.315Z",
+                      "startTime": "2026-06-04T20:42:33.393Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -897,7 +810,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "passed",
-                      "duration": 9422,
+                      "duration": 10095,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -906,7 +819,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:53.087Z",
+                      "startTime": "2026-06-04T20:42:37.354Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -958,12 +871,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 6781,
+                      "duration": 6785,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:41.566Z",
+                      "startTime": "2026-06-04T20:42:24.399Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -998,12 +911,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 7243,
+                      "duration": 8316,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:50.385Z",
+                      "startTime": "2026-06-04T20:42:33.385Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1038,12 +951,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 3794,
+                      "duration": 4730,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:57.785Z",
+                      "startTime": "2026-06-04T20:42:41.765Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1095,12 +1008,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2132,
+                      "duration": 2704,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:55.629Z",
+                      "startTime": "2026-06-04T20:42:41.295Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1135,7 +1048,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3885,
+                      "duration": 4044,
                       "errors": [],
                       "stdout": [
                         {
@@ -1147,7 +1060,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:57.808Z",
+                      "startTime": "2026-06-04T20:42:44.066Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1182,12 +1095,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2768,
+                      "duration": 2638,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:01.778Z",
+                      "startTime": "2026-06-04T20:42:48.165Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1236,15 +1149,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2949,
+                      "duration": 3191,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:57.052Z",
+                      "startTime": "2026-06-04T20:42:41.674Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1276,15 +1189,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3197,
+                      "duration": 3446,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:00.037Z",
+                      "startTime": "2026-06-04T20:42:44.906Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1316,15 +1229,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3255,
+                      "duration": 3488,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:03.296Z",
+                      "startTime": "2026-06-04T20:42:48.465Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1356,15 +1269,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 3778,
+                      "duration": 3614,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:06.583Z",
+                      "startTime": "2026-06-04T20:42:52.003Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1396,15 +1309,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 5158,
+                      "duration": 4879,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:10.394Z",
+                      "startTime": "2026-06-04T20:42:55.658Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1436,15 +1349,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 4411,
+                      "duration": 3573,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:15.588Z",
+                      "startTime": "2026-06-04T20:43:00.584Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1476,10 +1389,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 2122,
+                      "duration": 2507,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1488,7 +1401,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:20.046Z",
+                      "startTime": "2026-06-04T20:43:04.191Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1537,15 +1450,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 3520,
+                      "duration": 4565,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:56:57.514Z",
+                      "startTime": "2026-06-04T20:42:42.470Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1577,15 +1490,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 4018,
+                      "duration": 3962,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:01.079Z",
+                      "startTime": "2026-06-04T20:42:47.080Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1606,7 +1519,7 @@
             },
             {
               "title": "Navegar a la semana siguiente muestra nuevas fechas en el encabezado",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1617,113 +1530,26 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 7291,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:67:27",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                          "column": 27,
-                          "line": 67
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 65 |\u001b[39m     \u001b[90m// FullCalendar \"next\" button has aria-label \"next\" or text \"›\"\u001b[39m\n \u001b[90m 66 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 |\u001b[39m     \u001b[36mawait\u001b[39m expect(nextBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 70 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 27,
-                            "line": 67
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 65 |\u001b[39m     \u001b[90m// FullCalendar \"next\" button has aria-label \"next\" or text \"›\"\u001b[39m\n \u001b[90m 66 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 |\u001b[39m     \u001b[36mawait\u001b[39m expect(nextBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 70 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:67:27\u001b[22m"
-                        }
-                      ],
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3096,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:05.145Z",
+                      "startTime": "2026-06-04T20:42:51.098Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                        "column": 27,
-                        "line": 67
-                      }
-                    },
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 3,
-                      "status": "failed",
-                      "duration": 9178,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:67:27",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                          "column": 27,
-                          "line": 67
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 65 |\u001b[39m     \u001b[90m// FullCalendar \"next\" button has aria-label \"next\" or text \"›\"\u001b[39m\n \u001b[90m 66 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 |\u001b[39m     \u001b[36mawait\u001b[39m expect(nextBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 70 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 27,
-                            "line": 67
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-next-button, button[aria-label=\"next\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 65 |\u001b[39m     \u001b[90m// FullCalendar \"next\" button has aria-label \"next\" or text \"›\"\u001b[39m\n \u001b[90m 66 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 67 |\u001b[39m     \u001b[36mawait\u001b[39m expect(nextBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 68 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 69 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 70 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:67:27\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:15.482Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-15d8a-vas-fechas-en-el-encabezado-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                        "column": 27,
-                        "line": 67
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "e80864c99cde06c250ff-06956e9cc721a5b0896b",
@@ -1733,7 +1559,7 @@
             },
             {
               "title": "Navegar a la semana anterior funciona",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1744,123 +1570,36 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 12,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 7474,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:84:27",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                          "column": 27,
-                          "line": 84
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 82 |\u001b[39m\n \u001b[90m 83 |\u001b[39m     \u001b[36mconst\u001b[39m prevBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-prev-button, button[aria-label=\"prev\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m     \u001b[36mawait\u001b[39m expect(prevBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m     \u001b[36mawait\u001b[39m prevBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 86 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 87 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 27,
-                            "line": 84
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 82 |\u001b[39m\n \u001b[90m 83 |\u001b[39m     \u001b[36mconst\u001b[39m prevBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-prev-button, button[aria-label=\"prev\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m     \u001b[36mawait\u001b[39m expect(prevBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m     \u001b[36mawait\u001b[39m prevBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 86 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 87 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:84:27\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 3261,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:26.474Z",
+                      "startTime": "2026-06-04T20:42:54.226Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                        "column": 27,
-                        "line": 84
-                      }
-                    },
-                    {
-                      "workerIndex": 16,
-                      "parallelIndex": 1,
-                      "status": "failed",
-                      "duration": 8473,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:84:27",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                          "column": 27,
-                          "line": 84
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 82 |\u001b[39m\n \u001b[90m 83 |\u001b[39m     \u001b[36mconst\u001b[39m prevBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-prev-button, button[aria-label=\"prev\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m     \u001b[36mawait\u001b[39m expect(prevBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m     \u001b[36mawait\u001b[39m prevBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 86 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 87 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 27,
-                            "line": 84
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.fc-prev-button, button[aria-label=\"prev\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 82 |\u001b[39m\n \u001b[90m 83 |\u001b[39m     \u001b[36mconst\u001b[39m prevBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-prev-button, button[aria-label=\"prev\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 84 |\u001b[39m     \u001b[36mawait\u001b[39m expect(prevBtn)\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 85 |\u001b[39m     \u001b[36mawait\u001b[39m prevBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 86 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m600\u001b[39m)\n \u001b[90m 87 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:84:27\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:35.432Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-49b25-la-semana-anterior-funciona-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                        "column": 27,
-                        "line": 84
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "e80864c99cde06c250ff-cc8811ce8a0967ab2c7c",
               "file": "09-appointments-advanced.spec.ts",
-              "line": 78,
+              "line": 77,
               "column": 7
             },
             {
               "title": "Botón \"Hoy\" regresa al día actual",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1871,97 +1610,26 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 18,
+                      "workerIndex": 1,
                       "parallelIndex": 1,
-                      "status": "timedOut",
-                      "duration": 30110,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 19,
-                            "line": 97
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m  95 |\u001b[39m     \u001b[90m// Go to next week first\u001b[39m\n \u001b[90m  96 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m     |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m400\u001b[39m)\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m     \u001b[36mconst\u001b[39m todayBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-today-button, button[aria-label=\"today\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:97:19\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 3691,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:45.083Z",
+                      "startTime": "2026-06-04T20:42:57.510Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium\\error-context.md"
-                        }
-                      ]
-                    },
-                    {
-                      "workerIndex": 21,
-                      "parallelIndex": 1,
-                      "status": "timedOut",
-                      "duration": 31778,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts",
-                            "column": 19,
-                            "line": 97
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.fc-next-button, button[aria-label=\"next\"]').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m  95 |\u001b[39m     \u001b[90m// Go to next week first\u001b[39m\n \u001b[90m  96 |\u001b[39m     \u001b[36mconst\u001b[39m nextBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-next-button, button[aria-label=\"next\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     \u001b[36mawait\u001b[39m nextBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m     |\u001b[39m                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m400\u001b[39m)\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m     \u001b[36mconst\u001b[39m todayBtn \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'.fc-today-button, button[aria-label=\"today\"]'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\09-appointments-advanced.spec.ts:97:19\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:58:16.220Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium-retry1\\trace.zip"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\09-appointments-advanced-M-5970b-n-Hoy-regresa-al-día-actual-chromium\\test-finished-1.png"
                         }
                       ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "e80864c99cde06c250ff-539c0c45ef5906adac8b",
@@ -1982,10 +1650,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2168,
+                      "duration": 2576,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -1994,7 +1662,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:49.637Z",
+                      "startTime": "2026-06-04T20:43:01.229Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2010,7 +1678,7 @@
               ],
               "id": "e80864c99cde06c250ff-1db8350c3f4607830062",
               "file": "09-appointments-advanced.spec.ts",
-              "line": 112,
+              "line": 114,
               "column": 7
             },
             {
@@ -2026,15 +1694,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 22,
-                      "parallelIndex": 0,
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 2450,
+                      "duration": 3462,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:52.070Z",
+                      "startTime": "2026-06-04T20:43:03.845Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2050,7 +1718,7 @@
               ],
               "id": "e80864c99cde06c250ff-a9f0451026bdbe028d33",
               "file": "09-appointments-advanced.spec.ts",
-              "line": 146,
+              "line": 148,
               "column": 7
             }
           ]
@@ -2071,8 +1739,8 @@
           "column": 6,
           "specs": [
             {
-              "title": "Botón \"Nueva consulta\" abre el formulario de creación",
-              "ok": false,
+              "title": "Página de historial clínico muestra encabezado y tabla de consultas",
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -2085,114 +1753,27 @@
                     {
                       "workerIndex": 5,
                       "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 10467,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts:13:26",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                          "column": 26,
-                          "line": 13
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m       hasText\u001b[33m:\u001b[39m \u001b[35m/Nueva consulta|Nueva|Agregar consulta|Crear consulta/i\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m     })\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(newBtn)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m newBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m500\u001b[39m)\n \u001b[90m 16 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                            "column": 26,
-                            "line": 13
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 11 |\u001b[39m       hasText\u001b[33m:\u001b[39m \u001b[35m/Nueva consulta|Nueva|Agregar consulta|Crear consulta/i\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m     })\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(newBtn)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m newBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m500\u001b[39m)\n \u001b[90m 16 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts:13:26\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 2306,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:01.710Z",
+                      "startTime": "2026-06-04T20:42:46.577Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-28fa0-bezado-y-tabla-de-consultas-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                        "column": 26,
-                        "line": 13
-                      }
-                    },
-                    {
-                      "workerIndex": 9,
-                      "parallelIndex": 5,
-                      "status": "failed",
-                      "duration": 12580,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts:13:26",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                          "column": 26,
-                          "line": 13
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 11 |\u001b[39m       hasText\u001b[33m:\u001b[39m \u001b[35m/Nueva consulta|Nueva|Agregar consulta|Crear consulta/i\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m     })\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(newBtn)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m newBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m500\u001b[39m)\n \u001b[90m 16 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                            "column": 26,
-                            "line": 13
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for locator('button').filter({ hasText: /Nueva consulta|Nueva|Agregar consulta|Crear consulta/i }).first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 11 |\u001b[39m       hasText\u001b[33m:\u001b[39m \u001b[35m/Nueva consulta|Nueva|Agregar consulta|Crear consulta/i\u001b[39m\u001b[33m,\u001b[39m\n \u001b[90m 12 |\u001b[39m     })\u001b[33m.\u001b[39mfirst()\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 |\u001b[39m     \u001b[36mawait\u001b[39m expect(newBtn)\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m8000\u001b[39m })\n \u001b[90m    |\u001b[39m                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m newBtn\u001b[33m.\u001b[39mclick()\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m500\u001b[39m)\n \u001b[90m 16 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts:13:26\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:15.502Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\10-records-advanced-Histor-550df-e-el-formulario-de-creación-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\10-records-advanced.spec.ts",
-                        "column": 26,
-                        "line": 13
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
-              "id": "f8b5f905b34b81b88217-602cbc09d7ec646b25c6",
+              "id": "f8b5f905b34b81b88217-0424c67e0326dadcbb79",
               "file": "10-records-advanced.spec.ts",
               "line": 9,
               "column": 7
@@ -2210,15 +1791,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 2883,
+                      "duration": 2737,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:29.733Z",
+                      "startTime": "2026-06-04T20:42:48.940Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2250,15 +1831,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 2967,
+                      "duration": 2729,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:32.934Z",
+                      "startTime": "2026-06-04T20:42:51.765Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2290,15 +1871,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 3940,
+                      "duration": 4039,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:35.950Z",
+                      "startTime": "2026-06-04T20:42:54.534Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2330,10 +1911,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 1878,
+                      "duration": 2086,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -2342,7 +1923,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:39.921Z",
+                      "startTime": "2026-06-04T20:42:58.617Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2374,15 +1955,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 13,
-                      "parallelIndex": 2,
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 1948,
+                      "duration": 2301,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:41.824Z",
+                      "startTime": "2026-06-04T20:43:00.739Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2434,31 +2015,31 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "failed",
-                      "duration": 12593,
+                      "duration": 12646,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:19:32",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:20:41",
                         "location": {
                           "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                          "column": 32,
-                          "line": 19
+                          "column": 41,
+                          "line": 20
                         },
-                        "snippet": "\u001b[0m \u001b[90m 17 |\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 21 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 22 |\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m     \u001b[90m// DoctorsTab uses flex div rows (NOT a <table>) — each doctor is a div with p.font-medium\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m doctorNameEls\u001b[33m.\u001b[39mcount()\n \u001b[90m 22 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 23 |\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                            "column": 32,
-                            "line": 19
+                            "column": 41,
+                            "line": 20
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 17 |\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 21 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 22 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:19:32\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 18 |\u001b[39m     \u001b[90m// DoctorsTab uses flex div rows (NOT a <table>) — each doctor is a div with p.font-medium\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m doctorNameEls\u001b[33m.\u001b[39mcount()\n \u001b[90m 22 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 23 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:20:41\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:02.592Z",
+                      "startTime": "2026-06-04T20:42:47.535Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2474,39 +2055,39 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                        "column": 32,
-                        "line": 19
+                        "column": 41,
+                        "line": 20
                       }
                     },
                     {
-                      "workerIndex": 11,
-                      "parallelIndex": 4,
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 14340,
+                      "duration": 14062,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:19:32",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:20:41",
                         "location": {
                           "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                          "column": 32,
-                          "line": 19
+                          "column": 41,
+                          "line": 20
                         },
-                        "snippet": "\u001b[0m \u001b[90m 17 |\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 21 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 22 |\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 18 |\u001b[39m     \u001b[90m// DoctorsTab uses flex div rows (NOT a <table>) — each doctor is a div with p.font-medium\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m doctorNameEls\u001b[33m.\u001b[39mcount()\n \u001b[90m 22 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 23 |\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                            "column": 32,
-                            "line": 19
+                            "column": 41,
+                            "line": 20
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 17 |\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mconst\u001b[39m rows \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(rows\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m rows\u001b[33m.\u001b[39mcount()\n \u001b[90m 21 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 22 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:19:32\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 18 |\u001b[39m     \u001b[90m// DoctorsTab uses flex div rows (NOT a <table>) — each doctor is a div with p.font-medium\u001b[39m\n \u001b[90m 19 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mconst\u001b[39m count \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m doctorNameEls\u001b[33m.\u001b[39mcount()\n \u001b[90m 22 |\u001b[39m     expect(count)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m0\u001b[39m)\n \u001b[90m 23 |\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:20:41\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-06-04T16:57:18.099Z",
+                      "startTime": "2026-06-04T20:43:02.161Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2532,8 +2113,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                        "column": 32,
-                        "line": 19
+                        "column": 41,
+                        "line": 20
                       }
                     }
                   ],
@@ -2558,34 +2139,34 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 17,
-                      "parallelIndex": 3,
+                      "workerIndex": 7,
+                      "parallelIndex": 1,
                       "status": "failed",
-                      "duration": 12637,
+                      "duration": 12466,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:34:52",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:37:41",
                         "location": {
                           "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                          "column": 52,
-                          "line": 34
+                          "column": 41,
+                          "line": 37
                         },
-                        "snippet": "\u001b[0m \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 33 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m tableText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 37 |\u001b[39m     \u001b[90m// Doctor list must have both a name (Dr./Dra. or plain name) and a specialty\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[90m// DoctorsTab: doctor names in p.font-medium, specialty in p.text-xs.text-gray-500\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m sectionText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'main, [class*=\"content\"], body'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 40 |\u001b[39m     \u001b[90m// Should contain at least one name and a specialty keyword\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                            "column": 52,
-                            "line": 34
+                            "column": 41,
+                            "line": 37
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 33 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m tableText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 37 |\u001b[39m     \u001b[90m// Doctor list must have both a name (Dr./Dra. or plain name) and a specialty\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:34:52\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[90m// DoctorsTab: doctor names in p.font-medium, specialty in p.text-xs.text-gray-500\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m sectionText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'main, [class*=\"content\"], body'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 40 |\u001b[39m     \u001b[90m// Should contain at least one name and a specialty keyword\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:37:41\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:37.117Z",
+                      "startTime": "2026-06-04T20:43:17.906Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2601,39 +2182,39 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                        "column": 52,
-                        "line": 34
+                        "column": 41,
+                        "line": 37
                       }
                     },
                     {
-                      "workerIndex": 19,
+                      "workerIndex": 8,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 13080,
+                      "duration": 13263,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:34:52",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:37:41",
                         "location": {
                           "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                          "column": 52,
-                          "line": 34
+                          "column": 41,
+                          "line": 37
                         },
-                        "snippet": "\u001b[0m \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 33 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m tableText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 37 |\u001b[39m     \u001b[90m// Doctor list must have both a name (Dr./Dra. or plain name) and a specialty\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[90m// DoctorsTab: doctor names in p.font-medium, specialty in p.text-xs.text-gray-500\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m sectionText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'main, [class*=\"content\"], body'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 40 |\u001b[39m     \u001b[90m// Should contain at least one name and a specialty keyword\u001b[39m\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                            "column": 52,
-                            "line": 34
+                            "column": 41,
+                            "line": 37
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('tbody tr').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('tbody tr').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 32 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForLoadState(\u001b[32m'networkidle'\u001b[39m)\n \u001b[90m 33 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody tr'\u001b[39m)\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m tableText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'tbody'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 37 |\u001b[39m     \u001b[90m// Doctor list must have both a name (Dr./Dra. or plain name) and a specialty\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:34:52\u001b[22m"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('p.font-medium').first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('p.font-medium').first()\u001b[22m\n\n\n\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[90m// DoctorsTab: doctor names in p.font-medium, specialty in p.text-xs.text-gray-500\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mconst\u001b[39m doctorNameEls \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'p.font-medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(doctorNameEls\u001b[33m.\u001b[39mfirst())\u001b[33m.\u001b[39mtoBeVisible({ timeout\u001b[33m:\u001b[39m \u001b[35m10000\u001b[39m })\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m\n \u001b[90m 39 |\u001b[39m     \u001b[36mconst\u001b[39m sectionText \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'main, [class*=\"content\"], body'\u001b[39m)\u001b[33m.\u001b[39minnerText()\n \u001b[90m 40 |\u001b[39m     \u001b[90m// Should contain at least one name and a specialty keyword\u001b[39m\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts:37:41\u001b[22m"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 1,
-                      "startTime": "2026-06-04T16:57:51.073Z",
+                      "startTime": "2026-06-04T20:43:31.423Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2659,8 +2240,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\11-admin-advanced.spec.ts",
-                        "column": 52,
-                        "line": 34
+                        "column": 41,
+                        "line": 37
                       }
                     }
                   ],
@@ -2669,7 +2250,7 @@
               ],
               "id": "c3030130cc750a37d0de-6e43a3342d5e67dd905f",
               "file": "11-admin-advanced.spec.ts",
-              "line": 26,
+              "line": 27,
               "column": 7
             },
             {
@@ -2685,15 +2266,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 20,
+                      "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2461,
+                      "duration": 2566,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:05.292Z",
+                      "startTime": "2026-06-04T20:43:45.828Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2709,7 +2290,7 @@
               ],
               "id": "c3030130cc750a37d0de-f2cef62a9d4a4a990ea2",
               "file": "11-admin-advanced.spec.ts",
-              "line": 44,
+              "line": 46,
               "column": 7
             },
             {
@@ -2725,15 +2306,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 20,
+                      "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3120,
+                      "duration": 3153,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:08.022Z",
+                      "startTime": "2026-06-04T20:43:48.646Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2749,7 +2330,7 @@
               ],
               "id": "c3030130cc750a37d0de-6b20385fa6a6c4ef4d11",
               "file": "11-admin-advanced.spec.ts",
-              "line": 64,
+              "line": 66,
               "column": 7
             },
             {
@@ -2765,15 +2346,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 20,
+                      "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2388,
+                      "duration": 2333,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:11.180Z",
+                      "startTime": "2026-06-04T20:43:51.827Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2789,7 +2370,7 @@
               ],
               "id": "c3030130cc750a37d0de-93a39b612b89574a6356",
               "file": "11-admin-advanced.spec.ts",
-              "line": 91,
+              "line": 93,
               "column": 7
             },
             {
@@ -2805,15 +2386,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 20,
+                      "workerIndex": 9,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3860,
+                      "duration": 3826,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:58:13.592Z",
+                      "startTime": "2026-06-04T20:43:54.189Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2829,7 +2410,7 @@
               ],
               "id": "c3030130cc750a37d0de-32de2a3fb58d0c2529b1",
               "file": "11-admin-advanced.spec.ts",
-              "line": 112,
+              "line": 114,
               "column": 7
             }
           ]
@@ -2865,12 +2446,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2250,
+                      "duration": 2252,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:04.618Z",
+                      "startTime": "2026-06-04T20:42:50.862Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -2891,7 +2472,7 @@
             },
             {
               "title": "Sidebar tiene enlaces a todos los módulos principales",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -2904,111 +2485,24 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 2196,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:29:25",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                          "column": 25,
-                          "line": 29
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[90m// All main modules must be reachable from the sidebar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/dashboard/i\u001b[39m)\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/pacientes/i\u001b[39m)\n \u001b[90m 31 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/citas/i\u001b[39m)\n \u001b[90m 32 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/cl[ií]nica|historia|consultas|registros/i\u001b[39m)\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                            "column": 25,
-                            "line": 29
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m\n\n\u001b[0m \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[90m// All main modules must be reachable from the sidebar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/dashboard/i\u001b[39m)\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/pacientes/i\u001b[39m)\n \u001b[90m 31 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/citas/i\u001b[39m)\n \u001b[90m 32 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/cl[ií]nica|historia|consultas|registros/i\u001b[39m)\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:29:25\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 2362,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:06.895Z",
+                      "startTime": "2026-06-04T20:42:53.134Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                        "column": 25,
-                        "line": 29
-                      }
-                    },
-                    {
-                      "workerIndex": 7,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 3296,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:29:25",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                          "column": 25,
-                          "line": 29
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[90m// All main modules must be reachable from the sidebar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/dashboard/i\u001b[39m)\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/pacientes/i\u001b[39m)\n \u001b[90m 31 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/citas/i\u001b[39m)\n \u001b[90m 32 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/cl[ií]nica|historia|consultas|registros/i\u001b[39m)\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                            "column": 25,
-                            "line": 29
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoMatch\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected pattern: \u001b[32m/dashboard/i\u001b[39m\nReceived string:  \u001b[31m\"MAO Systems·\u001b[39m\n\u001b[31mClínica San Rafael·\u001b[39m\n\u001b[31mInicio\u001b[39m\n\u001b[31mPacientes\u001b[39m\n\u001b[31mCitas\u001b[39m\n\u001b[31mHistorial\u001b[39m\n\u001b[31mFacturación\u001b[39m\n\u001b[31mConfiguración\u001b[39m\n\u001b[31mCerrar sesión\"\u001b[39m\n\n\u001b[0m \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[90m// All main modules must be reachable from the sidebar\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/dashboard/i\u001b[39m)\n \u001b[90m    |\u001b[39m                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/pacientes/i\u001b[39m)\n \u001b[90m 31 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/citas/i\u001b[39m)\n \u001b[90m 32 |\u001b[39m     expect(sidebarText)\u001b[33m.\u001b[39mtoMatch(\u001b[35m/cl[ií]nica|historia|consultas|registros/i\u001b[39m)\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:29:25\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:10.905Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--c84ec-dos-los-módulos-principales-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                        "column": 25,
-                        "line": 29
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "c1658326ab46cbc47221-2635381641931f6862b4",
@@ -3029,15 +2523,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3544,
+                      "duration": 2673,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:17.584Z",
+                      "startTime": "2026-06-04T20:42:55.523Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3069,15 +2563,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2867,
+                      "duration": 2672,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:22.017Z",
+                      "startTime": "2026-06-04T20:42:58.228Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3109,15 +2603,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2485,
+                      "duration": 4148,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:24.936Z",
+                      "startTime": "2026-06-04T20:43:00.928Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3138,7 +2632,7 @@
             },
             {
               "title": "Acceder a ruta inexistente redirige a 404 o al dashboard",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -3149,113 +2643,26 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 1500,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:97:23",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                          "column": 23,
-                          "line": 97
-                        },
-                        "snippet": "\u001b[0m \u001b[90m  95 |\u001b[39m       page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/login'\u001b[39m)\n \u001b[90m  96 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     expect(isHandled)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\n \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m\n \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/nav-404.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 100 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                            "column": 23,
-                            "line": 97
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m  95 |\u001b[39m       page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/login'\u001b[39m)\n \u001b[90m  96 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     expect(isHandled)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\n \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m\n \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/nav-404.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 100 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:97:23\u001b[22m"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 1952,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:27.453Z",
+                      "startTime": "2026-06-04T20:43:05.105Z",
                       "annotations": [],
                       "attachments": [
                         {
                           "name": "screenshot",
                           "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium\\error-context.md"
+                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium\\test-finished-1.png"
                         }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                        "column": 23,
-                        "line": 97
-                      }
-                    },
-                    {
-                      "workerIndex": 14,
-                      "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 1946,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:97:23",
-                        "location": {
-                          "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                          "column": 23,
-                          "line": 97
-                        },
-                        "snippet": "\u001b[0m \u001b[90m  95 |\u001b[39m       page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/login'\u001b[39m)\n \u001b[90m  96 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     expect(isHandled)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\n \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m\n \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/nav-404.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 100 |\u001b[39m   })\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                            "column": 23,
-                            "line": 97
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n\u001b[0m \u001b[90m  95 |\u001b[39m       page\u001b[33m.\u001b[39murl()\u001b[33m.\u001b[39mincludes(\u001b[32m'/login'\u001b[39m)\n \u001b[90m  96 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  97 |\u001b[39m     expect(isHandled)\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\n \u001b[90m     |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  98 |\u001b[39m\n \u001b[90m  99 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'test-results/nav-404.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\n \u001b[90m 100 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts:97:23\u001b[22m"
-                        }
-                      ],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 1,
-                      "startTime": "2026-06-04T16:57:29.892Z",
-                      "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium-retry1\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium-retry1\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium-retry1\\error-context.md"
-                        },
-                        {
-                          "name": "trace",
-                          "contentType": "application/zip",
-                          "path": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\test-results\\12-navigation-and-billing--f2825-dirige-a-404-o-al-dashboard-chromium-retry1\\trace.zip"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\Users\\asusm\\Documents\\MAO\\mao-clinics\\packages\\e2e\\tests\\12-navigation-and-billing-advanced.spec.ts",
-                        "column": 23,
-                        "line": 97
-                      }
+                      ]
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "c1658326ab46cbc47221-24ffd03f31f767804003",
@@ -3268,7 +2675,7 @@
         {
           "title": "Facturación — avanzado",
           "file": "12-navigation-and-billing-advanced.spec.ts",
-          "line": 117,
+          "line": 119,
           "column": 6,
           "specs": [
             {
@@ -3284,10 +2691,10 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2883,
+                      "duration": 2686,
                       "errors": [],
                       "stdout": [],
                       "stderr": [
@@ -3296,7 +2703,7 @@
                         }
                       ],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:33.481Z",
+                      "startTime": "2026-06-04T20:43:07.079Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3312,7 +2719,7 @@
               ],
               "id": "c1658326ab46cbc47221-0233eb1aada108e2bd11",
               "file": "12-navigation-and-billing-advanced.spec.ts",
-              "line": 124,
+              "line": 126,
               "column": 7
             },
             {
@@ -3328,15 +2735,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2983,
+                      "duration": 2647,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:36.665Z",
+                      "startTime": "2026-06-04T20:43:09.786Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3352,7 +2759,7 @@
               ],
               "id": "c1658326ab46cbc47221-e78fbfcad4e08241e7c8",
               "file": "12-navigation-and-billing-advanced.spec.ts",
-              "line": 150,
+              "line": 152,
               "column": 7
             },
             {
@@ -3368,15 +2775,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3246,
+                      "duration": 3056,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:39.690Z",
+                      "startTime": "2026-06-04T20:43:12.454Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3392,7 +2799,7 @@
               ],
               "id": "c1658326ab46cbc47221-e57b97cf39e942561720",
               "file": "12-navigation-and-billing-advanced.spec.ts",
-              "line": 161,
+              "line": 163,
               "column": 7
             },
             {
@@ -3408,15 +2815,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 15,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4316,
+                      "duration": 4197,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-06-04T16:57:42.976Z",
+                      "startTime": "2026-06-04T20:43:15.529Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -3432,7 +2839,7 @@
               ],
               "id": "c1658326ab46cbc47221-e7dcd030c473542c5c10",
               "file": "12-navigation-and-billing-advanced.spec.ts",
-              "line": 184,
+              "line": 186,
               "column": 7
             }
           ]
@@ -3442,11 +2849,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-06-04T16:56:32.633Z",
-    "duration": 142172.392,
-    "expected": 50,
+    "startTime": "2026-06-04T20:42:15.082Z",
+    "duration": 103212.665,
+    "expected": 57,
     "skipped": 0,
-    "unexpected": 9,
+    "unexpected": 2,
     "flaky": 0
   }
 }

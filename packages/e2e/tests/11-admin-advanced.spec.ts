@@ -7,16 +7,14 @@ test.describe('Panel de Administración — avanzado', () => {
   })
 
   test('Tab de Médicos muestra lista con al menos un doctor del seed', async ({ page }) => {
-    const tabMedicos = page.locator('button, [role="tab"], a', {
-      hasText: /Médicos|Doctores/i,
-    }).first()
-    await expect(tabMedicos).toBeVisible({ timeout: 8000 })
-    await tabMedicos.click()
-    await page.waitForTimeout(500)
+    // Admin tabs are hash-based: navigate directly to /admin#medicos
+    await page.goto('/admin#medicos')
     await page.waitForLoadState('networkidle')
+    await page.waitForTimeout(500)
 
-    // DoctorsTab uses flex div rows (NOT a <table>) — each doctor is a div with p.font-medium
-    const doctorNameEls = page.locator('p.font-medium')
+    // DoctorsTab renders DoctorCard components in a grid.
+    // Each card has: <p class="text-sm font-semibold text-gray-800 truncate">Dr. {name}</p>
+    const doctorNameEls = page.locator('p.font-semibold').filter({ hasText: /^Dr\./ })
     await expect(doctorNameEls.first()).toBeVisible({ timeout: 10000 })
     const count = await doctorNameEls.count()
     expect(count).toBeGreaterThan(0)
@@ -25,20 +23,18 @@ test.describe('Panel de Administración — avanzado', () => {
   })
 
   test('Lista de médicos muestra campos de nombre y especialidad', async ({ page }) => {
-    const tabMedicos = page.locator('button, [role="tab"], a', {
-      hasText: /Médicos|Doctores/i,
-    }).first()
-    await tabMedicos.click()
-    await page.waitForTimeout(500)
+    // Navigate directly via hash to avoid relying on tab click selector
+    await page.goto('/admin#medicos')
     await page.waitForLoadState('networkidle')
+    await page.waitForTimeout(500)
 
-    // DoctorsTab: doctor names in p.font-medium, specialty in p.text-xs.text-gray-500
-    const doctorNameEls = page.locator('p.font-medium')
+    // Doctor name: <p class="text-sm font-semibold ...">Dr. FullName</p>
+    const doctorNameEls = page.locator('p.font-semibold').filter({ hasText: /^Dr\./ })
     await expect(doctorNameEls.first()).toBeVisible({ timeout: 10000 })
 
-    const sectionText = await page.locator('main, [class*="content"], body').innerText()
-    // Should contain at least one name and a specialty keyword
-    expect(sectionText.length).toBeGreaterThan(10)
+    // Specialty: <p class="text-xs text-gray-500 mt-0.5">{specialty}</p> inside each DoctorCard
+    const specialtyEls = page.locator('p.text-xs.text-gray-500')
+    await expect(specialtyEls.first()).toBeVisible({ timeout: 5000 })
 
     await page.screenshot({ path: 'test-results/admin-doctors-fields.png', fullPage: true })
   })
