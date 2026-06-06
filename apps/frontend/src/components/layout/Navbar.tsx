@@ -20,10 +20,10 @@ export function Navbar({ onMenuClick }: NavbarProps) {
   return (
     <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-6 flex-shrink-0">
       <div className="flex items-center gap-3 min-w-0">
-        {/* Hamburger — visible only on mobile (tablet+ shows collapsed sidebar permanently) */}
+        {/* Hamburger — visible on mobile and tablet (desktop shows sidebar permanently) */}
         <button
           onClick={onMenuClick}
-          className="md:hidden p-1.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
+          className="lg:hidden p-1.5 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
           aria-label="Abrir menú de navegación"
           data-testid="menu-button"
         >

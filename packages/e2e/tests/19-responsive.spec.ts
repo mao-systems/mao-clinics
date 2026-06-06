@@ -122,6 +122,7 @@ test.describe('Responsive — móvil (390 × 844)', () => {
   })
 
   test('Página de login es usable en móvil', async ({ page }) => {
+    await page.context().clearCookies()
     await page.goto('/login')
     await page.waitForLoadState('networkidle')
 
@@ -326,7 +327,7 @@ test.describe('Responsive — escritorio (1280 × 800)', () => {
     await page.goto('/appointments')
     await page.waitForLoadState('networkidle')
 
-    const weekBtn = page.getByRole('button', { name: 'Semana' })
+    const weekBtn = page.getByRole('button', { name: 'Semana', exact: true })
     await expect(weekBtn).toBeVisible({ timeout: 10000 })
 
     const weekBtnClass = await weekBtn.getAttribute('class')
@@ -386,6 +387,7 @@ test.describe('Responsive — integridad en múltiples breakpoints', () => {
 
     test(`Login carga y es funcional en ${name}`, async ({ page }) => {
       await page.setViewportSize(size)
+      await page.context().clearCookies()
       await page.goto('/login')
       await page.waitForLoadState('networkidle')
 
