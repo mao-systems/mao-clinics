@@ -262,7 +262,7 @@ export default function BillingPage() {
           <EmptyState onNew={() => setShowForm(true)} />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full min-w-[640px] text-left">
               <thead className="bg-gray-50 border-b border-gray-100">
                 {table.getHeaderGroups().map((hg) => (
                   <tr key={hg.id}>
@@ -299,9 +299,9 @@ export default function BillingPage() {
 
         {/* Pagination */}
         {total > 0 && (
-          <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50">
-            <div className="flex items-center gap-2 text-sm text-gray-500">
-              <span>Filas por página:</span>
+          <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-t border-gray-100 bg-gray-50">
+            <div className="flex items-center gap-1.5 text-sm text-gray-500">
+              <span className="hidden sm:inline">Filas por página:</span>
               <select
                 value={filters.limit ?? 20}
                 onChange={(e) =>
@@ -327,7 +327,7 @@ export default function BillingPage() {
                 <ChevronLeft size={16} />
               </button>
               <span className="text-sm text-gray-600 px-2">
-                Página {page} de {totalPages}
+                {page} / {totalPages}
               </span>
               <button
                 onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) + 1 }))}

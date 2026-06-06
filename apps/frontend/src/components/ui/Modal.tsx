@@ -33,10 +33,12 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       {/* Panel */}
-      <div className={`relative bg-white rounded-base shadow-xl w-full ${sizeClasses[size]} z-10`}>
+      <div
+        className={`relative bg-white rounded-base shadow-xl w-full ${sizeClasses[size]} z-10 flex flex-col max-h-[calc(100vh-2rem)]`}
+      >
         {title && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-800">{title}</h2>
+          <div className="flex items-center justify-between px-4 md:px-6 py-4 border-b border-gray-200 flex-shrink-0">
+            <h2 className="text-base md:text-lg font-semibold text-gray-800">{title}</h2>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 transition-colors"
@@ -45,7 +47,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
             </button>
           </div>
         )}
-        <div className="p-6">{children}</div>
+        <div className="p-4 md:p-6 overflow-y-auto">{children}</div>
       </div>
     </div>
   )

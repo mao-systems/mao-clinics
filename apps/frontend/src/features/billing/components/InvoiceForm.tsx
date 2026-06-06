@@ -306,7 +306,7 @@ export function InvoiceForm({
 
           {/* Factura extra fields */}
           {watchedType === 'factura' && (
-            <div className="mt-3 grid grid-cols-2 gap-3 p-3 bg-gray-50 border border-gray-200 rounded-base">
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-gray-50 border border-gray-200 rounded-base">
               <Input
                 label="RUC del cliente (11 dígitos)"
                 placeholder="20123456789"
@@ -367,8 +367,10 @@ export function InvoiceForm({
 
           {/* Items list */}
           <div className="space-y-2">
+            {/* Items table — horizontally scrollable on mobile */}
+          <div className="overflow-x-auto">
             {/* Header row */}
-            <div className="grid grid-cols-[1fr_64px_100px_80px_28px] gap-2 px-1">
+            <div className="grid grid-cols-[minmax(140px,1fr)_64px_100px_80px_28px] gap-2 px-1 min-w-[420px]">
               <span className="text-xs text-gray-400">Descripción</span>
               <span className="text-xs text-gray-400 text-center">Cant.</span>
               <span className="text-xs text-gray-400 text-right">P. Unit. (S/)</span>
@@ -384,7 +386,7 @@ export function InvoiceForm({
               return (
                 <div
                   key={field.id}
-                  className="grid grid-cols-[1fr_64px_100px_80px_28px] gap-2 items-start"
+                  className="grid grid-cols-[minmax(140px,1fr)_64px_100px_80px_28px] gap-2 items-start min-w-[420px]"
                 >
                   {/* Description */}
                   <div>
@@ -464,6 +466,8 @@ export function InvoiceForm({
               )
             })}
           </div>
+
+          </div>{/* end overflow-x-auto */}
 
           {errors.items?.root && (
             <p className="text-xs text-red-500 mt-1">{errors.items.root.message}</p>

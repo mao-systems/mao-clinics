@@ -353,8 +353,8 @@ export default function PatientDetailPage() {
       </button>
 
       {/* Header card */}
-      <div className="bg-white rounded-base border border-gray-200 p-6 mb-4">
-        <div className="flex items-start gap-5">
+      <div className="bg-white rounded-base border border-gray-200 p-4 md:p-6 mb-4">
+        <div className="flex items-start gap-3 md:gap-5">
           {/* Large avatar */}
           <div
             className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold flex-shrink-0"
@@ -403,26 +403,28 @@ export default function PatientDetailPage() {
 
       {/* Tabs */}
       <div className="bg-white rounded-base border border-gray-200">
-        {/* Tab bar */}
-        <div className="flex border-b border-gray-200 px-4">
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={[
-                'py-3 px-4 text-sm font-medium border-b-2 -mb-px transition-colors',
-                activeTab === tab
-                  ? 'border-primary text-primary'
-                  : 'border-transparent text-gray-500 hover:text-gray-700',
-              ].join(' ')}
-            >
-              {tab}
-            </button>
-          ))}
+        {/* Tab bar — scrollable on mobile */}
+        <div className="overflow-x-auto border-b border-gray-200">
+          <div className="flex px-4 min-w-max">
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={[
+                  'py-3 px-4 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap',
+                  activeTab === tab
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-gray-500 hover:text-gray-700',
+                ].join(' ')}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Tab content */}
-        <div className="p-6">
+        <div className="p-4 md:p-6">
           {activeTab === 'Datos personales' && <PersonalDataTab patient={patient} />}
           {activeTab === 'Historial médico' && id && <MedicalHistoryTab patientId={id} />}
           {activeTab === 'Próximas citas' && id && <UpcomingAppointmentsTab patientId={id} />}

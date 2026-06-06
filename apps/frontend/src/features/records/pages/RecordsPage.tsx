@@ -68,7 +68,7 @@ export default function RecordsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-base border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-base border border-gray-200 overflow-hidden overflow-x-auto">
         {consultations.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20">
             <FileText size={36} className="text-gray-300 mb-3" />
@@ -78,7 +78,7 @@ export default function RecordsPage() {
             </p>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[640px] text-sm">
             <thead>
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">

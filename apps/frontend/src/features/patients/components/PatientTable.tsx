@@ -285,7 +285,7 @@ export function PatientTable({
         <EmptyState onNew={onNew} />
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-left">
+          <table className="w-full min-w-[600px] text-left">
             <thead className="bg-gray-50 border-b border-gray-100">
               {table.getHeaderGroups().map((hg) => (
                 <tr key={hg.id}>
@@ -323,9 +323,9 @@ export function PatientTable({
 
       {/* Pagination footer */}
       {total > 0 && (
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-100 bg-gray-50">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <span>Filas por página:</span>
+        <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 border-t border-gray-100 bg-gray-50">
+          <div className="flex items-center gap-1.5 text-sm text-gray-500">
+            <span className="hidden sm:inline">Filas por página:</span>
             <select
               value={limit}
               onChange={(e) => { setLimit(Number(e.target.value)); setPage(1) }}
@@ -349,7 +349,7 @@ export function PatientTable({
               <ChevronLeft size={16} />
             </button>
             <span className="text-sm text-gray-600 px-2">
-              Página {page} de {totalPages}
+              {page} / {totalPages}
             </span>
             <button
               onClick={() => setPage(page + 1)}

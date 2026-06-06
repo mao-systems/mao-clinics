@@ -58,7 +58,7 @@ export function AppointmentDetailModal({
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* Panel */}
-      <div className="relative bg-white rounded-base shadow-xl w-full max-w-md z-10">
+      <div className="relative bg-white rounded-base shadow-xl w-full max-w-md z-10 flex flex-col max-h-[calc(100vh-2rem)] overflow-y-auto">
         {/* Header */}
         <div className="flex items-start justify-between px-5 py-4 border-b border-gray-100">
           <div>
@@ -170,7 +170,7 @@ export function AppointmentDetailModal({
         )}
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-5 py-3 border-t border-gray-100 bg-gray-50 rounded-b-base">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-t border-gray-100 bg-gray-50 rounded-b-base">
           <button
             onClick={() => navigate(`/patients/${appointment.patient_id}`)}
             className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-primary transition-colors"
@@ -178,7 +178,7 @@ export function AppointmentDetailModal({
             <ExternalLink size={13} />
             Ver en historial
           </button>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             {(appointment.status === 'confirmed' || appointment.status === 'in_progress') && (
               <Button
                 size="sm"

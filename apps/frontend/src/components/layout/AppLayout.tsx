@@ -44,12 +44,14 @@ function MustChangePasswordBanner() {
 // ── Layout ────────────────────────────────────────────────────────────────────
 
 export function AppLayout() {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="flex flex-col flex-1 min-w-0">
-        <Navbar />
+        <Navbar onMenuClick={() => setSidebarOpen(true)} />
         <MustChangePasswordBanner />
 
         <PageContainer>

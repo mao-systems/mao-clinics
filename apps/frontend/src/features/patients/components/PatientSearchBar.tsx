@@ -43,9 +43,9 @@ export function PatientSearchBar({ onChange }: PatientSearchBarProps) {
   }, [debouncedQuery, district, onChange])
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
       {/* Search input */}
-      <div className="relative flex-1 max-w-sm">
+      <div className="relative flex-1">
         <Search
           size={16}
           className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
@@ -72,7 +72,7 @@ export function PatientSearchBar({ onChange }: PatientSearchBarProps) {
       <select
         value={district}
         onChange={(e) => setDistrict(e.target.value === 'Todos los distritos' ? '' : e.target.value)}
-        className="py-2 pl-3 pr-8 text-sm border border-gray-300 rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-700"
+        className="w-full sm:w-auto py-2 pl-3 pr-8 text-sm border border-gray-300 rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-gray-700"
       >
         {LIMA_DISTRICTS.map((d) => (
           <option key={d} value={d === 'Todos los distritos' ? '' : d}>

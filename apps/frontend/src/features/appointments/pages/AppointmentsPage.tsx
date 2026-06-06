@@ -39,6 +39,12 @@ function getDefaultRange() {
   return { from: start, to: end }
 }
 
+// On small screens the week grid is too dense — default to list view
+function getDefaultView(): CalendarView {
+  if (typeof window !== 'undefined' && window.innerWidth < 768) return 'listWeek'
+  return 'timeGridWeek'
+}
+
 export default function AppointmentsPage() {
   const { user } = useAuth()
   const canCreate = user?.role === 'admin' || user?.role === 'receptionist'
@@ -46,7 +52,7 @@ export default function AppointmentsPage() {
   const calendarRef = useRef<FullCalendar>(null)
 
   const [currentRange, setCurrentRange]           = useState(getDefaultRange)
-  const [currentView, setCurrentView]             = useState<CalendarView>('timeGridWeek')
+  const [currentView, setCurrentView]             = useState<CalendarView>(getDefaultView)
   const [selectedDoctorId, setSelectedDoctorId]   = useState<string | null>(null)
   const [showForm, setShowForm]                   = useState(false)
   const [editingAppointment, setEditingAppointment] =
@@ -166,7 +172,7 @@ export default function AppointmentsPage() {
         <FullCalendar
           ref={calendarRef}
           plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin, listPlugin]}
-          initialView="timeGridWeek"
+          initialView={getDefaultView()}
           timeZone="America/Lima"
           locale={esLocale}
           headerToolbar={false}

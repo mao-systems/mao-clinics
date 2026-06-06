@@ -52,7 +52,7 @@ export function CalendarHeader({
       : '...'
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 mb-4 bg-white rounded-base border border-gray-200 px-4 py-3">
+    <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center justify-between gap-3 mb-4 bg-white rounded-base border border-gray-200 px-4 py-3">
       {/* Left: navigation + range label */}
       <div className="flex items-center gap-2">
         <button
@@ -81,12 +81,12 @@ export function CalendarHeader({
       </div>
 
       {/* Right: doctor filter + view toggle + new button */}
-      <div className="flex items-center gap-3 flex-wrap">
-        {/* Doctor filter */}
+      <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+        {/* Doctor filter — full width on mobile */}
         <select
           value={selectedDoctorId ?? ''}
           onChange={(e) => onDoctorChange(e.target.value || null)}
-          className="py-1.5 pl-3 pr-8 text-sm border border-gray-200 rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary text-gray-700"
+          className="flex-1 sm:flex-initial py-1.5 pl-3 pr-8 text-sm border border-gray-200 rounded-base bg-white focus:outline-none focus:ring-2 focus:ring-primary text-gray-700"
         >
           <option value="">Todos los médicos</option>
           {doctors.map((d) => (
@@ -103,7 +103,7 @@ export function CalendarHeader({
               key={view}
               onClick={() => changeView(view)}
               className={[
-                'px-3 py-1.5 text-xs font-medium transition-colors',
+                'px-2.5 sm:px-3 py-1.5 text-xs font-medium transition-colors',
                 currentView === view
                   ? 'bg-primary text-white'
                   : 'bg-white text-gray-600 hover:bg-gray-50',
@@ -118,7 +118,7 @@ export function CalendarHeader({
         {canCreate && (
           <Button size="sm" onClick={onNewAppointment}>
             <Plus size={14} className="mr-1.5" />
-            Nueva cita
+            <span className="hidden xs:inline sm:inline">Nueva </span>cita
           </Button>
         )}
       </div>

@@ -353,7 +353,7 @@ export default function ConsultationPage() {
   return (
     <div className="space-y-4">
       {/* Back button + header */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
         <button
           onClick={() => navigate('/appointments')}
           className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-primary transition-colors"
@@ -396,11 +396,11 @@ export default function ConsultationPage() {
         </div>
       )}
 
-      {/* Three-column layout */}
-      <div className="flex gap-4 items-start">
+      {/* Three-column layout — stacks on mobile */}
+      <div className="flex flex-col lg:flex-row gap-4 items-start">
 
         {/* ── LEFT COLUMN: Patient summary ──────────────────────────────────── */}
-        <aside className="w-56 flex-shrink-0 space-y-3">
+        <aside className="w-full lg:w-56 lg:flex-shrink-0 space-y-3">
           {patient ? (
             <>
               {/* Patient card */}
@@ -634,7 +634,7 @@ export default function ConsultationPage() {
         </div>
 
         {/* ── RIGHT COLUMN: Prescriptions + Attachments ─────────────────────── */}
-        <aside className="w-64 flex-shrink-0 space-y-4">
+        <aside className="w-full lg:w-64 lg:flex-shrink-0 space-y-4">
           {/* Prescriptions */}
           <div className="bg-white rounded-base border border-gray-200 p-4">
             <div className="flex items-center justify-between mb-3">

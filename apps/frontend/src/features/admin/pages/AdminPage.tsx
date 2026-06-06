@@ -203,7 +203,8 @@ function UsersTab() {
             <p className="text-sm text-gray-500">No hay usuarios registrados</p>
           </div>
         ) : (
-          <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] text-left text-sm">
             <thead className="bg-gray-50 border-b border-gray-100 text-xs text-gray-500 uppercase tracking-wider">
               <tr>
                 <th className="px-4 py-3">Nombre</th>
@@ -267,6 +268,7 @@ function UsersTab() {
               })}
             </tbody>
           </table>
+          </div>
         )}
       </div>
 
@@ -354,7 +356,8 @@ function ServicesTab() {
 
                 {/* Rows */}
                 {isOpen && (
-                  <table className="w-full text-sm">
+                  <div className="overflow-x-auto">
+                  <table className="w-full min-w-[400px] text-sm">
                     <tbody className="divide-y divide-gray-100">
                       {items.map(s => (
                         <tr key={s.id} className="hover:bg-gray-50 transition-colors">
@@ -396,6 +399,7 @@ function ServicesTab() {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 )}
               </div>
             )
@@ -548,16 +552,16 @@ export default function AdminPage() {
         subtitle="Administra tu clínica, equipo y personalización"
       />
 
-      {/* Tab navigation */}
-      <div className="border-b border-gray-200 mb-6">
-        <nav className="flex -mb-px gap-0.5">
+      {/* Tab navigation — scrollable on mobile */}
+      <div className="border-b border-gray-200 mb-6 overflow-x-auto">
+        <nav className="flex -mb-px gap-0.5 min-w-max">
           {visibleTabs.map(tab => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
               className={[
-                'flex items-center gap-1.5 px-4 py-3 text-sm font-medium border-b-2 transition-colors focus:outline-none whitespace-nowrap',
+                'flex items-center gap-1.5 px-3 sm:px-4 py-3 text-sm font-medium border-b-2 transition-colors focus:outline-none whitespace-nowrap',
                 activeTab === tab.id
                   ? 'border-primary text-primary'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
