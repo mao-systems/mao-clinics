@@ -15,6 +15,7 @@ import {
 import { useAuth } from '@/hooks/useAuth'
 import { useTenant } from '@/hooks/useTenant'
 import { useFeatureFlag, type FeatureFlag } from '@/hooks/useFeatureFlag'
+import { TenantLogo } from '@/components/ui/TenantLogo'
 
 interface NavItem {
   label: string
@@ -108,16 +109,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       >
         {/* ── Header ──────────────────────────────────────────────────────── */}
         <div className="flex-shrink-0 border-b border-white/10">
-          <div className="px-5 py-4 flex items-center justify-between gap-2">
-            <div className="min-w-0">
-              {logoUrl ? (
-                <img src={logoUrl} alt={tenantName ?? 'Logo'} className="h-8 w-auto object-contain" />
-              ) : (
-                <span className="text-lg font-bold tracking-tight text-white">MAO Systems</span>
-              )}
-              {tenantName && (
-                <p className="text-xs mt-1 opacity-60 truncate">{tenantName}</p>
-              )}
+          <div className="px-4 py-4 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <TenantLogo name={tenantName} logoUrl={logoUrl} size={36} />
+              <span className="text-sm font-semibold leading-tight text-white truncate">
+                {tenantName ?? 'MAO Clínicas'}
+              </span>
             </div>
             {/* Close button — hidden on desktop where sidebar is always visible */}
             <button

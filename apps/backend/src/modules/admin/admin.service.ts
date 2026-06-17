@@ -136,7 +136,7 @@ export class AdminService {
 
   async getTenantConfig(tenantId: string): Promise<TenantConfig> {
     const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } })
-    if (!tenant) throw new AppError('TENANT_NOT_FOUND', 404, 'Tenant not found')
+    if (!tenant) throw new AppError('TENANT_NOT_FOUND', 404, 'Clínica no encontrada')
     return this.formatTenant(tenant)
   }
 

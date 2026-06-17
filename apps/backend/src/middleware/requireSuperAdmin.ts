@@ -18,7 +18,7 @@ export function requireSuperAdmin(req: Request, res: Response, next: NextFunctio
   if (!token) {
     res.status(401).json({
       success: false,
-      error: { code: 'NO_PLATFORM_TOKEN', message: 'Platform authentication required' },
+      error: { code: 'NO_PLATFORM_TOKEN', message: 'Se requiere iniciar sesión en el panel de plataforma.' },
     })
     return
   }
@@ -29,7 +29,7 @@ export function requireSuperAdmin(req: Request, res: Response, next: NextFunctio
   } catch {
     res.status(401).json({
       success: false,
-      error: { code: 'INVALID_PLATFORM_TOKEN', message: 'Invalid or expired platform token' },
+      error: { code: 'INVALID_PLATFORM_TOKEN', message: 'La sesión del panel ha expirado. Por favor, inicia sesión nuevamente.' },
     })
     return
   }
@@ -39,7 +39,7 @@ export function requireSuperAdmin(req: Request, res: Response, next: NextFunctio
   if (payload.type !== 'platform_access') {
     res.status(401).json({
       success: false,
-      error: { code: 'INVALID_PLATFORM_TOKEN', message: 'Invalid token type for platform access' },
+      error: { code: 'INVALID_PLATFORM_TOKEN', message: 'Credenciales de plataforma inválidas. Por favor, inicia sesión nuevamente.' },
     })
     return
   }

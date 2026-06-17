@@ -17,7 +17,7 @@ export function authenticateJWT(req: Request, res: Response, next: NextFunction)
   if (!token) {
     res.status(401).json({
       success: false,
-      error: { code: 'NO_TOKEN', message: 'Authentication required' },
+      error: { code: 'NO_TOKEN', message: 'Se requiere iniciar sesión para acceder a esta sección.' },
     })
     return
   }
@@ -28,7 +28,7 @@ export function authenticateJWT(req: Request, res: Response, next: NextFunction)
   } catch {
     res.status(401).json({
       success: false,
-      error: { code: 'INVALID_TOKEN', message: 'Invalid or expired token' },
+      error: { code: 'INVALID_TOKEN', message: 'Tu sesión ha expirado. Por favor, inicia sesión nuevamente.' },
     })
     return
   }
@@ -36,7 +36,7 @@ export function authenticateJWT(req: Request, res: Response, next: NextFunction)
   if (payload.type !== 'access') {
     res.status(401).json({
       success: false,
-      error: { code: 'INVALID_TOKEN', message: 'Invalid token type' },
+      error: { code: 'INVALID_TOKEN', message: 'Token de sesión inválido. Por favor, inicia sesión nuevamente.' },
     })
     return
   }

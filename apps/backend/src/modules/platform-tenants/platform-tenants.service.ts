@@ -55,7 +55,7 @@ export class PlatformTenantsService {
   async updateFeatures(tenantId: string, features: Record<string, boolean>) {
     const tenant = await prisma.tenant.findUnique({ where: { id: tenantId } })
     if (!tenant) {
-      throw new AppError('TENANT_NOT_FOUND', 404, 'Tenant not found')
+      throw new AppError('TENANT_NOT_FOUND', 404, 'Cliente no encontrado')
     }
 
     // Merge new flags into existing JSON — don't overwrite the whole object
@@ -80,10 +80,10 @@ export class PlatformTenantsService {
     ])
 
     if (existingSubdomain) {
-      throw new AppError('SUBDOMAIN_TAKEN', 409, `Subdomain "${input.subdomain}" is already in use`)
+      throw new AppError('SUBDOMAIN_TAKEN', 409, `El subdominio "${input.subdomain}" ya está en uso`)
     }
     if (existingRuc) {
-      throw new AppError('RUC_TAKEN', 409, `RUC "${input.ruc}" is already registered`)
+      throw new AppError('RUC_TAKEN', 409, `El RUC "${input.ruc}" ya está registrado`)
     }
 
     const passwordHash = await bcrypt.hash(input.adminPassword, 10)

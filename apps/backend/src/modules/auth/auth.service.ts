@@ -143,11 +143,11 @@ export class AuthService {
     try {
       payload = jwt.verify(refreshToken, env.JWT_REFRESH_SECRET) as RefreshTokenPayload
     } catch {
-      throw new AppError('INVALID_TOKEN', 401, 'Invalid or expired refresh token')
+      throw new AppError('INVALID_TOKEN', 401, 'Tu sesión ha expirado. Por favor, inicia sesión nuevamente.')
     }
 
     if (payload.type !== 'refresh') {
-      throw new AppError('INVALID_TOKEN', 401, 'Invalid token type')
+      throw new AppError('INVALID_TOKEN', 401, 'Token de sesión inválido. Por favor, inicia sesión nuevamente.')
     }
 
     const user = await prisma.user.findFirst({
@@ -155,7 +155,7 @@ export class AuthService {
     })
 
     if (!user) {
-      throw new AppError('INVALID_TOKEN', 401, 'User not found or inactive')
+      throw new AppError('INVALID_TOKEN', 401, 'Tu sesión ya no es válida. Por favor, inicia sesión nuevamente.')
     }
 
     const accessTokenPayload: AccessTokenPayload = {
@@ -182,7 +182,7 @@ export class AuthService {
     })
 
     if (!user) {
-      throw new AppError('USER_NOT_FOUND', 404, 'User not found')
+      throw new AppError('USER_NOT_FOUND', 404, 'Usuario no encontrado')
     }
 
     return {

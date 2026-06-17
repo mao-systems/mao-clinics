@@ -72,7 +72,7 @@ export class PlatformAuthService {
     })
 
     if (!admin) {
-      throw new AppError('ADMIN_NOT_FOUND', 404, 'Platform admin not found')
+      throw new AppError('ADMIN_NOT_FOUND', 404, 'Administrador no encontrado')
     }
 
     return {
