@@ -22,6 +22,20 @@ export default defineConfig({
           })
         },
       },
+      '/platform': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        configure: (proxy) => {
+          proxy.on('error', (_err, _req, res) => {
+            if ('writeHead' in res) {
+              (res as import('http').ServerResponse).writeHead(503, { 'Content-Type': 'application/json' })
+              ;(res as import('http').ServerResponse).end(
+                JSON.stringify({ success: false, error: { code: 'BACKEND_UNAVAILABLE', message: 'Backend no disponible' } })
+              )
+            }
+          })
+        },
+      },
     },
   },
   resolve: {

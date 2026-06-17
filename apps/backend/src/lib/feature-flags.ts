@@ -4,6 +4,13 @@ import { prisma } from '@/lib/prisma'
 // All available feature flags in the system.
 // Add new flags here as new modules are developed.
 export const AVAILABLE_FEATURES = [
+  // Base module toggles — used by the SuperAdmin panel to differentiate plans
+  'whatsapp_reminders',
+  'hce',
+  'billing',
+  'dashboard_kpis',
+  'custom_theme',
+  // Premium / optional add-on modules
   'lab_integration',
   'telemedicine',
   'multi_location',

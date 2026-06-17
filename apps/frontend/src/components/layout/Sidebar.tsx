@@ -14,41 +14,56 @@ import {
 } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useTenant } from '@/hooks/useTenant'
-import { useFeatureFlag } from '@/hooks/useFeatureFlag'
+import { useFeatureFlag, type FeatureFlag } from '@/hooks/useFeatureFlag'
 
 interface NavItem {
   label: string
   to: string
   icon: React.ReactNode
   adminOnly?: boolean
+  // When set, the item is hidden if this feature flag is disabled for the tenant
+  feature?: FeatureFlag
 }
-
-const navItems: NavItem[] = [
-  { label: 'Inicio',        to: '/dashboard',    icon: <LayoutDashboard size={18} /> },
-  { label: 'Pacientes',     to: '/patients',     icon: <Users size={18} /> },
-  { label: 'Citas',         to: '/appointments', icon: <Calendar size={18} /> },
-  { label: 'Historial',     to: '/records',      icon: <FileText size={18} /> },
-  { label: 'Facturación',   to: '/billing',      icon: <Receipt size={18} /> },
-  { label: 'Configuración', to: '/admin',        icon: <Settings size={18} /> },
-]
 
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
 }
 
+// Static nav items — feature-gated items are hidden when the flag is off
+const NAV_ITEMS: NavItem[] = [
+  { label: 'Inicio',        to: '/dashboard',    icon: <LayoutDashboard size={18} />, feature: 'dashboard_kpis' },
+  { label: 'Pacientes',     to: '/patients',     icon: <Users size={18} /> },
+  { label: 'Citas',         to: '/appointments', icon: <Calendar size={18} /> },
+  { label: 'Historial',     to: '/records',      icon: <FileText size={18} />,        feature: 'hce' },
+  { label: 'Facturación',   to: '/billing',      icon: <Receipt size={18} />,         feature: 'billing' },
+  { label: 'Configuración', to: '/admin',        icon: <Settings size={18} /> },
+]
+
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { user, logout } = useAuth()
   const { logoUrl, tenantName } = useTenant()
 
+  const hasDashboard     = useFeatureFlag('dashboard_kpis')
+  const hasHce           = useFeatureFlag('hce')
+  const hasBilling       = useFeatureFlag('billing')
   const hasTelemedicine  = useFeatureFlag('telemedicine')
   const hasLab           = useFeatureFlag('lab_integration')
   const hasMultiLocation = useFeatureFlag('multi_location')
   const hasPremiumFeatures = hasTelemedicine || hasLab || hasMultiLocation
 
-  const visibleItems = navItems.filter(
-    (item) => !item.adminOnly || user?.role === 'admin',
-  )
+  // Build a lookup so the filter below stays readable
+  const flagMap: Partial<Record<FeatureFlag, boolean>> = {
+    dashboard_kpis: hasDashboard,
+    hce:            hasHce,
+    billing:        hasBilling,
+  }
+
+  const visibleItems = NAV_ITEMS.filter((item) => {
+    if (item.adminOnly && user?.role !== 'admin') return false
+    if (item.feature && !flagMap[item.feature]) return false
+    return true
+  })
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     [

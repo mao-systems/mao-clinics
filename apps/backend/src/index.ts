@@ -13,6 +13,8 @@ import { appointmentsRouter } from '@/modules/appointments/appointments.routes'
 import { recordsRouter } from '@/modules/records/records.routes'
 import { billingRouter } from '@/modules/billing/billing.routes'
 import { dashboardRouter } from '@/modules/dashboard/dashboard.routes'
+import { platformAuthRouter } from '@/modules/platform-auth/platform-auth.routes'
+import { platformTenantsRouter } from '@/modules/platform-tenants/platform-tenants.routes'
 import { startRemindersJob } from '@/jobs/reminders.job'
 
 const app = express()
@@ -55,6 +57,12 @@ apiRouter.use('/billing', billingRouter)
 apiRouter.use('/dashboard', dashboardRouter)
 
 app.use('/api/v1', apiRouter)
+
+// Platform routes — completely separate from tenant API, no tenant middleware chain
+const platformRouter = express.Router()
+platformRouter.use('/auth', platformAuthRouter)
+platformRouter.use('/tenants', platformTenantsRouter)
+app.use('/platform', platformRouter)
 
 // Global error handler (must be last middleware)
 app.use(errorHandler)

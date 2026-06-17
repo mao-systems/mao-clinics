@@ -217,3 +217,64 @@ Starter:      S/599/month  — 1 doctor, base modules only
 Professional: S/999/month  — up to 3 doctors, base modules only
 Clinic:       S/1,799/month — unlimited doctors, base modules only
 +Module fee:  S/100–400/month per optional module activated
+
+---
+
+## SuperAdmin platform layer and demo tenants
+
+### PlatformAdmin model
+Defined in schema.prisma as a SEPARATE model — no tenant_id, no relation to User.
+  - Table: platform_admins
+  - Fields: id, email, password_hash, full_name, created_at, last_login_at
+  - This separation is intentional: platform-level auth must never share a table,
+    JWT shape, or middleware with tenant-level auth.
+
+### Platform JWT
+  - Cookie name: `platformAccessToken` (distinct from tenant `accessToken`)
+  - Payload shape: `{ type: 'platform_access', sub: platformAdmin.id, email }`
+  - The `requireSuperAdmin()` middleware reads ONLY the `platformAccessToken` cookie
+    and rejects any JWT whose `type` is not `platform_access`.
+  - A tenant admin JWT can never access platform routes even if the cookie name
+    somehow collides — the type check is the final guard.
+
+### Platform endpoints (no tenant middleware chain)
+  POST /platform/auth/login       — validates PlatformAdmin, sets platformAccessToken cookie
+  POST /platform/auth/logout      — clears platformAccessToken cookie
+  GET  /platform/auth/me          — returns PlatformAdmin profile
+  GET  /platform/tenants          — list all tenants with features JSON + plan_price_soles
+  GET  /platform/tenants/stats    — MRR + active/inactive counts for dashboard
+  POST /platform/tenants          — create tenant + first admin user in one transaction
+  PATCH /platform/tenants/:id/features — update features JSON (merge, not replace)
+
+### Platform frontend routes
+  /platform/login        — PlatformLoginPage (own branding, own cookie)
+  /platform/dashboard    — MRR + tenant counts
+  /platform/tenants      — feature flag toggle panel (live PATCH per toggle, no save button)
+  
+  Uses PlatformProtectedRoute (separate from tenant ProtectedRoute).
+  Uses platformApi.ts (separate axios instance, redirects 401 → /platform/login).
+  Uses usePlatformAuth.ts hook (query key: ['platform-auth', 'me']).
+
+### Seed commands
+  pnpm seed:platform        — creates superadmin@maosystems.io / SuperAdmin2026! (run ONCE)
+  pnpm seed:demo-tenants    — seeds 4 additional tenants + confirms Tenant 1 flags (idempotent)
+  pnpm demo:reset           — resets ONLY Clínica San Rafael; does NOT touch other tenants
+
+### Five demo tenants
+
+| # | Name                      | Subdomain   | Plan         | MRR     | WhatsApp | HCE | Billing | Dashboard | Theme |
+|---|---------------------------|-------------|--------------|---------|----------|-----|---------|-----------|-------|
+| 1 | Clínica San Rafael        | sanrafael   | clinica      | S/1,799 | ✅       | ✅  | ✅      | ✅        | ✅    |
+| 2 | Policlínico Vida Plena    | vidaplena   | profesional  | S/999   | ✅       | ✅  | ❌      | ✅        | ✅    |
+| 3 | Consultorio Dr. Mendoza   | drmendoza   | starter      | S/599   | ❌       | ❌  | ❌      | ❌        | ❌    |
+| 4 | Centro Médico Bienestar   | bienestar   | profesional  | S/999   | ✅       | ✅  | ❌      | ✅        | ✅    |
+| 5 | Clínica Santa Lucía       | santalucia  | clinica      | S/1,799 | ✅       | ✅  | ✅      | ✅        | ✅    |
+
+All passwords: Demo2026! | SuperAdmin: superadmin@maosystems.io / SuperAdmin2026!
+Full credential table: apps/backend/DEMO_CREDENTIALS.md
+
+### AVAILABLE_FEATURES update
+Added 5 base-module toggles to feature-flags.ts for the demo:
+  'whatsapp_reminders', 'hce', 'billing', 'dashboard_kpis', 'custom_theme'
+These come BEFORE the premium add-on flags in the list.
+Tenant.plan_price_soles (Decimal 10,2, default 0) added to schema for MRR calculation.

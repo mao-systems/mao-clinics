@@ -8,5 +8,9 @@ declare namespace Express {
       role: string
     }
     tenantId: string
+    platformAdmin: {
+      id: string
+      email: string
+    }
   }
 }

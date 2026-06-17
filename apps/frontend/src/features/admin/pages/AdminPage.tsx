@@ -18,6 +18,7 @@ import { useAdminDoctors, useToggleDoctorActive, type DoctorWithRelations } from
 import { useAdminUsers, type AdminUser }             from '../hooks/useAdminUsers'
 import { useAdminServices, useDeleteService, type ServiceItem } from '../hooks/useAdminServices'
 import { useAuth }            from '@/hooks/useAuth'
+import { useFeatureFlag }    from '@/hooks/useFeatureFlag'
 
 // ── Tabs ──────────────────────────────────────────────────────────────────────
 
@@ -35,13 +36,16 @@ const TABS: Tab[] = [
 
 const VALID_HASHES = new Set<TabId>(['apariencia', 'medicos', 'usuarios', 'servicios', 'mi-cuenta'])
 
-function getInitialTab(isAdmin: boolean): TabId {
+function getInitialTab(isAdmin: boolean, hasCustomTheme: boolean): TabId {
   const hash = window.location.hash.slice(1) as TabId
   if (VALID_HASHES.has(hash)) {
     if (!isAdmin && hash !== 'mi-cuenta') return 'mi-cuenta'
+    // Don't land on apariencia if the tenant doesn't have custom_theme
+    if (hash === 'apariencia' && !hasCustomTheme) return isAdmin ? 'medicos' : 'mi-cuenta'
     return hash
   }
-  return isAdmin ? 'apariencia' : 'mi-cuenta'
+  if (!isAdmin) return 'mi-cuenta'
+  return hasCustomTheme ? 'apariencia' : 'medicos'
 }
 
 // ── Date helper ───────────────────────────────────────────────────────────────
@@ -518,24 +522,32 @@ function MyAccountTab() {
 // ── AdminPage ─────────────────────────────────────────────────────────────────
 
 export default function AdminPage() {
-  const { user } = useAuth()
-  const isAdmin  = user?.role === 'admin'
+  const { user }       = useAuth()
+  const isAdmin        = user?.role === 'admin'
+  const hasCustomTheme = useFeatureFlag('custom_theme')
 
-  const visibleTabs = TABS.filter(t => !t.adminOnly || isAdmin)
+  const visibleTabs = TABS.filter(t => {
+    if (t.adminOnly && !isAdmin) return false
+    // Hide the Apariencia (theme editor) tab when the custom_theme flag is off
+    if (t.id === 'apariencia' && !hasCustomTheme) return false
+    return true
+  })
 
-  const [activeTab, setActiveTab] = useState<TabId>(() => getInitialTab(isAdmin))
+  const [activeTab, setActiveTab] = useState<TabId>(() => getInitialTab(isAdmin, hasCustomTheme))
 
   // Keep URL hash in sync with active tab
   useEffect(() => {
     window.history.replaceState(null, '', `#${activeTab}`)
   }, [activeTab])
 
-  // If user switches role mid-session guard tab access
+  // Guard tab access when role or feature flags change mid-session
   useEffect(() => {
     if (!isAdmin && activeTab !== 'mi-cuenta') {
       setActiveTab('mi-cuenta')
+    } else if (activeTab === 'apariencia' && !hasCustomTheme) {
+      setActiveTab(isAdmin ? 'medicos' : 'mi-cuenta')
     }
-  }, [isAdmin, activeTab])
+  }, [isAdmin, hasCustomTheme, activeTab])
 
   const tabContent: Record<TabId, React.ReactNode> = {
     apariencia: <ThemeEditor />,

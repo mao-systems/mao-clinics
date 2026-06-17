@@ -2,6 +2,13 @@ import { useAuth } from './useAuth'
 
 // All available feature flags — must match backend AVAILABLE_FEATURES
 export const FEATURE_FLAGS = [
+  // Base module toggles — controlled per-plan by the SuperAdmin panel
+  'whatsapp_reminders',
+  'hce',
+  'billing',
+  'dashboard_kpis',
+  'custom_theme',
+  // Premium / optional add-on modules
   'lab_integration',
   'telemedicine',
   'multi_location',
