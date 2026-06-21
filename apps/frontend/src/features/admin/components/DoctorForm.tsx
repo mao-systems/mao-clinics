@@ -10,17 +10,7 @@ import {
   type DaySchedule,
   type CreateDoctorData,
 } from '../hooks/useAdminDoctors'
-
-// ── Constants ─────────────────────────────────────────────────────────────────
-
-const SPECIALTIES = [
-  'Medicina General', 'Odontología', 'Ginecología y Obstetricia',
-  'Pediatría', 'Oftalmología', 'Traumatología y Ortopedia',
-  'Cardiología', 'Dermatología', 'Gastroenterología',
-  'Neurología', 'Psiquiatría', 'Urología', 'Otorrinolaringología',
-  'Endocrinología', 'Neumología', 'Nefrología', 'Oncología',
-  'Cirugía General', 'Anestesiología', 'Medicina Interna',
-]
+import { useAdminSpecialties } from '../hooks/useAdminSpecialties'
 
 const DURATIONS = [10, 15, 20, 25, 30, 45, 60]
 
@@ -91,6 +81,8 @@ export function DoctorForm({ doctor, onClose }: Props) {
   const createMutation = useCreateDoctor()
   const updateMutation = useUpdateDoctor()
   const isPending      = createMutation.isPending || updateMutation.isPending
+
+  const { data: specialties = [] } = useAdminSpecialties()
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm(f => ({ ...f, [key]: value }))
@@ -209,17 +201,21 @@ export function DoctorForm({ doctor, onClose }: Props) {
               <label className="block text-xs font-medium text-gray-700 mb-1">
                 Especialidad <span className="text-red-500">*</span>
               </label>
-              <input
+              <select
                 required
-                list="specialties-list"
                 value={form.specialty}
                 onChange={e => set('specialty', e.target.value)}
                 className={inp}
-                placeholder="Medicina General"
-              />
-              <datalist id="specialties-list">
-                {SPECIALTIES.map(s => <option key={s} value={s} />)}
-              </datalist>
+              >
+                <option value="">Seleccionar especialidad…</option>
+                {specialties.filter(s => s.active).map(s => (
+                  <option key={s.id} value={s.name}>{s.name}</option>
+                ))}
+                {/* Keep the current value selectable even if it's been deactivated */}
+                {form.specialty && !specialties.filter(s => s.active).some(s => s.name === form.specialty) && (
+                  <option value={form.specialty}>{form.specialty}</option>
+                )}
+              </select>
             </div>
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-1">CMP</label>

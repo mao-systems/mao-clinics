@@ -70,6 +70,7 @@ model Tenant {
   prescriptions Prescription[]
   schedules     DoctorSchedule[]
   services      ServiceCatalog[]
+  specialties   Specialty[]
 
   @@map("tenants")
 }
@@ -334,4 +335,20 @@ model ServiceCatalog {
   @@index([tenant_id])
   @@index([tenant_id, active])
   @@map("service_catalog")
+}
+
+model Specialty {
+  id         String   @id @default(uuid())
+  tenant_id  String
+  name       String
+  active     Boolean  @default(true)
+  sort_order Int      @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  tenant Tenant @relation(fields: [tenant_id], references: [id])
+
+  @@unique([tenant_id, name])
+  @@index([tenant_id])
+  @@map("specialties")
 }

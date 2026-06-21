@@ -77,6 +77,7 @@ async function resetDemo(): Promise<void> {
   await prisma.appointment.deleteMany()
   await prisma.doctorSchedule.deleteMany()
   await prisma.serviceCatalog.deleteMany()
+  await prisma.specialty.deleteMany()
   await prisma.doctor.deleteMany()
   await prisma.patient.deleteMany()
   await prisma.user.deleteMany()

@@ -89,6 +89,19 @@ export const UpdateServiceSchema = CreateServiceSchema.partial()
 export type CreateServiceInput = z.infer<typeof CreateServiceSchema>
 export type UpdateServiceInput = z.infer<typeof UpdateServiceSchema>
 
+// ── Specialty catalog ─────────────────────────────────────────────────────────
+
+export const CreateSpecialtySchema = z.object({
+  name:       z.string().min(1).max(100),
+  active:     z.boolean().default(true),
+  sort_order: z.number().int().default(0),
+})
+
+export const UpdateSpecialtySchema = CreateSpecialtySchema.partial()
+
+export type CreateSpecialtyInput = z.infer<typeof CreateSpecialtySchema>
+export type UpdateSpecialtyInput = z.infer<typeof UpdateSpecialtySchema>
+
 // ── Password management ───────────────────────────────────────────────────────
 
 export const ChangePasswordSchema = z

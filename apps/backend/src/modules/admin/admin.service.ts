@@ -7,6 +7,7 @@ import { getStorageProvider } from '@/lib/storage'
 import type { ThemeConfig, CreateDoctorInput, UpdateDoctorInput,
               CreateUserInput, UpdateUserInput,
               CreateServiceInput, UpdateServiceInput,
+              CreateSpecialtyInput, UpdateSpecialtyInput,
               ChangePasswordInput } from './admin.schema'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -539,6 +540,56 @@ export class AdminService {
     // Service catalog entries have no FK references from invoice items (items store free-text
     // descriptions), so hard delete is always safe.
     await prisma.serviceCatalog.delete({ where: { id: serviceId } })
+  }
+
+  // ── Specialty catalog ───────────────────────────────────────────────────────
+
+  async getSpecialties(tenantId: string) {
+    return prisma.specialty.findMany({
+      where:   { tenant_id: tenantId },
+      orderBy: [{ sort_order: 'asc' }, { name: 'asc' }],
+    })
+  }
+
+  async createSpecialty(tenantId: string, data: CreateSpecialtyInput) {
+    const existing = await prisma.specialty.findFirst({
+      where: { tenant_id: tenantId, name: data.name },
+    })
+    if (existing) throw new AppError('SPECIALTY_ALREADY_EXISTS', 409, 'Ya existe una especialidad con ese nombre')
+
+    return prisma.specialty.create({
+      data: {
+        tenant_id:  tenantId,
+        name:       data.name,
+        active:     data.active,
+        sort_order: data.sort_order,
+      },
+    })
+  }
+
+  async updateSpecialty(tenantId: string, specialtyId: string, data: UpdateSpecialtyInput) {
+    const existing = await prisma.specialty.findFirst({
+      where: { id: specialtyId, tenant_id: tenantId },
+    })
+    if (!existing) throw new AppError('SPECIALTY_NOT_FOUND', 404, 'Especialidad no encontrada')
+
+    return prisma.specialty.update({
+      where: { id: specialtyId },
+      data: {
+        ...(data.name       !== undefined && { name:       data.name       }),
+        ...(data.active     !== undefined && { active:     data.active     }),
+        ...(data.sort_order !== undefined && { sort_order: data.sort_order }),
+      },
+    })
+  }
+
+  async deleteSpecialty(tenantId: string, specialtyId: string) {
+    const existing = await prisma.specialty.findFirst({
+      where: { id: specialtyId, tenant_id: tenantId },
+    })
+    if (!existing) throw new AppError('SPECIALTY_NOT_FOUND', 404, 'Especialidad no encontrada')
+
+    await prisma.specialty.delete({ where: { id: specialtyId } })
   }
 
   // ── Private helpers ─────────────────────────────────────────────────────────

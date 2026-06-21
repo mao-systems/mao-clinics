@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import {
   Plus, Pencil, Trash2, RotateCcw, ShieldCheck,
   ChevronDown, ChevronRight, Users, Stethoscope,
-  Tag, Palette, UserCircle, LogOut,
+  Tag, Palette, UserCircle, LogOut, BookOpen,
 } from 'lucide-react'
 import { PageHeader }         from '@/components/layout/PageHeader'
 import { Modal }              from '@/components/ui/Modal'
@@ -17,24 +17,26 @@ import { ChangePasswordForm } from '../components/ChangePasswordForm'
 import { useAdminDoctors, useToggleDoctorActive, type DoctorWithRelations } from '../hooks/useAdminDoctors'
 import { useAdminUsers, type AdminUser }             from '../hooks/useAdminUsers'
 import { useAdminServices, useDeleteService, type ServiceItem } from '../hooks/useAdminServices'
+import { useAdminSpecialties, useCreateSpecialty, useUpdateSpecialty, useDeleteSpecialty, type SpecialtyItem } from '../hooks/useAdminSpecialties'
 import { useAuth }            from '@/hooks/useAuth'
 import { useFeatureFlag }    from '@/hooks/useFeatureFlag'
 
 // ── Tabs ──────────────────────────────────────────────────────────────────────
 
-type TabId = 'apariencia' | 'medicos' | 'usuarios' | 'servicios' | 'mi-cuenta'
+type TabId = 'apariencia' | 'medicos' | 'usuarios' | 'servicios' | 'especialidades' | 'mi-cuenta'
 
 interface Tab { id: TabId; label: string; icon: React.ReactNode; adminOnly: boolean }
 
 const TABS: Tab[] = [
-  { id: 'apariencia', label: 'Apariencia', icon: <Palette size={14} />,     adminOnly: true  },
-  { id: 'medicos',    label: 'Médicos',     icon: <Stethoscope size={14} />, adminOnly: true  },
-  { id: 'usuarios',   label: 'Usuarios',    icon: <Users size={14} />,       adminOnly: true  },
-  { id: 'servicios',  label: 'Servicios',   icon: <Tag size={14} />,         adminOnly: true  },
-  { id: 'mi-cuenta',  label: 'Mi cuenta',   icon: <UserCircle size={14} />,  adminOnly: false },
+  { id: 'apariencia',     label: 'Apariencia',     icon: <Palette size={14} />,     adminOnly: true  },
+  { id: 'medicos',        label: 'Médicos',         icon: <Stethoscope size={14} />, adminOnly: true  },
+  { id: 'usuarios',       label: 'Usuarios',        icon: <Users size={14} />,       adminOnly: true  },
+  { id: 'servicios',      label: 'Servicios',       icon: <Tag size={14} />,         adminOnly: true  },
+  { id: 'especialidades', label: 'Especialidades',  icon: <BookOpen size={14} />,    adminOnly: true  },
+  { id: 'mi-cuenta',      label: 'Mi cuenta',       icon: <UserCircle size={14} />,  adminOnly: false },
 ]
 
-const VALID_HASHES = new Set<TabId>(['apariencia', 'medicos', 'usuarios', 'servicios', 'mi-cuenta'])
+const VALID_HASHES = new Set<TabId>(['apariencia', 'medicos', 'usuarios', 'servicios', 'especialidades', 'mi-cuenta'])
 
 function getInitialTab(isAdmin: boolean, hasCustomTheme: boolean): TabId {
   const hash = window.location.hash.slice(1) as TabId
@@ -454,6 +456,213 @@ function ServicesTab() {
   )
 }
 
+// ── Specialties tab ───────────────────────────────────────────────────────────
+
+function SpecialtiesTab() {
+  const { data: specialties = [], isLoading } = useAdminSpecialties()
+  const createMutation = useCreateSpecialty()
+  const updateMutation = useUpdateSpecialty()
+  const deleteMutation = useDeleteSpecialty()
+
+  const [editTarget,   setEditTarget]   = useState<SpecialtyItem | null | undefined>(undefined)
+  const [deleteTarget, setDeleteTarget] = useState<SpecialtyItem | null>(null)
+  const [formName,     setFormName]     = useState('')
+  const [formError,    setFormError]    = useState('')
+
+  const activeCount = specialties.filter(s => s.active).length
+
+  function openCreate() {
+    setFormName('')
+    setFormError('')
+    setEditTarget(null)
+  }
+
+  function openEdit(s: SpecialtyItem) {
+    setFormName(s.name)
+    setFormError('')
+    setEditTarget(s)
+  }
+
+  function handleFormSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    const name = formName.trim()
+    if (!name) { setFormError('El nombre es obligatorio'); return }
+
+    if (editTarget) {
+      updateMutation.mutate(
+        { id: editTarget.id, data: { name } },
+        { onSuccess: () => setEditTarget(undefined) },
+      )
+    } else {
+      createMutation.mutate(
+        { name, active: true, sort_order: specialties.length },
+        { onSuccess: () => setEditTarget(undefined) },
+      )
+    }
+  }
+
+  const inp = 'w-full px-3 py-2 text-sm border border-gray-300 rounded-base focus:outline-none focus:ring-2 focus:ring-primary/40'
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h2 className="text-base font-semibold text-gray-800">Especialidades médicas</h2>
+          <p className="text-sm text-gray-500 mt-0.5">
+            {activeCount} activas · {specialties.length} en total
+          </p>
+        </div>
+        <Button size="sm" onClick={openCreate}>
+          <Plus size={14} className="mr-1.5" />
+          Agregar especialidad
+        </Button>
+      </div>
+
+      {isLoading ? (
+        <div className="bg-white border border-gray-200 rounded-base p-4">
+          <Skeleton rows={4} />
+        </div>
+      ) : specialties.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-20 bg-white border border-gray-200 rounded-base text-center">
+          <BookOpen className="w-10 h-10 text-gray-300 mb-3" />
+          <p className="text-sm text-gray-500 font-medium">No hay especialidades configuradas</p>
+          <p className="text-xs text-gray-400 mt-1">Agrega las especialidades de tu consultorio</p>
+          <Button size="sm" className="mt-4" onClick={openCreate}>
+            Agregar primera especialidad
+          </Button>
+        </div>
+      ) : (
+        <div className="bg-white border border-gray-200 rounded-base overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[400px] text-sm">
+              <thead className="bg-gray-50 border-b border-gray-100 text-xs text-gray-500 uppercase tracking-wider">
+                <tr>
+                  <th className="px-4 py-3 text-left">Especialidad</th>
+                  <th className="px-4 py-3 text-left">Estado</th>
+                  <th className="px-4 py-3" />
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {specialties.map(s => (
+                  <tr key={s.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-4 py-3">
+                      <p className={`font-medium ${s.active ? 'text-gray-800' : 'text-gray-400'}`}>
+                        {s.name}
+                      </p>
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge variant={s.active ? 'success' : 'warning'}>
+                        {s.active ? 'Activa' : 'Inactiva'}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-1 justify-end">
+                        <button
+                          onClick={() => openEdit(s)}
+                          className="p-1.5 text-gray-400 hover:text-primary rounded hover:bg-gray-100 transition-colors"
+                          title="Editar"
+                        >
+                          <Pencil size={14} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            updateMutation.mutate({ id: s.id, data: { active: !s.active } })
+                          }}
+                          className="p-1.5 text-gray-400 hover:text-amber-500 rounded hover:bg-gray-100 transition-colors"
+                          title={s.active ? 'Desactivar' : 'Activar'}
+                        >
+                          <RotateCcw size={14} />
+                        </button>
+                        <button
+                          onClick={() => setDeleteTarget(s)}
+                          className="p-1.5 text-gray-400 hover:text-red-500 rounded hover:bg-gray-100 transition-colors"
+                          title="Eliminar"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Create / Edit modal */}
+      <Modal
+        isOpen={editTarget !== undefined}
+        onClose={() => setEditTarget(undefined)}
+        title={editTarget ? 'Editar especialidad' : 'Nueva especialidad'}
+        size="sm"
+      >
+        <form onSubmit={handleFormSubmit} className="space-y-4">
+          <div>
+            <label className="block text-xs font-medium text-gray-700 mb-1">
+              Nombre <span className="text-red-500">*</span>
+            </label>
+            <input
+              autoFocus
+              value={formName}
+              onChange={e => { setFormName(e.target.value); setFormError('') }}
+              className={inp}
+              placeholder="Ej: Medicina General"
+            />
+            {formError && <p className="text-xs text-red-500 mt-1">{formError}</p>}
+          </div>
+          <div className="flex justify-end gap-2 pt-1">
+            <Button type="button" variant="ghost" size="sm" onClick={() => setEditTarget(undefined)}>
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              size="sm"
+              isLoading={createMutation.isPending || updateMutation.isPending}
+            >
+              {editTarget ? 'Guardar cambios' : 'Agregar'}
+            </Button>
+          </div>
+        </form>
+      </Modal>
+
+      {/* Delete confirm */}
+      <Modal
+        isOpen={!!deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        title="Eliminar especialidad"
+        size="sm"
+      >
+        {deleteTarget && (
+          <div className="space-y-4">
+            <p className="text-sm text-gray-600">
+              ¿Eliminar <span className="font-medium">"{deleteTarget.name}"</span>?
+              Esta acción no se puede deshacer.
+            </p>
+            <div className="flex justify-end gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setDeleteTarget(null)}>
+                Cancelar
+              </Button>
+              <Button
+                variant="danger"
+                size="sm"
+                isLoading={deleteMutation.isPending}
+                onClick={() => {
+                  deleteMutation.mutate(deleteTarget.id, {
+                    onSuccess: () => setDeleteTarget(null),
+                  })
+                }}
+              >
+                Eliminar
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
+    </div>
+  )
+}
+
 // ── My account tab ────────────────────────────────────────────────────────────
 
 function MyAccountTab() {
@@ -550,11 +759,12 @@ export default function AdminPage() {
   }, [isAdmin, hasCustomTheme, activeTab])
 
   const tabContent: Record<TabId, React.ReactNode> = {
-    apariencia: <ThemeEditor />,
-    medicos:    <DoctorsTab />,
-    usuarios:   <UsersTab />,
-    servicios:  <ServicesTab />,
-    'mi-cuenta': <MyAccountTab />,
+    apariencia:     <ThemeEditor />,
+    medicos:        <DoctorsTab />,
+    usuarios:       <UsersTab />,
+    servicios:      <ServicesTab />,
+    especialidades: <SpecialtiesTab />,
+    'mi-cuenta':    <MyAccountTab />,
   }
 
   return (

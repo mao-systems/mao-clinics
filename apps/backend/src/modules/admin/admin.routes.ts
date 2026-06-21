@@ -12,6 +12,8 @@ import {
   UpdateUserSchema,
   CreateServiceSchema,
   UpdateServiceSchema,
+  CreateSpecialtySchema,
+  UpdateSpecialtySchema,
   ChangePasswordSchema,
   ResetUserPasswordSchema,
 } from './admin.schema'
@@ -261,6 +263,50 @@ router.delete('/services/:id', async (req: Request, res: Response, next: NextFun
   try {
     await adminService.deleteService(req.tenantId, String(req.params['id']))
     res.status(200).json({ success: true, data: { message: 'Servicio eliminado' } })
+  } catch (err) {
+    next(err)
+  }
+})
+
+// ── Specialty catalog (admin only) ───────────────────────────────────────────
+
+// GET /api/v1/admin/specialties
+router.get('/specialties', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const specialties = await adminService.getSpecialties(req.tenantId)
+    res.status(200).json({ success: true, data: { specialties } })
+  } catch (err) {
+    next(err)
+  }
+})
+
+// POST /api/v1/admin/specialties
+router.post('/specialties', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const body = CreateSpecialtySchema.parse(req.body)
+    const specialty = await adminService.createSpecialty(req.tenantId, body)
+    res.status(201).json({ success: true, data: { specialty } })
+  } catch (err) {
+    next(err)
+  }
+})
+
+// PUT /api/v1/admin/specialties/:id
+router.put('/specialties/:id', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const body = UpdateSpecialtySchema.parse(req.body)
+    const specialty = await adminService.updateSpecialty(req.tenantId, String(req.params['id']), body)
+    res.status(200).json({ success: true, data: { specialty } })
+  } catch (err) {
+    next(err)
+  }
+})
+
+// DELETE /api/v1/admin/specialties/:id
+router.delete('/specialties/:id', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    await adminService.deleteSpecialty(req.tenantId, String(req.params['id']))
+    res.status(200).json({ success: true, data: { message: 'Especialidad eliminada' } })
   } catch (err) {
     next(err)
   }

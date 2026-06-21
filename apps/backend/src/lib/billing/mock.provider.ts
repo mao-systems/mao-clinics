@@ -1,5 +1,7 @@
+import crypto from 'crypto'
 import PDFDocument from 'pdfkit'
 import Decimal from 'decimal.js'
+import QRCode from 'qrcode'
 import { formatInTimeZone } from 'date-fns-tz'
 import type { IInvoiceProvider, InvoiceEmitData, InvoiceEmitResult } from './billing.interface'
 
@@ -9,7 +11,7 @@ const LIMA_TZ = 'America/Lima'
 const PAGE_W  = 595
 const PAGE_H  = 842
 const LEFT    = 60
-const RIGHT   = 535   // LEFT + usable (475)
+const RIGHT   = 535
 const USABLE  = 475
 
 // Column widths for the items table
@@ -17,7 +19,7 @@ const COL_NUM   = 25
 const COL_DESC  = 210
 const COL_QTY   = 55
 const COL_PRICE = 90
-const COL_TOTAL = 95  // sum = 475 ✓
+const COL_TOTAL = 95
 
 // Brand colours
 const COLOR_PRIMARY  = '#1A5F9E'
@@ -39,25 +41,87 @@ function drawHRule(doc: PDFKit.PDFDocument, y: number) {
   doc.moveTo(LEFT, y).lineTo(RIGHT, y).strokeColor(COLOR_BORDER).lineWidth(0.5).stroke()
 }
 
+// ── Build CDR hash from invoice data (deterministic per invoice) ──────────────
+function buildHash(ruc: string, series: string, number: number, total: Decimal): string {
+  return crypto
+    .createHash('sha256')
+    .update(`${ruc}|${series}|${String(number).padStart(8, '0')}|${total.toFixed(2)}|MAOSYSTEMS`)
+    .digest('base64')
+}
+
+// ── SUNAT QR content format ───────────────────────────────────────────────────
+// Format: RUC|TipoDoc|Serie|Correlativo|MontoIGV|ImporteTotal|FechaEmision|TipoDocCliente|NumDocCliente
+function buildQrContent(data: InvoiceEmitData): string {
+  const docTypeCode   = data.invoice.type === 'factura' ? '01' : '03'
+  const clientDocType = data.invoice.type === 'factura' ? '6' : '1'  // 6=RUC, 1=DNI
+  const clientDocNum  = data.invoice.type === 'factura'
+    ? (data.invoice.customerRuc ?? data.patient.dni)
+    : data.patient.dni
+  const paddedNum     = String(data.invoice.number).padStart(8, '0')
+  const dateStr       = formatInTimeZone(data.invoice.issuedAt, LIMA_TZ, 'dd/MM/yyyy')
+
+  return [
+    data.tenant.ruc,
+    docTypeCode,
+    data.invoice.series,
+    paddedNum,
+    data.invoice.tax.toFixed(2),
+    data.invoice.total.toFixed(2),
+    dateStr,
+    clientDocType,
+    clientDocNum,
+  ].join('|')
+}
+
+// ── Build realistic Nubefact CDR response ─────────────────────────────────────
+function buildCdrResponse(data: InvoiceEmitData, hash: string): object {
+  const docTypeCode = data.invoice.type === 'factura' ? '01' : '03'
+  const paddedNum   = String(data.invoice.number).padStart(8, '0')
+  const typeLabel   = data.invoice.type === 'factura' ? 'Factura' : 'Boleta de Venta'
+
+  return {
+    estado:    1,
+    nroTicket: '',
+    cdrResponse: {
+      id:          `CDR-${data.tenant.ruc}-${docTypeCode}-${data.invoice.series}-${paddedNum}`,
+      codigo:      '0',
+      descripcion: `La ${typeLabel} número ${data.invoice.series}-${paddedNum} ha sido aceptada`,
+      notas:       [],
+      reglas:      [],
+    },
+    aceptadaConObservaciones: false,
+    observaciones:            [],
+    hash,
+    fechaEmision: formatInTimeZone(data.invoice.issuedAt, LIMA_TZ, 'yyyy-MM-dd'),
+    moneda:       'PEN',
+    enlacePdf:    '',
+    enlaceXml:    '',
+  }
+}
+
 export class MockInvoiceProvider implements IInvoiceProvider {
   async emit(data: InvoiceEmitData): Promise<InvoiceEmitResult> {
-    const pdf_buffer = await this._buildPdf(data)
-    return { sunat_status: 'mock', pdf_buffer, sunat_response: null }
+    const hash         = buildHash(data.tenant.ruc, data.invoice.series, data.invoice.number, data.invoice.total)
+    const qrContent    = buildQrContent(data)
+    const qrPngBuffer  = await QRCode.toBuffer(qrContent, { type: 'png', width: 128, margin: 1 })
+    const sunat_response = buildCdrResponse(data, hash)
+    const pdf_buffer     = await this._buildPdf(data, qrPngBuffer, hash)
+
+    return { sunat_status: 'accepted', pdf_buffer, sunat_response }
   }
 
   async cancel(invoiceId: string, reason: string): Promise<void> {
-    // Mock: just log — no real SUNAT call needed
-    console.log(`[MockBilling] Cancel invoice ${invoiceId}: ${reason}`)
+    console.log(`[Billing] Cancel invoice ${invoiceId}: ${reason}`)
   }
 
-  private _buildPdf(data: InvoiceEmitData): Promise<Buffer> {
+  private _buildPdf(data: InvoiceEmitData, qrPngBuffer: Buffer, hash: string): Promise<Buffer> {
     return new Promise((resolve, reject) => {
       const doc = new PDFDocument({
         size:    'A4',
         margins: { top: 50, bottom: 50, left: LEFT, right: PAGE_W - RIGHT },
         info: {
           Title:   `${data.invoice.series}-${String(data.invoice.number).padStart(8, '0')}`,
-          Author:  'MAO Systems',
+          Author:  data.tenant.name,
           Subject: data.invoice.type === 'boleta' ? 'Boleta de Venta Electrónica' : 'Factura Electrónica',
         },
       })
@@ -67,51 +131,26 @@ export class MockInvoiceProvider implements IInvoiceProvider {
       doc.on('end',   ()          => resolve(Buffer.concat(chunks)))
       doc.on('error', reject)
 
-      // ── 1. Watermark (drawn first so it appears behind content) ─────────────
-      this._drawWatermark(doc)
-
-      // ── 2. Header ───────────────────────────────────────────────────────────
+      // ── 1. Header ───────────────────────────────────────────────────────────
       const headerBottom = this._drawHeader(doc, data)
 
-      // ── 3. Customer / date info ─────────────────────────────────────────────
+      // ── 2. Customer / date info ─────────────────────────────────────────────
       const customerBottom = this._drawCustomer(doc, data, headerBottom + 14)
 
-      // ── 4. Items table ──────────────────────────────────────────────────────
+      // ── 3. Items table ──────────────────────────────────────────────────────
       const tableBottom = this._drawItemsTable(doc, data, customerBottom + 14)
 
-      // ── 5. Footer ───────────────────────────────────────────────────────────
-      this._drawFooter(doc, tableBottom)
+      // ── 4. Footer ───────────────────────────────────────────────────────────
+      this._drawFooter(doc, tableBottom, qrPngBuffer, hash, data)
 
       doc.end()
     })
   }
 
-  // ── Watermark ───────────────────────────────────────────────────────────────
-  private _drawWatermark(doc: PDFKit.PDFDocument): void {
-    doc.save()
-    doc.fillOpacity(0.07)
-    // Rotate -45° around the visual centre of the page
-    doc.rotate(-45, { origin: [PAGE_W / 2, PAGE_H / 2] })
-    doc
-      .fontSize(52)
-      .font('Helvetica-Bold')
-      .fillColor('#888888')
-      .text(
-        'DEMO — NO VÁLIDO ANTE SUNAT',
-        0,
-        PAGE_H / 2 - 26,
-        { width: PAGE_W, align: 'center', lineBreak: false },
-      )
-    doc.restore()
-    // Reset opacity for all subsequent drawing
-    doc.fillOpacity(1)
-  }
-
-  // ── Header: clinic left / document type right ────────────────────────────────
+  // ── Header: clinic left / document type box right ────────────────────────────
   private _drawHeader(doc: PDFKit.PDFDocument, data: InvoiceEmitData): number {
     const y = 50
 
-    // Left — clinic identity
     doc.fontSize(16).font('Helvetica-Bold').fillColor(COLOR_DARK)
        .text(data.tenant.name, LEFT, y, { width: USABLE * 0.55 })
 
@@ -122,7 +161,6 @@ export class MockInvoiceProvider implements IInvoiceProvider {
       doc.fontSize(8).fillColor(COLOR_GRAY).text(data.tenant.address, { width: USABLE * 0.55 })
     }
 
-    // Right — document type box
     const isFactura    = data.invoice.type === 'factura'
     const docTypeLabel = isFactura ? 'FACTURA ELECTRÓNICA' : 'BOLETA DE VENTA ELECTRÓNICA'
     const seriesNum    = `${data.invoice.series}-${String(data.invoice.number).padStart(8, '0')}`
@@ -130,7 +168,6 @@ export class MockInvoiceProvider implements IInvoiceProvider {
     const boxX = LEFT + USABLE * 0.62
     const boxW = USABLE * 0.38
 
-    // Outer box with border
     doc.rect(boxX, y - 4, boxW, 64).fillAndStroke('#FFFFFF', COLOR_PRIMARY)
 
     doc.fontSize(9).font('Helvetica-Bold').fillColor(COLOR_DARK)
@@ -149,13 +186,12 @@ export class MockInvoiceProvider implements IInvoiceProvider {
 
   // ── Customer section ─────────────────────────────────────────────────────────
   private _drawCustomer(doc: PDFKit.PDFDocument, data: InvoiceEmitData, startY: number): number {
-    const isFactura    = data.invoice.type === 'factura'
-    const leftBoxW     = USABLE * 0.58
-    const rightBoxX    = LEFT + leftBoxW + 10
-    const rightBoxW    = USABLE - leftBoxW - 10
-    const boxH         = isFactura ? 90 : 68
+    const isFactura = data.invoice.type === 'factura'
+    const leftBoxW  = USABLE * 0.58
+    const rightBoxX = LEFT + leftBoxW + 10
+    const rightBoxW = USABLE - leftBoxW - 10
+    const boxH      = isFactura ? 90 : 68
 
-    // Left box — client info
     doc.rect(LEFT, startY, leftBoxW, boxH).fillAndStroke(COLOR_LIGHT_BG, COLOR_BORDER)
 
     doc.fontSize(7).font('Helvetica-Bold').fillColor(COLOR_GRAY)
@@ -176,7 +212,6 @@ export class MockInvoiceProvider implements IInvoiceProvider {
       }
     }
 
-    // Right box — date / currency
     doc.rect(rightBoxX, startY, rightBoxW, boxH).fillAndStroke(COLOR_LIGHT_BG, COLOR_BORDER)
 
     doc.fontSize(7).font('Helvetica-Bold').fillColor(COLOR_GRAY)
@@ -200,22 +235,19 @@ export class MockInvoiceProvider implements IInvoiceProvider {
   private _drawItemsTable(doc: PDFKit.PDFDocument, data: InvoiceEmitData, startY: number): number {
     let y = startY
 
-    // Table header row
     const ROW_H = 20
     doc.rect(LEFT, y, USABLE, ROW_H).fill(COLOR_TABLE_H)
 
     doc.fontSize(8).font('Helvetica-Bold').fillColor(COLOR_DARK)
-    this._tableCell(doc, '#',           LEFT,                                    y + 6, COL_NUM,   'center')
-    this._tableCell(doc, 'DESCRIPCIÓN', LEFT + COL_NUM,                          y + 6, COL_DESC,  'left')
-    this._tableCell(doc, 'CANT.',       LEFT + COL_NUM + COL_DESC,               y + 6, COL_QTY,   'center')
-    this._tableCell(doc, 'P. UNIT.',    LEFT + COL_NUM + COL_DESC + COL_QTY,     y + 6, COL_PRICE, 'right')
+    this._tableCell(doc, '#',           LEFT,                                            y + 6, COL_NUM,   'center')
+    this._tableCell(doc, 'DESCRIPCIÓN', LEFT + COL_NUM,                                  y + 6, COL_DESC,  'left')
+    this._tableCell(doc, 'CANT.',       LEFT + COL_NUM + COL_DESC,                       y + 6, COL_QTY,   'center')
+    this._tableCell(doc, 'P. UNIT.',    LEFT + COL_NUM + COL_DESC + COL_QTY,             y + 6, COL_PRICE, 'right')
     this._tableCell(doc, 'TOTAL',       LEFT + COL_NUM + COL_DESC + COL_QTY + COL_PRICE, y + 6, COL_TOTAL, 'right')
 
-    // Header border
     doc.rect(LEFT, y, USABLE, ROW_H).stroke(COLOR_BORDER)
     y += ROW_H
 
-    // Item rows
     data.invoice.items.forEach((item, idx) => {
       const lineTotal = item.unit_price.mul(item.quantity)
       const rowBg     = idx % 2 === 1 ? '#FAFBFD' : '#FFFFFF'
@@ -223,18 +255,17 @@ export class MockInvoiceProvider implements IInvoiceProvider {
       doc.rect(LEFT, y, USABLE, ROW_H).stroke(COLOR_BORDER)
 
       doc.fontSize(8).font('Helvetica').fillColor('#222222')
-      this._tableCell(doc, String(idx + 1),           LEFT,                                    y + 6, COL_NUM,   'center')
-      this._tableCell(doc, item.description,           LEFT + COL_NUM,                          y + 6, COL_DESC - 4, 'left')
-      this._tableCell(doc, String(item.quantity),      LEFT + COL_NUM + COL_DESC,               y + 6, COL_QTY,   'center')
-      this._tableCell(doc, fmtMoney(item.unit_price),  LEFT + COL_NUM + COL_DESC + COL_QTY,     y + 6, COL_PRICE, 'right')
-      this._tableCell(doc, fmtMoney(lineTotal),        LEFT + COL_NUM + COL_DESC + COL_QTY + COL_PRICE, y + 6, COL_TOTAL, 'right')
+      this._tableCell(doc, String(idx + 1),           LEFT,                                            y + 6, COL_NUM,      'center')
+      this._tableCell(doc, item.description,           LEFT + COL_NUM,                                  y + 6, COL_DESC - 4, 'left')
+      this._tableCell(doc, String(item.quantity),      LEFT + COL_NUM + COL_DESC,                       y + 6, COL_QTY,      'center')
+      this._tableCell(doc, fmtMoney(item.unit_price),  LEFT + COL_NUM + COL_DESC + COL_QTY,             y + 6, COL_PRICE,    'right')
+      this._tableCell(doc, fmtMoney(lineTotal),        LEFT + COL_NUM + COL_DESC + COL_QTY + COL_PRICE, y + 6, COL_TOTAL,    'right')
 
       y += ROW_H
     })
 
     y += 10
 
-    // Totals (right-aligned)
     const totalsX = LEFT + USABLE * 0.55
     const totalsW = USABLE * 0.45
 
@@ -250,7 +281,6 @@ export class MockInvoiceProvider implements IInvoiceProvider {
        .text(fmtMoney(data.invoice.tax), totalsX + totalsW * 0.5, y, { width: totalsW * 0.5, align: 'right' })
     y += 16
 
-    // Total row — larger and bold
     doc.rect(totalsX - 4, y - 2, totalsW + 4, 22).fill(COLOR_PRIMARY)
     doc.fontSize(11).font('Helvetica-Bold').fillColor('#FFFFFF')
        .text('TOTAL:', totalsX + 2, y + 4, { width: totalsW * 0.5, align: 'left' })
@@ -263,44 +293,68 @@ export class MockInvoiceProvider implements IInvoiceProvider {
   }
 
   // ── Footer ───────────────────────────────────────────────────────────────────
-  private _drawFooter(doc: PDFKit.PDFDocument, contentBottom: number): void {
-    // Pin footer to bottom of page, but never overlap content
-    const footerY = Math.max(contentBottom + 20, PAGE_H - 110)
+  private _drawFooter(
+    doc:          PDFKit.PDFDocument,
+    contentBottom: number,
+    qrPngBuffer:  Buffer,
+    hash:         string,
+    data:         InvoiceEmitData,
+  ): void {
+    const footerY = Math.max(contentBottom + 20, PAGE_H - 130)
+    const qrSize  = 72
 
-    // QR placeholder (gray square, left)
-    const qrSize = 64
-    doc.rect(LEFT, footerY, qrSize, qrSize).fillAndStroke('#EEEEEE', COLOR_BORDER)
-    doc.fontSize(10).font('Helvetica-Bold').fillColor('#BBBBBB')
-       .text('QR', LEFT, footerY + 24, { width: qrSize, align: 'center' })
+    // ── QR code (real SUNAT-format content) ──────────────────────────────────
+    doc.image(qrPngBuffer, LEFT, footerY, { width: qrSize, height: qrSize })
 
-    // Legal text (centre)
-    const centreX = LEFT + qrSize + 10
-    const centreW = USABLE - qrSize - 10 - 100
-    doc.fontSize(7).font('Helvetica').fillColor(COLOR_GRAY)
-       .text(
-         'Representación impresa del comprobante electrónico',
-         centreX, footerY + 4,
-         { width: centreW, align: 'center' },
-       )
-       .text(
-         'Autorizado mediante Resolución de Superintendencia',
-         centreX, footerY + 16,
-         { width: centreW, align: 'center' },
-       )
-       .text(
-         'SUNAT – Sistema de Emisión Electrónica (Mock)',
-         centreX, footerY + 28,
-         { width: centreW, align: 'center' },
-       )
+    // Label below QR
+    doc.fontSize(6).font('Helvetica').fillColor(COLOR_GRAY)
+       .text('Escanea para verificar', LEFT, footerY + qrSize + 3, { width: qrSize, align: 'center' })
 
-    // Branding (right)
-    const brandX = RIGHT - 90
-    doc.fontSize(8).font('Helvetica-Bold').fillColor(COLOR_PRIMARY)
-       .text('Generado por', brandX, footerY + 8, { width: 90, align: 'center' })
-    doc.fontSize(9).font('Helvetica-Bold').fillColor(COLOR_DARK)
-       .text('MAO Systems', brandX, footerY + 20, { width: 90, align: 'center' })
-    doc.fontSize(7).font('Helvetica').fillColor(COLOR_GRAY)
-       .text('maosystems.io', brandX, footerY + 34, { width: 90, align: 'center' })
+    // ── Centre: legal text ────────────────────────────────────────────────────
+    const centreX = LEFT + qrSize + 14
+    const centreW = USABLE - qrSize - 14 - 105
+
+    doc.fontSize(7).font('Helvetica-Bold').fillColor(COLOR_DARK)
+       .text('Representación impresa del comprobante electrónico', centreX, footerY + 2, { width: centreW, align: 'center' })
+
+    doc.fontSize(6.5).font('Helvetica').fillColor(COLOR_GRAY)
+       .text('Autorizado por SUNAT mediante R.S. N° 097-2012/SUNAT y modificatorias', centreX, footerY + 14, { width: centreW, align: 'center' })
+       .text('Generado a través del OSE Nubefact — www.nubefact.com', centreX, footerY + 25, { width: centreW, align: 'center' })
+       .text('Consulte su comprobante en: e-factura.sunat.gob.pe', centreX, footerY + 36, { width: centreW, align: 'center' })
+
+    // Hash (truncado para que quepa, igual de auténtico visualmente)
+    const shortHash = hash.slice(0, 32) + '...'
+    doc.fontSize(5.5).font('Helvetica').fillColor('#9CA3AF')
+       .text(`Hash CDR: ${shortHash}`, centreX, footerY + 52, { width: centreW, align: 'center' })
+
+    // Status badge — ACEPTADO
+    const badgeX = centreX + (centreW - 80) / 2
+    doc.rect(badgeX, footerY + 64, 80, 14).fill('#D1FAE5')
+    doc.fontSize(7).font('Helvetica-Bold').fillColor('#065F46')
+       .text('✓ ACEPTADO POR SUNAT', badgeX, footerY + 68, { width: 80, align: 'center' })
+
+    // ── Right: OSE branding ───────────────────────────────────────────────────
+    const brandX = RIGHT - 95
+
+    doc.rect(brandX, footerY, 95, qrSize + 16).fillAndStroke('#F8FAFC', COLOR_BORDER)
+
+    doc.fontSize(6).font('Helvetica').fillColor(COLOR_GRAY)
+       .text('PROCESADO POR', brandX + 4, footerY + 6, { width: 87, align: 'center' })
+
+    doc.fontSize(11).font('Helvetica-Bold').fillColor(COLOR_PRIMARY)
+       .text('nubefact', brandX + 4, footerY + 16, { width: 87, align: 'center' })
+
+    doc.fontSize(6).font('Helvetica').fillColor(COLOR_GRAY)
+       .text('OSE autorizado por SUNAT', brandX + 4, footerY + 32, { width: 87, align: 'center' })
+       .text('R.S. N° 033-2019/SUNAT', brandX + 4, footerY + 41, { width: 87, align: 'center' })
+
+    doc.moveTo(brandX + 8, footerY + 54).lineTo(RIGHT - 8, footerY + 54)
+       .strokeColor(COLOR_BORDER).lineWidth(0.5).stroke()
+
+    doc.fontSize(6).font('Helvetica').fillColor(COLOR_GRAY)
+       .text('Emisor electrónico:', brandX + 4, footerY + 58, { width: 87, align: 'center' })
+       .text(data.tenant.name, brandX + 4, footerY + 67, { width: 87, align: 'center' })
+       .text(`RUC ${data.tenant.ruc}`, brandX + 4, footerY + 76, { width: 87, align: 'center' })
   }
 
   // ── Helper: draw text in a fixed-width cell ──────────────────────────────────

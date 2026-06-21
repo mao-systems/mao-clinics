@@ -186,6 +186,7 @@ async function main() {
   await prisma.appointment.deleteMany()
   await prisma.doctorSchedule.deleteMany()
   await prisma.serviceCatalog.deleteMany()
+  await prisma.specialty.deleteMany()
   await prisma.doctor.deleteMany()
   await prisma.patient.deleteMany()
   await prisma.user.deleteMany()
@@ -355,6 +356,27 @@ async function main() {
       // Imágenes
       { tenant_id: DEMO_TENANT_ID, name: 'Ecografía abdominal',      price: 80.00,  category: 'Imágenes',      sort_order: 30 },
       { tenant_id: DEMO_TENANT_ID, name: 'Radiografía (1 placa)',    price: 50.00,  category: 'Imágenes',      sort_order: 31 },
+    ],
+  })
+
+  // ── Specialties ───────────────────────────────────────────────────────────
+  await prisma.specialty.createMany({
+    data: [
+      { tenant_id: DEMO_TENANT_ID, name: 'Medicina General',              sort_order: 1  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Ginecología y Obstetricia',     sort_order: 2  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Pediatría',                     sort_order: 3  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Traumatología y Ortopedia',     sort_order: 4  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Cardiología',                   sort_order: 5  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Dermatología',                  sort_order: 6  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Gastroenterología',             sort_order: 7  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Oftalmología',                  sort_order: 8  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Odontología',                   sort_order: 9  },
+      { tenant_id: DEMO_TENANT_ID, name: 'Neurología',                    sort_order: 10 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Psiquiatría',                   sort_order: 11 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Endocrinología',                sort_order: 12 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Urología',                      sort_order: 13 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Otorrinolaringología',           sort_order: 14 },
+      { tenant_id: DEMO_TENANT_ID, name: 'Medicina Interna',              sort_order: 15 },
     ],
   })
 
