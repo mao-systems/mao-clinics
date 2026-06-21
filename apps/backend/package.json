@@ -12,6 +12,8 @@
     "db:reset": "prisma migrate reset --force && ts-node -r tsconfig-paths/register prisma/seed.ts",
     "demo:reset": "ts-node -r tsconfig-paths/register src/scripts/reset-demo.ts",
     "demo:reset:local": "NODE_ENV=development ts-node -r tsconfig-paths/register src/scripts/reset-demo.ts",
+    "demo:reset:full": "ts-node -r tsconfig-paths/register src/scripts/reset-demo.ts --full",
+    "demo:reset:full:local": "NODE_ENV=development ts-node -r tsconfig-paths/register src/scripts/reset-demo.ts --full",
     "seed:platform": "ts-node -r tsconfig-paths/register prisma/seed-platform.ts",
     "seed:demo-tenants": "ts-node -r tsconfig-paths/register prisma/seed-demo-tenants.ts",
     "typecheck": "tsc --noEmit",

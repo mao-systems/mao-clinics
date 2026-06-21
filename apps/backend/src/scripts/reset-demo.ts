@@ -1,11 +1,23 @@
 /**
  * Demo reset script — MAO Systems
  *
- * Wipes all data and re-seeds the demo tenant, then rebases all appointment
- * dates to TODAY so the calendar always looks current during client demos.
+ * Two modes:
  *
- * Usage (local):  pnpm --filter backend demo:reset:local
- * Usage (EC2):    ~/reset-demo.sh   (which calls demo:reset)
+ *   Normal (default) — resets ONLY Clínica San Rafael (tenant 1).
+ *     Does NOT touch the SuperAdmin or the 4 reference tenants.
+ *     Use this before every sales demo.
+ *
+ *   Full (--full flag) — wipes EVERYTHING and recreates from scratch:
+ *     seed.ts → seed-platform.ts → seed-demo-tenants.ts
+ *     Use this to recover a broken environment or bootstrap a new one.
+ *
+ * Usage (local):
+ *   pnpm demo:reset:local            ← normal mode
+ *   pnpm demo:reset:local -- --full  ← full mode
+ *
+ * Usage (EC2):
+ *   ~/reset-demo.sh                  ← normal mode
+ *   ~/reset-demo.sh --full           ← full mode
  */
 
 import { PrismaClient, AppointmentStatus } from '@prisma/client'
@@ -18,6 +30,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 const prisma = new PrismaClient()
 const LIMA_TZ = 'America/Lima'
+const IS_FULL = process.argv.includes('--full')
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -25,49 +38,42 @@ function limaHour(base: Date, h: number, m: number): Date {
   return fromZonedTime(setMinutes(setHours(base, h), m), LIMA_TZ)
 }
 
-function confirm(question: string): Promise<boolean> {
+function ask(question: string): Promise<string> {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
   return new Promise(resolve => {
-    rl.question(question, answer => {
-      rl.close()
-      resolve(answer.toLowerCase() === 's' || answer.toLowerCase() === 'si' || answer.toLowerCase() === 'sí')
-    })
+    rl.question(question, answer => { rl.close(); resolve(answer.trim()) })
   })
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
+async function confirm(question: string): Promise<boolean> {
+  const answer = await ask(question)
+  return ['s', 'si', 'sí', 'y', 'yes'].includes(answer.toLowerCase())
+}
 
-async function resetDemo(): Promise<void> {
+function runScript(scriptPath: string, backendRoot: string, label: string): void {
+  console.log(`🌱 Running ${label}...`)
+  execSync(
+    `npx ts-node -r tsconfig-paths/register ${scriptPath}`,
+    { stdio: 'inherit', cwd: backendRoot },
+  )
   console.log('')
-  console.log('🔄 MAO Systems — Demo Reset')
-  console.log('================================')
-  console.log('⚠️  This will DELETE all demo data and restore from seed.')
+}
+
+// ─── Full reset ───────────────────────────────────────────────────────────────
+
+async function fullReset(backendRoot: string): Promise<void> {
+  console.log('⚠️  MODO COMPLETO — borrará TODO incluyendo SuperAdmin y todos los tenants.')
   console.log('')
 
-  // Safety check — confirm the DATABASE_URL looks like a known database
-  const dbUrl = process.env.DATABASE_URL ?? ''
-  if (!dbUrl.includes('mao_dev') && !dbUrl.includes('mao_prod') && !dbUrl.includes('localhost')) {
-    console.error('❌ DATABASE_URL does not look like a MAO database. Aborting.')
-    console.error(`   Current DATABASE_URL: ${dbUrl.replace(/:\/\/[^@]+@/, '://<credentials>@')}`)
-    process.exit(1)
-  }
-
-  const dbLabel = dbUrl.includes('mao_prod') ? 'mao_prod (PRODUCTION)' : 'mao_dev (local)'
-  console.log(`   Database: ${dbLabel}`)
-  console.log('')
-
-  const ok = await confirm('¿Estás seguro? Esto borrará TODOS los datos de la demo. (s/N): ')
+  const ok = await confirm('¿Estás seguro? Escribe "si" para continuar: ')
   if (!ok) {
-    console.log('')
-    console.log('Cancelado. No se realizaron cambios.')
+    console.log('\nCancelado. No se realizaron cambios.')
     return
   }
-
   console.log('')
 
-  // ── 1. Delete all data in reverse dependency order ────────────────────────
+  // 1. Wipe all tables in reverse dependency order (including platform_admins)
   console.log('🗑️  Clearing all data...')
-
   await prisma.reminder.deleteMany()
   await prisma.invoiceItem.deleteMany()
   await prisma.invoice.deleteMany()
@@ -82,30 +88,80 @@ async function resetDemo(): Promise<void> {
   await prisma.patient.deleteMany()
   await prisma.user.deleteMany()
   await prisma.tenant.deleteMany()
+  await prisma.platformAdmin.deleteMany()
+  console.log('✅ All data cleared.')
+  console.log('')
 
+  // 2. seed.ts — Clínica San Rafael + rebased appointments
+  runScript(path.join(backendRoot, 'prisma', 'seed.ts'), backendRoot, 'seed.ts (San Rafael)')
+
+  // 3. seed-platform.ts — SuperAdmin account
+  runScript(path.join(backendRoot, 'prisma', 'seed-platform.ts'), backendRoot, 'seed-platform.ts (SuperAdmin)')
+
+  // 4. seed-demo-tenants.ts — 4 reference tenants
+  runScript(path.join(backendRoot, 'prisma', 'seed-demo-tenants.ts'), backendRoot, 'seed-demo-tenants.ts (tenants 2–5)')
+
+  // 5. Rebase San Rafael appointments to TODAY
+  await rebaseAppointments()
+
+  // 6. Summary
+  await printSummary(true)
+}
+
+// ─── Normal reset (San Rafael only) ──────────────────────────────────────────
+
+async function normalReset(backendRoot: string): Promise<void> {
+  console.log('⚠️  Borrará todos los datos de Clínica San Rafael y restaurará desde seed.')
+  console.log('   El SuperAdmin y los tenants 2–5 NO se tocan.')
+  console.log('')
+
+  const ok = await confirm('¿Estás seguro? Escribe "si" para continuar: ')
+  if (!ok) {
+    console.log('\nCancelado. No se realizaron cambios.')
+    return
+  }
+  console.log('')
+
+  // 1. Wipe all tenant data (no platform_admins)
+  console.log('🗑️  Clearing all data...')
+  await prisma.reminder.deleteMany()
+  await prisma.invoiceItem.deleteMany()
+  await prisma.invoice.deleteMany()
+  await prisma.prescriptionItem.deleteMany()
+  await prisma.prescription.deleteMany()
+  await prisma.consultation.deleteMany()
+  await prisma.appointment.deleteMany()
+  await prisma.doctorSchedule.deleteMany()
+  await prisma.serviceCatalog.deleteMany()
+  await prisma.specialty.deleteMany()
+  await prisma.doctor.deleteMany()
+  await prisma.patient.deleteMany()
+  await prisma.user.deleteMany()
+  await prisma.tenant.deleteMany()
   console.log('✅ Data cleared.')
   console.log('')
 
-  // ── 2. Re-run seed ────────────────────────────────────────────────────────
-  console.log('🌱 Running seed...')
+  // 2. seed.ts — Clínica San Rafael
+  runScript(path.join(backendRoot, 'prisma', 'seed.ts'), backendRoot, 'seed.ts (San Rafael)')
 
-  // Spawn ts-node on seed.ts in a child process — same as `pnpm db:seed`.
-  // This avoids a rootDir violation (prisma/ is outside src/) while keeping
-  // the seed file as the single source of truth.
-  const backendRoot = path.resolve(__dirname, '..', '..')
-  const seedPath    = path.join(backendRoot, 'prisma', 'seed.ts')
-  execSync(
-    `npx ts-node -r tsconfig-paths/register ${seedPath}`,
-    { stdio: 'inherit', cwd: backendRoot },
-  )
+  // 3. Rebase appointments to TODAY
+  await rebaseAppointments()
 
-  console.log('')
+  // 4. Summary
+  await printSummary(false)
+}
 
-  // ── 3. Rebase appointment dates to TODAY ──────────────────────────────────
+// ─── Rebase appointments to TODAY ─────────────────────────────────────────────
+
+async function rebaseAppointments(): Promise<void> {
   console.log('📅 Updating appointment dates to current week...')
 
+  // Only rebase San Rafael appointments (seed.ts only created those)
   const appointments = await prisma.appointment.findMany({
-    where: { deleted_at: null },
+    where: {
+      deleted_at: null,
+      tenant: { subdomain: 'sanrafael' },
+    },
     orderBy: { scheduled_at: 'asc' },
   })
 
@@ -115,39 +171,37 @@ async function resetDemo(): Promise<void> {
   //   [0–1]   2 confirmed today (visible in "Citas de hoy" KPI)
   //   [2–4]   3 appointments tomorrow (1 confirmed, 2 pending)
   //   [5–29]  25 future appointments spread over days 2–13
-  //   [30+]   remainder become past — completed or cancelled
+  //   [30+]   past — completed or cancelled
 
-  // Today — 2 confirmed slots, reminder already sent (same-day)
-  const todayAppts = appointments.slice(0, 2)
+  const rebasedScheduledAt: { id: string; scheduled_at: Date }[] = []
+
+  // Today
   const todayHours: [number, number][] = [[9, 0], [11, 0]]
-  const rebasedScheduledAt: { id: string; scheduled_at: Date; reminder_sent: boolean }[] = []
-
-  for (let i = 0; i < todayAppts.length; i++) {
+  for (let i = 0; i < 2 && i < appointments.length; i++) {
     const scheduledAt = limaHour(today, todayHours[i][0], todayHours[i][1])
     await prisma.appointment.update({
-      where: { id: todayAppts[i].id },
+      where: { id: appointments[i].id },
       data: { scheduled_at: scheduledAt, status: AppointmentStatus.confirmed, reminder_sent: true },
     })
-    rebasedScheduledAt.push({ id: todayAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
+    rebasedScheduledAt.push({ id: appointments[i].id, scheduled_at: scheduledAt })
   }
 
-  // Tomorrow — 3 slots, reminder sent today (24h before)
-  const tomorrowAppts = appointments.slice(2, 5)
+  // Tomorrow
   const tomorrowHours: [number, number][] = [[8, 30], [10, 30], [14, 0]]
-  for (let i = 0; i < tomorrowAppts.length; i++) {
+  for (let i = 0; i < 3 && (i + 2) < appointments.length; i++) {
     const scheduledAt = limaHour(addDays(today, 1), tomorrowHours[i][0], tomorrowHours[i][1])
     await prisma.appointment.update({
-      where: { id: tomorrowAppts[i].id },
+      where: { id: appointments[i + 2].id },
       data: {
         scheduled_at: scheduledAt,
         status: i === 0 ? AppointmentStatus.confirmed : AppointmentStatus.pending,
         reminder_sent: true,
       },
     })
-    rebasedScheduledAt.push({ id: tomorrowAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
+    rebasedScheduledAt.push({ id: appointments[i + 2].id, scheduled_at: scheduledAt })
   }
 
-  // Future — days 2–13, reminder not yet sent
+  // Future — days 2–13
   const futureAppts = appointments.slice(5, 30)
   for (let i = 0; i < futureAppts.length; i++) {
     const daysAhead   = Math.floor(i / 3) + 2
@@ -163,14 +217,13 @@ async function resetDemo(): Promise<void> {
     })
   }
 
-  // Past — one per day going backwards; every 5th cancelled, rest completed
-  // Completed past appointments had reminders sent before their appointment (~70%)
+  // Past
   const pastAppts = appointments.slice(30)
   for (let i = 0; i < pastAppts.length; i++) {
-    const daysBack    = -(i + 1)
-    const hour        = 9 + (i % 5) * 2
-    const isCancelled = i % 5 === 4
-    const reminderSent = !isCancelled && i % 3 !== 2   // ~66% of completed have reminder
+    const daysBack     = -(i + 1)
+    const hour         = 9 + (i % 5) * 2
+    const isCancelled  = i % 5 === 4
+    const reminderSent = !isCancelled && i % 3 !== 2
     const scheduledAt  = limaHour(addDays(today, daysBack), hour, 0)
     await prisma.appointment.update({
       where: { id: pastAppts[i].id },
@@ -180,10 +233,10 @@ async function resetDemo(): Promise<void> {
         reminder_sent: reminderSent,
       },
     })
-    if (reminderSent) rebasedScheduledAt.push({ id: pastAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
+    if (reminderSent) rebasedScheduledAt.push({ id: pastAppts[i].id, scheduled_at: scheduledAt })
   }
 
-  // Recreate Reminder records with correct sent_at based on rebased scheduled_at
+  // Recreate Reminder records with correct sent_at
   await prisma.reminder.deleteMany()
   const tenant = await prisma.tenant.findFirst({ where: { subdomain: 'sanrafael' } })
   if (tenant) {
@@ -202,11 +255,17 @@ async function resetDemo(): Promise<void> {
 
   console.log('✅ Appointment dates updated.')
   console.log('')
+}
 
-  // ── 4. Summary ────────────────────────────────────────────────────────────
-  const [tenants, users, doctors, patients, appts, consultations, invoices, services] =
+// ─── Summary ──────────────────────────────────────────────────────────────────
+
+async function printSummary(full: boolean): Promise<void> {
+  const today = startOfDay(new Date())
+
+  const [tenants, platformAdmins, users, doctors, patients, appts, consultations, invoices, services] =
     await Promise.all([
       prisma.tenant.count(),
+      prisma.platformAdmin.count(),
       prisma.user.count(),
       prisma.doctor.count(),
       prisma.patient.count(),
@@ -216,31 +275,76 @@ async function resetDemo(): Promise<void> {
       prisma.serviceCatalog.count(),
     ])
 
-  const todayCount  = await prisma.appointment.count({
-    where: { scheduled_at: { gte: today, lt: addDays(today, 1) }, deleted_at: null },
+  const todayCount = await prisma.appointment.count({
+    where: {
+      scheduled_at: { gte: today, lt: addDays(today, 1) },
+      deleted_at: null,
+      tenant: { subdomain: 'sanrafael' },
+    },
   })
 
   console.log('================================')
-  console.log('✅ Demo reset completed!')
+  console.log(`✅ Demo reset ${full ? 'completo' : ''} completado!`)
   console.log('')
-  console.log(`   Tenant:        ${tenants} (Clínica San Rafael)`)
-  console.log(`   Users:         ${users} (1 admin, 3 médicos, 1 recepcionista)`)
+  if (full) {
+    console.log(`   SuperAdmins:   ${platformAdmins} (superadmin@maosystems.io)`)
+    console.log(`   Tenants:       ${tenants} (1 principal + 4 referencia)`)
+  } else {
+    console.log(`   Tenants:       ${tenants}`)
+  }
+  console.log(`   Users:         ${users}`)
   console.log(`   Doctors:       ${doctors}`)
-  console.log(`   Patients:      ${patients}`)
-  console.log(`   Appointments:  ${appts} (${todayCount} hoy, 3 mañana, resto próximos 14 días)`)
+  console.log(`   Patients:      ${patients} (San Rafael)`)
+  console.log(`   Appointments:  ${appts} total (${todayCount} hoy en San Rafael)`)
   console.log(`   Consultations: ${consultations}`)
   console.log(`   Invoices:      ${invoices}`)
   console.log(`   Services:      ${services}`)
   console.log('')
-  console.log('🔑 Demo credentials:')
-  console.log('   URL:      https://demo.maosystems.io')
-  console.log('   Email:    admin@sanrafael.maosystems.io')
-  console.log('   Password: Demo2026!')
+  console.log('🔑 Credenciales principales:')
+  console.log('   Tenant:   admin@sanrafael.maosystems.io / Demo2026!')
+  if (full) {
+    console.log('   Platform: superadmin@maosystems.io / SuperAdmin2026!')
+    console.log('   URL:      https://demo.maosystems.io')
+    console.log('   Admin:    https://demo.maosystems.io/platform/login')
+  } else {
+    console.log('   URL:      https://demo.maosystems.io')
+  }
   console.log('================================')
   console.log('')
 }
 
-resetDemo()
+// ─── Entry point ──────────────────────────────────────────────────────────────
+
+async function main(): Promise<void> {
+  const dbUrl = process.env.DATABASE_URL ?? ''
+  if (!dbUrl.includes('mao_dev') && !dbUrl.includes('mao_prod') && !dbUrl.includes('localhost')) {
+    console.error('❌ DATABASE_URL no parece una base de datos MAO. Abortando.')
+    console.error(`   DATABASE_URL: ${dbUrl.replace(/:\/\/[^@]+@/, '://<credentials>@')}`)
+    process.exit(1)
+  }
+
+  const dbLabel = dbUrl.includes('mao_prod') ? 'mao_prod (PRODUCCIÓN)' : 'mao_dev (local)'
+  const backendRoot = path.resolve(__dirname, '..', '..')
+
+  console.log('')
+  console.log('🔄 Clinova — Demo Reset')
+  console.log('================================')
+  console.log(`   Base de datos: ${dbLabel}`)
+  console.log('')
+
+  if (IS_FULL) {
+    console.log('   Modo: COMPLETO (--full)')
+    console.log('')
+    await fullReset(backendRoot)
+  } else {
+    console.log('   Modo: Solo San Rafael (normal)')
+    console.log('   Tip: usa --full para recrear todo desde cero.')
+    console.log('')
+    await normalReset(backendRoot)
+  }
+}
+
+main()
   .catch(err => {
     console.error('❌ Reset failed:', err)
     process.exit(1)
