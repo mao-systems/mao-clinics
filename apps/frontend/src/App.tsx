@@ -15,12 +15,15 @@ import BillingPage from '@/features/billing/pages/BillingPage'
 import PlatformLoginPage from '@/pages/platform/PlatformLoginPage'
 import PlatformDashboardPage from '@/pages/platform/PlatformDashboardPage'
 import PlatformTenantsPage from '@/pages/platform/PlatformTenantsPage'
+import PricingPage from '@/pages/PricingPage'
 
 export default function App() {
   return (
     <Routes>
       {/* Public */}
       <Route path="/login" element={<LoginPage />} />
+      {/* Hidden pricing page — standalone, no auth required */}
+      <Route path="/precios" element={<PricingPage />} />
 
       {/* Protected — all routes inside here require authentication */}
       <Route element={<ProtectedRoute />}>

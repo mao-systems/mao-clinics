@@ -232,7 +232,7 @@ async function seedTenant1() {
     where: { subdomain: 'sanrafael' },
     data: {
       plan: 'clinica',
-      plan_price_soles: 1799,
+      plan_price_soles: 350,
       features: {
         whatsapp_reminders: true,
         hce: true,
@@ -261,10 +261,10 @@ async function seedTenant2(passwordHash: string, today: Date) {
 
   const tenant = await prisma.tenant.upsert({
     where: { subdomain: 'vidaplena' },
-    update: { plan_price_soles: 999, features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
+    update: { plan_price_soles: 230, features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
     create: {
       name: 'Policlínico Vida Plena', ruc: '20234567890', subdomain: 'vidaplena',
-      plan: 'profesional', plan_price_soles: 999,
+      plan: 'profesional', plan_price_soles: 230,
       theme_config: theme,
       features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true },
     },
@@ -377,10 +377,10 @@ async function seedTenant3(passwordHash: string, today: Date) {
 
   const tenant = await prisma.tenant.upsert({
     where: { subdomain: 'drmendoza' },
-    update: { plan_price_soles: 599, features: { whatsapp_reminders: false, hce: false, billing: false, dashboard_kpis: false, custom_theme: false } },
+    update: { plan_price_soles: 100, features: { whatsapp_reminders: false, hce: false, billing: false, dashboard_kpis: false, custom_theme: false } },
     create: {
       name: 'Consultorio Dr. Mendoza', ruc: '10345678901', subdomain: 'drmendoza',
-      plan: 'starter', plan_price_soles: 599,
+      plan: 'starter', plan_price_soles: 100,
       theme_config: theme,
       features: { whatsapp_reminders: false, hce: false, billing: false, dashboard_kpis: false, custom_theme: false },
     },
@@ -464,10 +464,10 @@ async function seedTenant4(passwordHash: string, today: Date) {
 
   const tenant = await prisma.tenant.upsert({
     where: { subdomain: 'bienestar' },
-    update: { plan_price_soles: 999, features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
+    update: { plan_price_soles: 230, features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
     create: {
       name: 'Centro Médico Bienestar', ruc: '20456789012', subdomain: 'bienestar',
-      plan: 'profesional', plan_price_soles: 999,
+      plan: 'profesional', plan_price_soles: 230,
       theme_config: theme,
       features: { whatsapp_reminders: true, hce: true, billing: false, dashboard_kpis: true, custom_theme: true },
     },
@@ -578,10 +578,10 @@ async function seedTenant5(passwordHash: string, today: Date) {
 
   const tenant = await prisma.tenant.upsert({
     where: { subdomain: 'santalucia' },
-    update: { plan_price_soles: 1799, features: { whatsapp_reminders: true, hce: true, billing: true, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
+    update: { plan_price_soles: 350, features: { whatsapp_reminders: true, hce: true, billing: true, dashboard_kpis: true, custom_theme: true }, theme_config: theme },
     create: {
       name: 'Clínica Santa Lucía', ruc: '20567890123', subdomain: 'santalucia',
-      plan: 'clinica', plan_price_soles: 1799,
+      plan: 'clinica', plan_price_soles: 350,
       theme_config: theme,
       features: { whatsapp_reminders: true, hce: true, billing: true, dashboard_kpis: true, custom_theme: true },
     },

@@ -198,7 +198,8 @@ async function main() {
       name: 'Clínica San Rafael',
       ruc: '20123456789',
       subdomain: 'sanrafael',
-      plan: 'starter',
+      plan: 'clinica',
+      plan_price_soles: 350,
       theme_config: {
         primary: '#1A5F9E',
         primary_light: '#E6F1FB',
@@ -211,9 +212,14 @@ async function main() {
         border_radius: '8px',
         logo_url: null,
       },
-      // empty = only base modules (auth, patients, appointments, records, billing, dashboard, admin)
-      // To enable premium modules: features: { "telemedicine": true, "lab_integration": true }
-      features: {},
+      // All modules enabled — this is the primary demo tenant, must show everything
+      features: {
+        whatsapp_reminders: true,
+        hce: true,
+        billing: true,
+        dashboard_kpis: true,
+        custom_theme: true,
+      },
     },
   })
 
