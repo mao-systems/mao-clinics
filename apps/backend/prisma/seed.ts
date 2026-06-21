@@ -400,65 +400,97 @@ async function main() {
   today.setHours(0, 0, 0, 0)
 
   type ApptRow = {
-    id:           string
-    tenant_id:    string
-    patient_id:   string
-    doctor_id:    string
-    scheduled_at: Date
-    duration_min: number
-    status:       AppointmentStatus
-    reason:       string
+    id:            string
+    tenant_id:     string
+    patient_id:    string
+    doctor_id:     string
+    scheduled_at:  Date
+    duration_min:  number
+    status:        AppointmentStatus
+    reason:        string
+    reminder_sent: boolean
   }
 
-  const appointmentsData: ApptRow[] = []
-  const completedApptIds: string[]  = []
+  const appointmentsData: ApptRow[]                            = []
+  const completedApptIds: string[]                             = []
+  const reminderAppts:    { id: string; scheduled_at: Date }[] = []
 
-  function buildAppt(daysOffset: number, status: AppointmentStatus, doctorIdx: number): string {
-    const id  = uuidv4()
-    const doc = DOCTOR_CONFIGS[doctorIdx % 3]
+  function buildAppt(
+    daysOffset:   number,
+    status:       AppointmentStatus,
+    doctorIdx:    number,
+    reminderSent: boolean = false,
+  ): string {
+    const id          = uuidv4()
+    const doc         = DOCTOR_CONFIGS[doctorIdx % 3]
+    const scheduledAt = atHour(addDays(today, daysOffset), pick(BUSINESS_HOURS), pick([0, 15, 30, 45]))
     appointmentsData.push({
       id,
-      tenant_id:    DEMO_TENANT_ID,
-      patient_id:   pick(patientIds),
-      doctor_id:    doc.id,
-      scheduled_at: atHour(addDays(today, daysOffset), pick(BUSINESS_HOURS), pick([0, 15, 30, 45])),
-      duration_min: doc.duration,
+      tenant_id:     DEMO_TENANT_ID,
+      patient_id:    pick(patientIds),
+      doctor_id:     doc.id,
+      scheduled_at:  scheduledAt,
+      duration_min:  doc.duration,
       status,
-      reason:       pick(REASONS),
+      reason:        pick(REASONS),
+      reminder_sent: reminderSent,
     })
+    if (reminderSent) reminderAppts.push({ id, scheduled_at: scheduledAt })
     return id
   }
 
   // 20 past (1–30 days ago): 80 % completed · 20 % cancelled
+  // Completed past appointments had reminders sent before the appointment (~70%)
   for (let i = 0; i < 20; i++) {
-    const isCompleted = Math.random() < 0.8
+    const isCompleted   = Math.random() < 0.8
+    const reminderSent  = isCompleted && Math.random() < 0.7
     const id = buildAppt(
       -randInt(1, 30),
       isCompleted ? AppointmentStatus.completed : AppointmentStatus.cancelled,
       i,
+      reminderSent,
     )
     if (isCompleted) completedApptIds.push(id)
   }
 
-  // 10 today / tomorrow: mix of confirmed and pending
+  // 10 today / tomorrow: all have reminder_sent — 24h rule fires for same-day and next-day
   for (let i = 0; i < 10; i++) {
     buildAppt(
       i < 5 ? 0 : 1,
       Math.random() < 0.6 ? AppointmentStatus.confirmed : AppointmentStatus.pending,
       i,
+      true,
     )
   }
 
-  // 30 future (1–14 days): mix of pending and confirmed
+  // 30 future (2–14 days): reminder not yet sent
   for (let i = 0; i < 30; i++) {
     buildAppt(
-      randInt(1, 14),
+      randInt(2, 14),
       Math.random() < 0.4 ? AppointmentStatus.confirmed : AppointmentStatus.pending,
       i,
+      false,
     )
   }
 
   await prisma.appointment.createMany({ data: appointmentsData })
+
+  // ── WhatsApp Reminder records ──────────────────────────────────────────────
+  // One Reminder row per appointment with reminder_sent = true.
+  // sent_at = 24 h before the scheduled appointment (simulates the auto-job).
+  if (reminderAppts.length > 0) {
+    await prisma.reminder.createMany({
+      data: reminderAppts.map(({ id: apptId, scheduled_at }) => ({
+        id:             uuidv4(),
+        tenant_id:      DEMO_TENANT_ID,
+        appointment_id: apptId,
+        channel:        'whatsapp',
+        status:         'sent',
+        message:        'Recordatorio: tienes una cita en Clínica San Rafael mañana a la hora indicada. Ante cualquier consulta, escríbenos.',
+        sent_at:        new Date(scheduled_at.getTime() - 24 * 60 * 60 * 1000),
+      })),
+    })
+  }
 
   // ── Consultations (one per completed appointment) ─────────────────────────
   type ConsultRow = {

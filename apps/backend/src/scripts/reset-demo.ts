@@ -14,6 +14,7 @@ import { fromZonedTime } from 'date-fns-tz'
 import readline from 'readline'
 import { execSync } from 'child_process'
 import path from 'path'
+import { v4 as uuidv4 } from 'uuid'
 
 const prisma = new PrismaClient()
 const LIMA_TZ = 'America/Lima'
@@ -115,57 +116,86 @@ async function resetDemo(): Promise<void> {
   //   [5–29]  25 future appointments spread over days 2–13
   //   [30+]   remainder become past — completed or cancelled
 
-  // Today — 2 confirmed slots
+  // Today — 2 confirmed slots, reminder already sent (same-day)
   const todayAppts = appointments.slice(0, 2)
   const todayHours: [number, number][] = [[9, 0], [11, 0]]
+  const rebasedScheduledAt: { id: string; scheduled_at: Date; reminder_sent: boolean }[] = []
+
   for (let i = 0; i < todayAppts.length; i++) {
+    const scheduledAt = limaHour(today, todayHours[i][0], todayHours[i][1])
     await prisma.appointment.update({
       where: { id: todayAppts[i].id },
-      data: {
-        scheduled_at: limaHour(today, todayHours[i][0], todayHours[i][1]),
-        status: AppointmentStatus.confirmed,
-      },
+      data: { scheduled_at: scheduledAt, status: AppointmentStatus.confirmed, reminder_sent: true },
     })
+    rebasedScheduledAt.push({ id: todayAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
   }
 
-  // Tomorrow — 3 slots
+  // Tomorrow — 3 slots, reminder sent today (24h before)
   const tomorrowAppts = appointments.slice(2, 5)
   const tomorrowHours: [number, number][] = [[8, 30], [10, 30], [14, 0]]
   for (let i = 0; i < tomorrowAppts.length; i++) {
+    const scheduledAt = limaHour(addDays(today, 1), tomorrowHours[i][0], tomorrowHours[i][1])
     await prisma.appointment.update({
       where: { id: tomorrowAppts[i].id },
       data: {
-        scheduled_at: limaHour(addDays(today, 1), tomorrowHours[i][0], tomorrowHours[i][1]),
+        scheduled_at: scheduledAt,
         status: i === 0 ? AppointmentStatus.confirmed : AppointmentStatus.pending,
+        reminder_sent: true,
       },
     })
+    rebasedScheduledAt.push({ id: tomorrowAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
   }
 
-  // Future — days 2–13, spread 3 appointments per day-bucket
+  // Future — days 2–13, reminder not yet sent
   const futureAppts = appointments.slice(5, 30)
   for (let i = 0; i < futureAppts.length; i++) {
-    const daysAhead = Math.floor(i / 3) + 2   // 2, 2, 2, 3, 3, 3, … up to 10
-    const hour      = 8 + (i % 6) * 2         // 8, 10, 12, 14, 16, 18 (Lima clinic hours)
+    const daysAhead   = Math.floor(i / 3) + 2
+    const hour        = 8 + (i % 6) * 2
+    const scheduledAt = limaHour(addDays(today, daysAhead), hour, 0)
     await prisma.appointment.update({
       where: { id: futureAppts[i].id },
       data: {
-        scheduled_at: limaHour(addDays(today, daysAhead), hour, 0),
+        scheduled_at: scheduledAt,
         status: i % 3 === 0 ? AppointmentStatus.confirmed : AppointmentStatus.pending,
+        reminder_sent: false,
       },
     })
   }
 
-  // Past — one per day going backwards; every 5th is cancelled, rest completed
+  // Past — one per day going backwards; every 5th cancelled, rest completed
+  // Completed past appointments had reminders sent before their appointment (~70%)
   const pastAppts = appointments.slice(30)
   for (let i = 0; i < pastAppts.length; i++) {
-    const daysBack = -(i + 1)
-    const hour     = 9 + (i % 5) * 2
+    const daysBack    = -(i + 1)
+    const hour        = 9 + (i % 5) * 2
+    const isCancelled = i % 5 === 4
+    const reminderSent = !isCancelled && i % 3 !== 2   // ~66% of completed have reminder
+    const scheduledAt  = limaHour(addDays(today, daysBack), hour, 0)
     await prisma.appointment.update({
       where: { id: pastAppts[i].id },
       data: {
-        scheduled_at: limaHour(addDays(today, daysBack), hour, 0),
-        status: i % 5 === 4 ? AppointmentStatus.cancelled : AppointmentStatus.completed,
+        scheduled_at: scheduledAt,
+        status: isCancelled ? AppointmentStatus.cancelled : AppointmentStatus.completed,
+        reminder_sent: reminderSent,
       },
+    })
+    if (reminderSent) rebasedScheduledAt.push({ id: pastAppts[i].id, scheduled_at: scheduledAt, reminder_sent: true })
+  }
+
+  // Recreate Reminder records with correct sent_at based on rebased scheduled_at
+  await prisma.reminder.deleteMany()
+  const tenant = await prisma.tenant.findFirst({ where: { subdomain: 'sanrafael' } })
+  if (tenant) {
+    await prisma.reminder.createMany({
+      data: rebasedScheduledAt.map(({ id: apptId, scheduled_at }) => ({
+        id:             uuidv4(),
+        tenant_id:      tenant.id,
+        appointment_id: apptId,
+        channel:        'whatsapp',
+        status:         'sent',
+        message:        'Recordatorio: tienes una cita en Clínica San Rafael mañana a la hora indicada. Ante cualquier consulta, escríbenos.',
+        sent_at:        new Date(scheduled_at.getTime() - 24 * 60 * 60 * 1000),
+      })),
     })
   }
 
