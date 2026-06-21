@@ -37,7 +37,7 @@ const envSchema = z.object({
   SMTP_SECURE: z.string().optional(),  // 'true' to use TLS on SMTP_PORT
   SMTP_USER:   z.string().optional(),
   SMTP_PASS:   z.string().optional(),
-  SMTP_FROM:   z.string().optional(),  // e.g. "MAO Clinics <no-reply@maosystems.io>"
+  SMTP_FROM:   z.string().optional(),  // e.g. "Clinova <no-reply@maosystems.io>"
 })
 
 const parsed = envSchema.safeParse(process.env)

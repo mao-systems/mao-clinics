@@ -1,4 +1,4 @@
-# Guía de presentación de demo — MAO Clinics
+# Guía de presentación de demo — Clinova
 
 > Documento interno de MAO Systems.  
 > Demo genérica de 15–20 min. Sin investigación previa del cliente.
@@ -39,16 +39,16 @@ pnpm demo:reset
 
 ### 1.2 Credenciales de demo
 
-| Rol            | Email                    | Contraseña      |
-|----------------|--------------------------|-----------------|
-| Admin completo | admin@sanrafael.com      | Demo2026!       |
-| SuperAdmin     | superadmin@maosystems.io | SuperAdmin2026! |
+| Rol            | Email                              | Contraseña      |
+|----------------|------------------------------------|-----------------|
+| Admin completo | admin@sanrafael.maosystems.io      | Demo2026!       |
+| SuperAdmin     | superadmin@maosystems.io           | SuperAdmin2026! |
 
 ### 1.3 Setup técnico (30 min antes)
 
 - [ ] Reset ejecutado (SSH → `pnpm demo:reset`)
 - [ ] Login verificado en https://demo.maosystems.io/login
-- [ ] Tabs pre-abiertas en este orden: login · dashboard · agenda · consulta · /precios
+- [ ] Tabs pre-abiertas en este orden: login · dashboard · agenda · consulta · factura · /precios
 - [ ] Modo No molestar activado
 - [ ] Cámara, micrófono y pantalla compartida testeados
 - [ ] Hotspot de respaldo listo
@@ -69,13 +69,18 @@ La página `/precios` hace el trabajo de cierre — es más interactiva que cual
 ┌─────────────────────────────────────────────────────────┐
 │  Intro verbal                      ~1 min               │
 ├─────────────────────────────────────────────────────────┤
-│  Live demo (4 módulos en sprint)   ~10-12 min           │
+│  Login + branding                  30 seg               │
+│  Dashboard                         30–60 seg            │
+│  Agenda de citas                   2–3 min              │
+│  Historia Clínica                  2–3 min              │
+│  Facturación (opcional)            30–60 seg            │
+│  Admin / tema / especialidades     1 min (si hay tiempo)│
 ├─────────────────────────────────────────────────────────┤
 │  Precios — /precios                ~2-3 min             │
 ├─────────────────────────────────────────────────────────┤
 │  Q&A y discovery del cliente       ~4-5 min             │
 └─────────────────────────────────────────────────────────┘
-                                  Total: 17–21 min
+                                  Total: 17–22 min
 ```
 
 ### Si el cliente quiere slides
@@ -92,9 +97,9 @@ No lo uses por defecto.
 | Dashboard KPIs | ✅ Muestra (30 seg — vista rápida) |
 | Agenda de citas | ✅ Muestra (2–3 min — núcleo del producto) |
 | Historia Clínica | ✅ Muestra (2–3 min — diferenciador clave) |
-| Facturación | Menciona verbalmente al pasar por billing |
+| Facturación | ✅ Muestra si hay tiempo (30–60 seg — QR real, badge "ACEPTADO") |
 | Recordatorio WhatsApp | Menciona al mostrar el badge en agenda |
-| Panel admin / tema | ✅ Muestra si sobra 1 min — cambiar un color es muy visual |
+| Panel admin / tema | ✅ Muestra si sobra 1 min — cambiar un color + "sus especialidades" es muy visual |
 | SuperAdmin platform | ❌ No mostrar — no es relevante para el cliente |
 
 ---
@@ -105,7 +110,7 @@ No lo uses por defecto.
 
 No leas un guión — di algo así con tus palabras:
 
-> *"MAO Clinics es un sistema de gestión para clínicas y consultorios médicos en Lima.
+> *"Clinova es un sistema de gestión para clínicas y consultorios médicos en Lima.
 > Agenda de citas, historia clínica electrónica, recordatorios por WhatsApp, facturación
 > a SUNAT y dashboard de métricas — todo en un solo sistema. Te lo muestro funcionando
 > en vivo, así ves exactamente cómo quedaría para tu clínica."*
@@ -123,7 +128,7 @@ Luego logueas y arranca el demo. Sin más preámbulo.
 
 ### 4.1 Login + branding (30 seg)
 
-- Ingresa con `admin@sanrafael.com` / `Demo2026!`
+- Ingresa con `admin@sanrafael.maosystems.io` / `Demo2026!`
 - Señala que el sistema carga el logo y los colores de la clínica automáticamente
 
 **Frase:**
@@ -175,15 +180,30 @@ Ruta: `/appointments/:id/consultation` (abre una cita existente)
 
 ---
 
-### 4.5 Panel admin — cambio de tema (1 min, si hay tiempo)
+### 4.5 Facturación electrónica (30–60 seg, si hay tiempo)
 
-Ruta: `/admin` → Configuración → Apariencia
+Ruta: `/billing` → abre una factura existente → botón "Ver PDF"
 
-- Cambia un color del tema en vivo y que lo vean cambiar al instante
-- Muestra que se puede subir el logo
+- Muestra el PDF con el QR real (escanealo si tienes un teléfono cerca)
+- Señala el badge verde **"✓ ACEPTADO POR SUNAT"** y el hash CDR de Nubefact
 
 **Frase:**
-> *"El administrador personaliza el sistema sin llamarnos a nosotros. Colores, logo, usuarios — todo en el panel."*
+> *"Este PDF ya es válido ante SUNAT — tiene el QR oficial, el código de respuesta de Nubefact y el hash de aceptación. En producción se envía automáticamente al correo del paciente."*
+
+> ⏱ **Si vas justo de tiempo, menciona verbalmente:** *"La facturación electrónica a SUNAT está integrada — boletas, facturas y notas de crédito."*
+
+---
+
+### 4.6 Panel admin — tema y especialidades (1 min, si hay tiempo)
+
+Ruta: `/admin` → pestaña **Apariencia** / **Especialidades**
+
+- Cambia un color del tema en vivo y que lo vean cambiar al instante
+- Cambia a la pestaña **Especialidades**: muestra que el cliente agrega, edita o desactiva especialidades (las que aparecen al crear un médico)
+- Menciona que los usuarios y médicos también se gestionan desde aquí
+
+**Frase:**
+> *"El administrador lo configura todo sin llamarnos: los colores, el logo, los médicos, y hasta las especialidades que manejan. Es su sistema."*
 
 > ⏱ **Si vas justo de tiempo, sáltate este módulo y menciona que existe.**
 
@@ -319,8 +339,9 @@ Anota en CRM o Notion: fecha · especialidad · nº médicos · módulos de inte
 - [ ] Login + branding — 30 seg
 - [ ] Dashboard — 30–60 seg
 - [ ] Agenda (crear cita, badge WhatsApp) — 2–3 min
-- [ ] HCE (nota, ICD-10, PDF) — 2–3 min
-- [ ] Admin/tema — 1 min si hay tiempo, si no: mencionar
+- [ ] HCE (nota, ICD-10, receta, PDF) — 2–3 min
+- [ ] Facturación (QR, badge ACEPTADO) — 30–60 seg si hay tiempo, si no: mencionar
+- [ ] Admin/tema/especialidades — 1 min si hay tiempo, si no: mencionar
 - [ ] /precios — 2–3 min, toggle anual, calculadora si pide
 - [ ] Q&A — escuchar, orientar, definir próximo paso
 

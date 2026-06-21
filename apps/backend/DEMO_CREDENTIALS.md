@@ -1,4 +1,4 @@
-# MAO Clinics — Demo Credentials
+# Clinova — Demo Credentials
 
 Quick reference for all logins. **Password for all tenant users: `Demo2026!`**
 

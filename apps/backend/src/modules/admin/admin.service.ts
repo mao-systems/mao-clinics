@@ -461,7 +461,7 @@ export class AdminService {
     void sendWelcomeEmail({
       to:           targetUser.email,
       firstName:    targetUser.first_name,
-      clinicName:   tenant?.name ?? 'MAO Clinics',
+      clinicName:   tenant?.name ?? 'Clinova',
       tempPassword,
     })
 

@@ -4,7 +4,7 @@
 
 ## Project
 Multi-tenant SaaS for private clinics and medical offices in Lima, Peru.
-Brand: MAO Systems | Product: MAO Clinics | URL: maosystems.io
+Brand: MAO Systems | Product: Clinova | URL: maosystems.io
 One codebase, many clinics. Each clinic = one tenant, fully isolated.
 
 ## Monorepo structure

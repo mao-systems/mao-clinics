@@ -267,7 +267,7 @@ export default function PricingPage() {
   // Smart upgrade hint: find cheapest bundle that covers this exact combo
   const betterBundle = cheaperBundle(totalDoctors, selectedModules)
 
-  const whatsappLink = `https://wa.me/51999999999?text=${encodeURIComponent('Hola, me interesa conocer más sobre los planes de MAO Clinics.')}`
+  const whatsappLink = `https://wa.me/51999999999?text=${encodeURIComponent('Hola, me interesa conocer más sobre los planes de Clinova.')}`
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">

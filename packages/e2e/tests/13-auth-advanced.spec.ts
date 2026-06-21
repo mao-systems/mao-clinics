@@ -10,9 +10,9 @@ test.describe('Autenticación — formulario y validación', () => {
     await page.waitForLoadState('networkidle')
   })
 
-  test('Página de login muestra título "MAO Clinics" y subtítulo', async ({ page }) => {
-    await expect(page.locator('h1', { hasText: 'MAO Clinics' })).toBeVisible()
-    await expect(page.locator('p', { hasText: /Iniciar sesi[oó]n/i })).toBeVisible()
+  test('Página de login muestra marca "Clinova" y campo de acceso', async ({ page }) => {
+    await expect(page.locator('text=Clinova').first()).toBeVisible()
+    await expect(page.locator('h1', { hasText: 'Bienvenido' })).toBeVisible()
     await page.screenshot({ path: 'test-results/login-page-title.png', fullPage: true })
   })
 

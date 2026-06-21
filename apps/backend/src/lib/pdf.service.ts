@@ -230,7 +230,7 @@ class PdfService {
         .font('Helvetica')
         .fillColor('#AAAAAA')
         .text(
-          `Generado por MAO Clinics — maosystems.io`,
+          `Generado por Clinova — maosystems.io`,
           LEFT,
           footerY + 82,
           { width: PAGE_WIDTH, align: 'center' },

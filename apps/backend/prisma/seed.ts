@@ -1,5 +1,5 @@
 /**
- * Seed script — MAO Clinics demo tenant (Clínica San Rafael)
+ * Seed script — Clinova demo tenant (Clínica San Rafael)
  * Run with: pnpm db:seed   (npx ts-node prisma/seed.ts)
  *
  * Fixed IDs so tests and slash commands can reference them:

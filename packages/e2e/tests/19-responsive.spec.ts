@@ -126,7 +126,7 @@ test.describe('Responsive — móvil (390 × 844)', () => {
     await page.goto('/login')
     await page.waitForLoadState('networkidle')
 
-    await expect(page.locator('h1', { hasText: 'MAO Clinics' })).toBeVisible()
+    await expect(page.locator('h1', { hasText: 'Bienvenido' })).toBeVisible()
     await expect(page.locator('input[type="email"]')).toBeVisible()
     await expect(page.locator('input[type="password"]')).toBeVisible()
     await expect(page.locator('button[type="submit"]')).toBeVisible()
@@ -391,7 +391,7 @@ test.describe('Responsive — integridad en múltiples breakpoints', () => {
       await page.goto('/login')
       await page.waitForLoadState('networkidle')
 
-      await expect(page.locator('h1', { hasText: 'MAO Clinics' })).toBeVisible()
+      await expect(page.locator('h1', { hasText: 'Bienvenido' })).toBeVisible()
       await expect(page.locator('button[type="submit"]')).toBeVisible()
 
       await page.screenshot({
